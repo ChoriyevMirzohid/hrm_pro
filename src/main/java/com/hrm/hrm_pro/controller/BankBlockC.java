@@ -4,10 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class SigninController {
-
-    @GetMapping("/sign-in")
+public class BankBlockC {
+    @GetMapping("/bank-block")
     public String getPage(){
-        return "sign-in";
+        return "bank-block";
     }
 }

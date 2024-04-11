@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
+    <meta name="author" content="AdminKit">
+    <meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="shortcut icon" th:href="@{/static/img/icons/icon-48x48.png}">
+    <title>User register</title>
+
+    <link th:href="@{/static/css/app.css}" rel="stylesheet">
+    <link th:href="@{/static/modal/modal.css}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<div class="wrapper">
+    <div th:replace="fragments/sidebar :: sidebar"></div>
+
+    <div class="main">
+        <div th:replace="fragments/navbar :: navbar"></div>
+
+        <main class="content">
+            <div class="container-fluid p-0">
+
+                <div class="mb-3 d-flex justify-content-between">
+                    <div class="title">
+                        <h1 class="h3 d-inline align-middle">User registration</h1>
+                    </div>
+                    <div>
+                        <button class="btn btn-success" id="myBtn" data-toggle="modal" data-target="#userRegModal">Create</button>
+                    </div>
+                </div>
+
+                    <div class="modal fade" id="userRegModal" tabindex="-1" role="dialog" aria-modal="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Modal title</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Modal body text goes here.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="card">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Fullname</th>
+                                <th>Email</th>
+                                <th>Login</th>
+                                <th>Password</th>
+                                <th>Condition</th>
+                                <th>Created date</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <!--/*@thymesVar id="users" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
+                            <tr th:each="item : ${users}">
+                                <td class="fw-bold text-center" th:text="${item.id}" />
+                                <td th:text="${item.fullname}" />
+                                <td th:text="${item.email}" />
+                                <td th:text="${item.login}" />
+                                <td>
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <span class="mt-1">*****</span>
+                                        <span>
+                                        <i class="align-middle text-info" data-feather="eye-off"></i>
+                                    </span>
+                                    </div>
+                                </td>
+                                <td th:text="${item.condition}" />
+                                <td th:text="${item.create_date}" />
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <i title="edit" class="align-middle text-warning" data-feather="edit"></i>
+                                        <i title="info" class="align-middle text-info m-2 fs-3" data-feather="arrow-right-circle"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content" style="width: 500px">
+                <div class="modal-header">
+                    <span>Add information</span>
+                </div>
+                <div class="modal-body">
+                    <!--/*@thymesVar id="userRegDto" type="com.hrm.hrm_pro.dto.UserRegDto"*/-->
+                    <form role="form" method="post" th:action="@{/user-register/new}" th:object="${userRegDto}">
+                        <div class="mb-3">
+                            <label class="form-label">Fullname</label>
+                            <input class="form-control form-control-lg" type="text" required name="fullname" placeholder="Enter fullname" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input class="form-control form-control-lg" type="email" required name="email" placeholder="Enter email" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Create new login</label>
+                            <input class="form-control form-control-lg" type="text" required name="login" placeholder="Enter login" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Create new Password</label>
+                            <input class="form-control form-control-lg" type="password" required name="password" placeholder="Enter password" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Status</label>
+                            <select name="condition" required class="form-control form-control-lg">
+                                <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
+                                <option th:each="item: ${conditionList}" th:value="${item.code}" th:text="${item.code + '-' + item.name}"></option>
+                            </select>
+                        </div>
+                        <div class="mt-4 mb-1 text-start">
+                            <button type="submit" class="btn btn-lg btn-lg btn-primary">Save</button>
+                            <button class="btn btn-lg btn-secondary btn-close-footer">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div th:replace="fragments/footer :: footer"></div>
+    </div>
+</div>
+
+<script th:src="@{/static/js/app.js}"></script>
+<script th:src="@{/static/modal/modal.js}"></script>
+
+</body>
+</html>

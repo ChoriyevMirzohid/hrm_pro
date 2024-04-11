@@ -21,13 +21,13 @@ public class User {
     @Column(length = 40)
     private String fullname;
 
-    @Column(length = 50)
-    private String username;
+    @Column(length = 50, unique = true)
+    private String login;
 
     @Column(length = 100)
     private String password;
 
-    @Column(length = 50)
+    @Column(length = 50, unique = true)
     private String email;
 
     @Column(nullable = false, length = 3)

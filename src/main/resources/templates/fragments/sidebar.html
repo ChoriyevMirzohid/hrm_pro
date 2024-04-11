@@ -1,7 +1,7 @@
 <div th:fragment="sidebar">
     <nav id="sidebar" class="sidebar js-sidebar">
         <div class="sidebar-content js-simplebar">
-            <a class="sidebar-brand" href="/dashboard">
+            <a class="sidebar-brand" th:href="@{/dashboard}">
                 <span class="align-middle">Dashboard</span>
             </a>
 
@@ -11,26 +11,26 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/dashboard">
+                    <a class="sidebar-link" th:href="@{/dashboard}">
                         <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="/sign-in">
+                    <a class="sidebar-link" th:href="@{/sign-in}">
                         <i class="align-middle" data-feather="user"></i> <span class="align-middle">Sign In</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="pages-sign-in.html">
-                        <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Sign In</span>
+                    <a class="sidebar-link" th:href="@{/user-register}">
+                        <i class="align-middle" data-feather="book"></i> <span class="align-middle">User registration</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="pages-sign-up.html">
-                        <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Sign Up</span>
+                    <a class="sidebar-link" th:href="@{/bank-block}">
+                        <i class="align-middle" data-feather="book"></i> <span class="align-middle">Bank block</span>
                     </a>
                 </li>
 
