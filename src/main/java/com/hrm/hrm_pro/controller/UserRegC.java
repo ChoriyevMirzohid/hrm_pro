@@ -6,9 +6,7 @@ import com.hrm.hrm_pro.repository.UserConditionRepo;
 import com.hrm.hrm_pro.service.UserRegS;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,10 +22,13 @@ public class UserRegC {
     }
 
     @GetMapping("/user-register")
-    public String getPage(Model model){
+    public String getPageEdit(
+            @RequestParam(value = "pageNum", defaultValue = "0", required = false) int pageNum,
+            @RequestParam(value = "pageSize", defaultValue = "10", required = false) int pageSize,
+            Model model){
         List<UserCondition> conditionList = conditionRepo.findAll();
         model.addAttribute("conditionList", conditionList);
-        model.addAttribute("users", userRegS.getAllUsers());
+        model.addAttribute("users", userRegS.getAllUsersPaging(pageNum, pageSize));
         return "user-reg";
     }
 

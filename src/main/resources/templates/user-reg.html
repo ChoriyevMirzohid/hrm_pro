@@ -14,6 +14,7 @@
 
     <link th:href="@{/static/css/app.css}" rel="stylesheet">
     <link th:href="@{/static/modal/modal.css}" rel="stylesheet">
+    <link th:href="@{/static/pagination/page.css}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
@@ -36,27 +37,26 @@
                     </div>
                 </div>
 
-                    <div class="modal fade" id="userRegModal" tabindex="-1" role="dialog" aria-modal="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Modal title</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Modal body text goes here.</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
+                <div class="card p-3">
+                    <div class="mt-1 mb-3 d-flex justify-content-between">
+                        <div>
+                            <label class="d-inline-flex align-items-center">
+                                <span>Show: </span>
+                                <select class="form-select form-select-sm">
+                                    <option value="10">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div>
+                            <label class="d-inline-flex align-items-center">
+                                <span>Search: </span>
+                                <input type="search" placeholder="Search" class="form-control form-control-sm p-1 border-1">
+                            </label>
                         </div>
                     </div>
-
-                <div class="card">
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover table-striped">
                             <thead>
@@ -74,7 +74,7 @@
 
                             <tbody>
                             <!--/*@thymesVar id="users" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
-                            <tr th:each="item : ${users}">
+                            <tr th:each="item : ${users.content}">
                                 <td class="fw-bold text-center" th:text="${item.id}" />
                                 <td th:text="${item.fullname}" />
                                 <td th:text="${item.email}" />
@@ -87,18 +87,42 @@
                                     </span>
                                     </div>
                                 </td>
-                                <td th:text="${item.condition}" />
+                                <td>
+                                    <!--/*@thymesVar id="conditionList" type=""*/-->
+                                    <span th:each="itemCon : ${conditionList}"
+                                          th:if="${itemCon.code} == ${item.condition}">
+                                        <span th:text="${itemCon.code} + '-' + ${itemCon.name}"></span>
+                                    </span>
+                                </td>
                                 <td th:text="${item.create_date}" />
                                 <td>
-                                    <div class="d-flex align-items-center">
-                                        <i title="edit" class="align-middle text-warning" data-feather="edit"></i>
-                                        <i title="info" class="align-middle text-info m-2 fs-3" data-feather="arrow-right-circle"></i>
+                                    <div class="text-center">
+                                        <i class="align-middle text-warning fs-4" data-feather="edit"></i>
                                     </div>
                                 </td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
+
+                    <div class="mt-2 d-flex align-items-center justify-content-between">
+                        <div>
+                            <span>Showing 21 to 30 of 57 entries</span>
+                        </div>
+                        <div class="pagination-block dataTables_paginate paging_simple_numbers" id = "datatables-reponsive_paginate">
+                            <ul class="pagination">
+                                <li class="paginate_button page-item previous" id="datatables-reponsive_previous"><a href="#" aria-controls="datatables-reponsive" aria-role="link" data-dt-idx="previous" tabindex="0" class="page-link">
+                                    <i class="align-middle" data-feather="chevrons-left"></i>
+                                </a></li>
+                                <li class="paginate_button page-item"><a href="#" aria-controls="datatables-reponsive" aria-role="link" data-dt-idx="0" tabindex="0" class="page-link">1</a></li>
+                                <li class="paginate_button page-item"><a href="#" aria-controls="datatables-reponsive" aria-role="link" data-dt-idx="1" tabindex="0" class="page-link">2</a></li>
+                                <li class="paginate_button page-itemnext" id="datatables-reponsive_next"><a href="#" aria-controls="datatables-reponsive" aria-role="link" data-dt-idx="next" tabindex="0" class="page-link">
+                                    <i class="align-middle" data-feather="chevrons-right"></i>
+                                </a></li>
+                            </ul>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </main>
