@@ -29,10 +29,6 @@ public class UserRegS {
         userRegRepo.save(user);
     }
 
-    public List<UserRegDto> getAllUsers() {
-        return userRegRepo.getAllUsers();
-    }
-
     public PagingResponse getAllUsersPaging(int pageNum, int pageSize) {
         if (pageNum < 0){
             pageNum = 0;
@@ -53,9 +49,5 @@ public class UserRegS {
         pagingResponse.setLast(userRegDtoPage.isLast());
 
         return pagingResponse;
-    }
-
-    public UserRegDto getUserById(Integer id){
-        return userRegRepo.getUserById(id);
     }
 }
