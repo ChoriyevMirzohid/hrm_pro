@@ -28,7 +28,7 @@ public class UserRegC {
             Model model){
         List<UserCondition> conditionList = conditionRepo.findAll();
         model.addAttribute("conditionList", conditionList);
-        model.addAttribute("users", userRegS.getAllUsersPaging(num, size));
+        model.addAttribute("list", userRegS.getAllUsersPaging(num, size));
         return "user-reg";
     }
 

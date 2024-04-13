@@ -1,11 +1,53 @@
 
-.paging-input-padding{
-    padding-left: 10px;
+.paging-select{
+    width: auto;
+}
+
+.paging-input-block{
+    margin-left: 10px;
 }
 .paging-input{
-    margin: 1px;
     color: black;
-    font-size: 14px;
-    width: 45px;
+    margin-left: 3px;
+}
+
+.paging-total-input{
+    color: black;
+    text-align: center;
+    margin-left: 3px;
+}
+
+:read-only.paging-total-input{
+    background-color: white;
+    color: black;
+}
+
+.paging-total-page-number{
+    margin-left: 3px;
+    margin-right: 3px;
+}
+:read-only.paging-total-page-number{
+    background-color: white;
+    color: black;
+}
+.paging-drop-ul{
+    list-style: none;
+}
+.paging-drop-ul li{
+    color: black;
+    text-decoration: none;
     padding: 0;
+}
+.paging-select-drop-btn{
+    border: 1px solid rgb(219, 219, 219);
+}
+.dropdown-menu{
+    min-width: auto;
+    padding: 0;
+}
+.paging-select-option{
+    text-decoration: none;
+    color: black;
+    padding: 1px 5px;
+    text-decoration-style: solid;
 }
