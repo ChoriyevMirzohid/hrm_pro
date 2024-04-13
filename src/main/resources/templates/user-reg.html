@@ -39,21 +39,31 @@
 
                 <div class="card p-3">
                     <div class="mt-1 mb-3 d-flex justify-content-between">
-                        <div>
-                            <label class="d-inline-flex align-items-center">
-                                <span>Show: </span>
-                                <select class="form-select form-select-sm">
-                                    <option value="10">10</option>
-                                    <option value="25">25</option>
-                                    <option value="50">50</option>
-                                    <option value="100">100</option>
-                                </select>
-                            </label>
+                        <div class="d-flex align-items-center">
+                            <div>
+                                <label class="d-inline-flex align-items-center">
+                                    <select class="form-select form-select-sm form-select-paging-width">
+                                        <option value="10">10</option>
+                                        <option value="25">25</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                    </select>
+                                </label>
+                            </div>
+                            <div class="d-flex align-items-center paging-input-padding">
+                                <button class="btn btn-primary btn-sm">
+                                    <i class="align-middle" data-feather="chevrons-left"></i>
+                                </button>
+                                <input type="text" class="form-control form-control-sm text-center paging-input">
+                                <button class="btn btn-primary btn-sm">
+                                    <i class="align-middle" data-feather="chevrons-right"></i>
+                                </button>
+                            </div>
                         </div>
                         <div>
                             <label class="d-inline-flex align-items-center">
                                 <span>Search: </span>
-                                <input type="search" placeholder="Search" class="form-control form-control-sm p-1 border-1">
+                                <input type="search" placeholder="Search" class="form-control form-control-sm p-2">
                             </label>
                         </div>
                     </div>
@@ -83,8 +93,8 @@
                                     <div class="d-flex align-items-center justify-content-between">
                                         <span class="mt-1">*****</span>
                                         <span>
-                                        <i class="align-middle text-info" data-feather="eye-off"></i>
-                                    </span>
+                                            <i class="align-middle text-info" data-feather="eye-off"></i>
+                                        </span>
                                     </div>
                                 </td>
                                 <td>
@@ -97,32 +107,15 @@
                                 <td th:text="${item.create_date}" />
                                 <td>
                                     <div class="text-center">
-                                        <i class="align-middle text-warning fs-4" data-feather="edit"></i>
+                                        <span class="text-warning">
+                                            <i class="align-middle fs-4" data-feather="edit"></i>
+                                        </span>
                                     </div>
                                 </td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
-
-                    <div class="mt-2 d-flex align-items-center justify-content-between">
-                        <div>
-                            <span>Showing 21 to 30 of 57 entries</span>
-                        </div>
-                        <div class="pagination-block dataTables_paginate paging_simple_numbers" id = "datatables-reponsive_paginate">
-                            <ul class="pagination">
-                                <li class="paginate_button page-item previous" id="datatables-reponsive_previous"><a href="#" aria-controls="datatables-reponsive" aria-role="link" data-dt-idx="previous" tabindex="0" class="page-link">
-                                    <i class="align-middle" data-feather="chevrons-left"></i>
-                                </a></li>
-                                <li class="paginate_button page-item"><a href="#" aria-controls="datatables-reponsive" aria-role="link" data-dt-idx="0" tabindex="0" class="page-link">1</a></li>
-                                <li class="paginate_button page-item"><a href="#" aria-controls="datatables-reponsive" aria-role="link" data-dt-idx="1" tabindex="0" class="page-link">2</a></li>
-                                <li class="paginate_button page-itemnext" id="datatables-reponsive_next"><a href="#" aria-controls="datatables-reponsive" aria-role="link" data-dt-idx="next" tabindex="0" class="page-link">
-                                    <i class="align-middle" data-feather="chevrons-right"></i>
-                                </a></li>
-                            </ul>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </main>

@@ -23,12 +23,12 @@ public class UserRegC {
 
     @GetMapping("/user-register")
     public String getPageEdit(
-            @RequestParam(value = "pageNum", defaultValue = "0", required = false) int pageNum,
-            @RequestParam(value = "pageSize", defaultValue = "10", required = false) int pageSize,
+            @RequestParam(value = "num", defaultValue = "0", required = false) int num,
+            @RequestParam(value = "size", defaultValue = "10", required = false) int size,
             Model model){
         List<UserCondition> conditionList = conditionRepo.findAll();
         model.addAttribute("conditionList", conditionList);
-        model.addAttribute("users", userRegS.getAllUsersPaging(pageNum, pageSize));
+        model.addAttribute("users", userRegS.getAllUsersPaging(num, size));
         return "user-reg";
     }
 

@@ -34,6 +34,12 @@ public class UserRegS {
     }
 
     public PagingResponse getAllUsersPaging(int pageNum, int pageSize) {
+        if (pageNum < 0){
+            pageNum = 0;
+        }
+        if (pageSize <= 0){
+            pageSize = 10;
+        }
         Pageable pageable = PageRequest.of(pageNum, pageSize);
         Page<UserRegDto> userRegDtoPage = userRegRepo.getAllUsersPaging(pageable);
         List<?> usersList = userRegDtoPage.stream().toList();
