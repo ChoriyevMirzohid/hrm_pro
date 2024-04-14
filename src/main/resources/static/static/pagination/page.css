@@ -21,7 +21,6 @@
     background-color: white;
     color: black;
 }
-
 .paging-total-page-number{
     margin-left: 3px;
     margin-right: 3px;
@@ -38,6 +37,9 @@
     text-decoration: none;
     padding: 0;
 }
+.paging-select-drop{
+    margin-left: 3px;
+}
 .paging-select-drop-btn{
     border: 1px solid rgb(219, 219, 219);
 }
@@ -45,9 +47,14 @@
     min-width: auto;
     padding: 0;
 }
+
 .paging-select-option{
     text-decoration: none;
     color: black;
     padding: 1px 5px;
     text-decoration-style: solid;
+}
+
+.export-file{
+    margin-left: 3px;
 }

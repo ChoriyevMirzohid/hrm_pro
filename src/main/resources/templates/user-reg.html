@@ -41,6 +41,14 @@
                     <div class="mt-1 mb-3 d-flex justify-content-between">
                         <div class="d-flex align-items-center paging">
                             <div class="d-flex align-items-center">
+                                <div class="filter-block">
+                                    <button class="form-control form-control-sm">Search</button>
+                                </div>
+                                <div class="export-file">
+                                    <button class="form-control form-control-sm">
+                                        <i class="align-middle" data-feather="download"></i>
+                                    </button>
+                                </div>
                                 <div class="paging-select-drop dropdown">
                                     <button class="btn btn-sm dropdown-toggle paging-select-drop-btn" type="button" data-toggle="dropdown">
                                         <span class="paging-select-show" th:text="${list.pageSize}"></span>
@@ -66,11 +74,11 @@
                                 <a th:href="@{/user-register(num=${(list.pageNum)-1},size=${list.pageSize})}"
                                    class="btn btn-primary btn-sm"
                                    th:style="${(list.pageNum+1)==1} ? 'display:none' : 'display:block'">
-                                    <i class="align-middle" data-feather="chevrons-right"></i>
+                                    <i class="align-middle" data-feather="chevrons-left"></i>
                                 </a>
                                 <button class="btn btn-primary btn-sm" th:disabled="${(list.pageNum+1)==1}"
                                         th:style="${(list.pageNum+1)==1} ? 'display:block' : 'display:none'">
-                                    <i class="align-middle" data-feather="chevrons-right"></i>
+                                    <i class="align-middle" data-feather="chevrons-left"></i>
                                 </button>
                                 <input type="button" th:value="${list.pageNum+1}" class="form-control form-control-sm text-center paging-input">
                                 <input type="button" th:value="${list.totalPages}" readonly class="form-control form-control-sm text-center paging-total-page-number">
@@ -173,7 +181,7 @@
                         </div>
                         <div class="mt-4 mb-1 text-start">
                             <button type="submit" class="btn btn-lg btn-lg btn-primary">Save</button>
-                            <button class="btn btn-lg btn-secondary btn-close-footer">Close</button>
+                            <input type="button" class="btn btn-lg btn-secondary btn-close-footer" value="Close">
                         </div>
                     </form>
                 </div>
