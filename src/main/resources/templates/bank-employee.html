@@ -30,7 +30,7 @@
 
         <div class="mb-3 d-flex justify-content-between">
           <div class="title">
-            <h1 class="h3 d-inline align-middle">Bank Department</h1>
+            <h1 class="h3 d-inline align-middle">Bank Employee</h1>
           </div>
           <div>
             <button class="btn btn-success" id="myBtn" data-toggle="modal" data-target="#userRegModal">Create</button>
@@ -99,43 +99,38 @@
               <thead>
               <tr>
                 <th>ID</th>
-                <th>Code</th>
-                <th>Bank director</th>
-                <th>Name(uz)</th>
-                <th>Name(ru)</th>
-                <th>Name(en)</th>
-                <th>Deputy</th>
+                <th>EmpDepartCode</th>
+                <th>Block</th>
+                <th>Directorate</th>
+                <th>Department</th>
+                <th>Short name</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Patronymic</th>
+                <th>Level</th>
+                <th>Position</th>
+                <th>Employment date</th>
                 <th>Condition</th>
-                <th>Created date</th>
-                <th>Action</th>
+                <th>Create date</th>
               </tr>
               </thead>
 
               <tbody>
-
               <tr th:each="item : ${list.content}">
-                <td class="fw-bold text-center" th:text="${item.id}" />
-                <td th:text="${item.code}" />
-                <td th:text="${item.directorate_id}" />
-                <td th:text="${item.name_uz}" />
-                <td th:text="${item.name_ru}" />
-                <td th:text="${item.name_en}" />
-                <td th:text="${item.deputy_id}" />
-                <td>
-                  <!--/*@thymesVar id="conditionList" type=""*/-->
-                  <span th:each="itemCon : ${conditionList}"
-                        th:if="${itemCon.code} == ${item.condition}">
-                                        <span th:text="${itemCon.code} + '-' + ${itemCon.name}"></span>
-                                    </span>
-                </td>
+                <td class="fw-bold text-center" th:text="${item.emp_id}" />
+                <td th:text="${item.emp_depart_code}" />
+                <td th:text="${item.block}" />
+                <td th:text="${item.directorate}" />
+                <td th:text="${item.department}" />
+                <td th:text="${item.short_name}" />
+                <td th:text="${item.firstname}" />
+                <td th:text="${item.lastname}" />
+                <td th:text="${item.patronymic}" />
+                <td th:text="${item.level}" />
+                <td th:text="${item.position}" />
+                <td th:text="${item.employment_date}" />
+                <td th:text="${item.condition}" />
                 <td th:text="${item.create_date}" />
-                <td>
-                  <div class="text-center">
-                                        <span class="text-warning">
-                                            <i class="align-middle fs-4" data-feather="edit"></i>
-                                        </span>
-                  </div>
-                </td>
               </tr>
               </tbody>
             </table>
@@ -151,8 +146,8 @@
           <span>Add information</span>
         </div>
         <div class="modal-body">
-          <!--/*@thymesVar id="bankDepartmentDto" type="com.hrm.hrm_pro.dto.bankDepartmentDto"*/-->
-          <form role="form" method="post" th:action="@{/bank-department/new}" th:object="${bankDepartmentDto}">
+          <!--/*@thymesVar id="bankDepartmentDto" type="com.hrm.hrm_pro.dto.bankEmployeeDto"*/-->
+          <form role="form" method="post" th:action="@{/bank-department/new}" th:object="${bankEmployeeDto}">
             <div class="mb-3">
               <label class="form-label">Code</label>
               <input class="form-control form-control-lg" type="text" required name="code" placeholder="Enter code" />

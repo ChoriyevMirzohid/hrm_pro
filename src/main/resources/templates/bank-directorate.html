@@ -116,7 +116,12 @@
                             <tr th:each="item : ${list.content}">
                                 <td class="fw-bold text-center" th:text="${item.id}" />
                                 <td th:text="${item.code}" />
-                                <td th:text="${item.block_id}" />
+                                <td>
+                                    <span th:each="itemBlock : ${bankBlocks}"
+                                          th:if="${itemBlock.id} == ${item.block_id}">
+                                        <span th:text="${itemBlock.code} + '-' + ${itemBlock.name_en}"></span>
+                                    </span>
+                                </td>
                                 <td th:text="${item.name_uz}" />
                                 <td th:text="${item.name_ru}" />
                                 <td th:text="${item.name_en}" />
