@@ -1,6 +1,7 @@
 package com.hrm.hrm_pro.service;
 
 import com.hrm.hrm_pro.dto.BankBlockDto;
+import com.hrm.hrm_pro.dto.BankDirectorateDto;
 import com.hrm.hrm_pro.dto.PagingResponse;
 import com.hrm.hrm_pro.model.system_emp.BankBlock;
 import com.hrm.hrm_pro.repository.BankBlockRepo;
@@ -8,7 +9,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -17,6 +17,10 @@ public class BankBlockS {
 
     public BankBlockS(BankBlockRepo bankBlockRepo) {
         this.bankBlockRepo = bankBlockRepo;
+    }
+
+    public List<BankBlockDto> getAllBankBlock(){
+        return bankBlockRepo.getAllBankBlock();
     }
 
     public PagingResponse getAllBankBlockPaging(int pageNum, int pageSize) {

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
+    <meta name="author" content="AdminKit">
+    <meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="shortcut icon" th:href="@{/static/img/icons/icon-48x48.png}">
+    <title>Bank Directorate</title>
+
+    <link th:href="@{/static/css/app.css}" rel="stylesheet">
+    <link th:href="@{/static/modal/modal.css}" rel="stylesheet">
+    <link th:href="@{/static/pagination/page.css}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<div class="wrapper">
+    <div th:replace="fragments/sidebar :: sidebar"></div>
+
+    <div class="main">
+        <div th:replace="fragments/navbar :: navbar"></div>
+
+        <main class="content">
+            <div class="container-fluid p-0">
+
+                <div class="mb-3 d-flex justify-content-between">
+                    <div class="title">
+                        <h1 class="h3 d-inline align-middle">Bank Directorate</h1>
+                    </div>
+                    <div>
+                        <button class="btn btn-success" id="myBtn" data-toggle="modal" data-target="#userRegModal">Create</button>
+                    </div>
+                </div>
+
+                <div class="card p-3">
+                    <div class="mt-1 mb-3 d-flex justify-content-between">
+                        <div class="d-flex align-items-center paging">
+                            <div class="d-flex align-items-center">
+                                <div class="filter-block">
+                                    <button class="form-control form-control-sm">Search</button>
+                                </div>
+                                <div class="export-file">
+                                    <button class="form-control form-control-sm">
+                                        <i class="align-middle" data-feather="download"></i>
+                                    </button>
+                                </div>
+                                <div class="paging-select-drop dropdown">
+                                    <button class="btn btn-sm dropdown-toggle paging-select-drop-btn" type="button" data-toggle="dropdown">
+                                        <span class="paging-select-show" th:text="${list.pageSize}"></span>
+                                    </button>
+                                    <ul class="dropdown-menu paging-drop-ul">
+                                        <li>
+                                            <a class="paging-select-option" th:href="@{/bank-directorate?num=0&size=10}">10</a>
+                                        </li>
+                                        <li>
+                                            <a class="paging-select-option" th:href="@{/bank-directorate?num=0&size=20}">20</a>
+                                        </li>
+                                        <li>
+                                            <a class="paging-select-option" th:href="@{/bank-directorate?num=0&size=50}">50</a>
+                                        </li>
+                                        <li>
+                                            <a class="paging-select-option" th:href="@{/bank-directorate?num=0&size=100}">100</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <input type="button" th:value="${list.totalElements}" readonly class="form-control form-control-sm paging-total-input">
+                            </div>
+                            <div class="d-flex align-items-center paging-input-block">
+                                <a th:href="@{/bank-directorate(num=${(list.pageNum)-1},size=${list.pageSize})}"
+                                   class="btn btn-primary btn-sm"
+                                   th:style="${(list.pageNum+1)==1} ? 'display:none' : 'display:block'">
+                                    <i class="align-middle" data-feather="chevrons-left"></i>
+                                </a>
+                                <button class="btn btn-primary btn-sm" th:disabled="${(list.pageNum+1)==1}"
+                                        th:style="${(list.pageNum+1)==1} ? 'display:block' : 'display:none'">
+                                    <i class="align-middle" data-feather="chevrons-left"></i>
+                                </button>
+                                <input type="button" th:value="${list.pageNum+1}" class="form-control form-control-sm text-center paging-input">
+                                <input type="button" th:value="${list.totalPages}" readonly class="form-control form-control-sm text-center paging-total-page-number">
+                                <a th:href="@{/bank-directorate(num=${list.pageNum+1},size=${list.pageSize})}"
+                                   class="btn btn-primary btn-sm"
+                                   th:style="${(list.pageNum+1)>=list.totalPages} ? 'display:none' : 'display:block'">
+                                    <i class="align-middle" data-feather="chevrons-right"></i>
+                                </a>
+                                <button class="btn btn-primary btn-sm" th:disabled="${(list.pageNum+1)>=list.totalPages}"
+                                        th:style="${(list.pageNum+1)>=list.totalPages} ? 'display:block' : 'display:none'">
+                                    <i class="align-middle" data-feather="chevrons-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Code</th>
+                                <th>Bank block</th>
+                                <th>Name(uz)</th>
+                                <th>Name(ru)</th>
+                                <th>Name(en)</th>
+                                <th>Deputy</th>
+                                <th>Condition</th>
+                                <th>Created date</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+
+                            <tr th:each="item : ${list.content}">
+                                <td class="fw-bold text-center" th:text="${item.id}" />
+                                <td th:text="${item.code}" />
+                                <td th:text="${item.block_id}" />
+                                <td th:text="${item.name_uz}" />
+                                <td th:text="${item.name_ru}" />
+                                <td th:text="${item.name_en}" />
+                                <td th:text="${item.deputy_id}" />
+                                <td>
+                                    <!--/*@thymesVar id="conditionList" type=""*/-->
+                                    <span th:each="itemCon : ${conditionList}"
+                                          th:if="${itemCon.code} == ${item.condition}">
+                                        <span th:text="${itemCon.code} + '-' + ${itemCon.name}"></span>
+                                    </span>
+                                </td>
+                                <td th:text="${item.create_date}" />
+                                <td>
+                                    <div class="text-center">
+                                        <span class="text-warning">
+                                            <i class="align-middle fs-4" data-feather="edit"></i>
+                                        </span>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content" style="width: 500px">
+                <div class="modal-header">
+                    <span>Add information</span>
+                </div>
+                <div class="modal-body">
+                    <!--/*@thymesVar id="bankDirectorateDto" type="com.hrm.hrm_pro.dto.bankDirectorateDto"*/-->
+                    <form role="form" method="post" th:action="@{/bank-directorate/new}" th:object="${bankDirectorateDto}">
+                        <div class="mb-3">
+                            <label class="form-label">Code</label>
+                            <input class="form-control form-control-lg" type="text" required name="code" placeholder="Enter code" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Bank block</label>
+                            <select name="block_id" required class="form-control form-control-lg">
+                                <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
+                                <option th:each="item: ${bankBlocks}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}"></option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Name(uz)</label>
+                            <input class="form-control form-control-lg" type="text" required name="name_uz" placeholder="Enter name" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Name(ru)</label>
+                            <input class="form-control form-control-lg" type="text" required name="name_ru" placeholder="Enter name" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Name(en)</label>
+                            <input class="form-control form-control-lg" type="text" required name="name_en" placeholder="Enter name" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Deputy</label>
+                            <input class="form-control form-control-lg" type="text" required name="deputy_id" placeholder="Enter deputy" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Status</label>
+                            <select name="condition" required class="form-control form-control-lg">
+                                <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
+                                <option th:each="item: ${conditionList}" th:value="${item.code}" th:text="${item.code + '-' + item.name}"></option>
+                            </select>
+                        </div>
+                        <div class="mt-4 mb-1 text-start">
+                            <button type="submit" class="btn btn-lg btn-lg btn-primary">Save</button>
+                            <input type="button" class="btn btn-lg btn-secondary btn-close-footer" value="Close">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div th:replace="fragments/footer :: footer"></div>
+    </div>
+</div>
+
+<script th:src="@{/static/js/app.js}"></script>
+<script th:src="@{/static/modal/modal.js}"></script>
+<script th:src="@{/static/pagination/page.js}"></script>
+</body>
+</html>
