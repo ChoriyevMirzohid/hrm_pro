@@ -7,3 +7,7 @@ document.querySelector(".paging-select-drop-btn").addEventListener("click", () =
         document.querySelector(".paging-drop-ul").style.display="block";
     }
 });
+
+const itemForwardEmployee = (id) => {
+    window.location.href='/bank-employee/'+id;
+}

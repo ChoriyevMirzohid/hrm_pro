@@ -40,4 +40,8 @@ public class BankEmployeeS {
 
         return pagingResponse;
     }
+
+    public BankEmployeeDto getBankEmployeeById(Integer id) {
+        return bankEmployeeRepo.getBankEmployeeById(id);
+    }
 }

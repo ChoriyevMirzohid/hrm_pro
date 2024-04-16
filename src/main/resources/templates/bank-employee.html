@@ -116,22 +116,22 @@
               </thead>
 
               <tbody>
-              <tr th:each="item : ${list.content}">
-                <td class="fw-bold text-center" th:text="${item.emp_id}" />
-                <td th:text="${item.emp_depart_code}" />
-                <td th:text="${item.block}" />
-                <td th:text="${item.directorate}" />
-                <td th:text="${item.department}" />
-                <td th:text="${item.short_name}" />
-                <td th:text="${item.firstname}" />
-                <td th:text="${item.lastname}" />
-                <td th:text="${item.patronymic}" />
-                <td th:text="${item.level}" />
-                <td th:text="${item.position}" />
-                <td th:text="${item.employment_date}" />
-                <td th:text="${item.condition}" />
-                <td th:text="${item.create_date}" />
-              </tr>
+                <tr th:each="item : ${list.content}" th:ondblclick="'itemForwardEmployee('+${item.emp_id}+')'">
+                  <td class="fw-bold text-center" th:text="${item.emp_id}" />
+                  <td th:text="${item.emp_depart_code}" />
+                  <td th:text="${item.block}" />
+                  <td th:text="${item.directorate}" />
+                  <td th:text="${item.department}" />
+                  <td th:text="${item.short_name}" />
+                  <td th:text="${item.firstname}" />
+                  <td th:text="${item.lastname}" />
+                  <td th:text="${item.patronymic}" />
+                  <td th:text="${item.level}" />
+                  <td th:text="${item.position}" />
+                  <td th:text="${item.employment_date}" />
+                  <td th:text="${item.condition}" />
+                  <td th:text="${item.create_date}" />
+                </tr>
               </tbody>
             </table>
           </div>

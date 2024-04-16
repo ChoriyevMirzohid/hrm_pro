@@ -21,7 +21,7 @@ public class BankDirectorateS {
         this.bankBlockS = bankBlockS;
     }
 
-    public List<BankDirectorateDto> getAllDirectorate(){
+    public List<BankDirectorateDto> getAllBankDirectorate(){
         return bankDirectorateRepo.getAllBankDirectorate();
     }
 

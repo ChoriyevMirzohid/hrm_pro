@@ -4,7 +4,6 @@ import com.hrm.hrm_pro.dto.BankDepartmentDto;
 import com.hrm.hrm_pro.dto.BankDirectorateDto;
 import com.hrm.hrm_pro.dto.PagingResponse;
 import com.hrm.hrm_pro.model.system_emp.BankDepartment;
-import com.hrm.hrm_pro.model.system_emp.BankDirectorate;
 import com.hrm.hrm_pro.repository.BankDepartmentRepo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,8 +22,12 @@ public class BankDepartmentS {
         this.bankDirectorateS = bankDirectorateS;
     }
 
+    public List<BankDepartmentDto> getAllBankDepartment(){
+        return bankDepartmentRepo.getAllBankDepartment();
+    }
+
     public List<BankDirectorateDto> getAllDirectorate(){
-        return bankDirectorateS.getAllDirectorate();
+        return bankDirectorateS.getAllBankDirectorate();
     }
 
     public PagingResponse getAllBankDepartmentPaging(int pageNum, int pageSize) {

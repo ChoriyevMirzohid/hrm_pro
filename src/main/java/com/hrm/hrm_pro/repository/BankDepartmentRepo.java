@@ -16,6 +16,6 @@ public interface BankDepartmentRepo extends JpaRepository<BankDepartment, Intege
     @Query("select new com.hrm.hrm_pro.dto.BankDepartmentDto(a.id, a.code, a.directorate_id, a.name_uz, a.name_ru, a.name_en, a.deputy_id, a.condition, a.create_date, a.delete_date) from BankDepartment a order by a.create_date desc")
     Page<BankDepartmentDto> getAllBankDepartmentPaging(Pageable pageable);
 
-    @Query("select new com.hrm.hrm_pro.dto.BankDepartmentDto(a.id, a.code, a.directorate_id, a.name_uz, a.name_ru, a.name_en, a.deputy_id, a.condition, a.create_date, a.delete_date) from BankDepartment a where a.condition='1' order by a.create_date desc")
+    @Query("select new com.hrm.hrm_pro.dto.BankDepartmentDto(a.id, a.code, a.directorate_id, a.name_uz, a.name_ru, a.name_en, a.deputy_id, a.condition, a.create_date, a.delete_date) from BankDepartment a where a.condition='1' order by a.code")
     List<BankDepartmentDto> getAllBankDepartment();
 }

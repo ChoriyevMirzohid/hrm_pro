@@ -18,6 +18,9 @@ public class EmpPosition {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(length = 10)
+    private String code;
+
     @Column(length = 100)
     private String name_uz;
 
