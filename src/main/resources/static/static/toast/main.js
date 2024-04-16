@@ -28,7 +28,7 @@ function toast({title='', message='', type='info', duration = 3000}){
         toast.style.animation= `appear ease 0.3s, fadeOut linear 1s ${delay}s forwards`;
         toast.innerHTML = `
             <div class="toast__icon">
-                <i data-feather="${icon}"></i>
+                <i class="align-middle" data-feather="download"></i>
             </div>
     
             <div class="toast__body">
