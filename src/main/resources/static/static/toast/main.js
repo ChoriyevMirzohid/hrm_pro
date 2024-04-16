@@ -17,7 +17,7 @@ function toast({title='', message='', type='info', duration = 3000}){
         }
 
         const icons = {
-            success: 'fa-solid fa-circle-check',
+            success: 'book',
             info: 'fa-solid fa-circle-info',
             warning: 'fa-solid fa-circle-exclamation',
             error:'fa-solid fa-circle-exclamation'

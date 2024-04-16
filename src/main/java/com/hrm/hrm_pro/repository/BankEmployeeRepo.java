@@ -8,10 +8,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface BankEmployeeRepo extends JpaRepository<BankEmployee, Integer> {
-    @Query("select\n" +
-            "    new com.hrm.hrm_pro.dto.BankEmployeeDto(a.emp_id,\n" +
+    @Query("select new com.hrm.hrm_pro.dto.BankEmployeeDto(a.emp_id,\n" +
             "    a.emp_depart_code,\n" +
             "    ( select bl.code || '-' || bl.name_en from BankBlock bl where bl.id = a.block_id ),\n" +
             "    ( select bd.code || '-' || bd.name_en from BankDirectorate bd where bd.id = a.directorate_id ),\n" +
@@ -31,7 +32,7 @@ public interface BankEmployeeRepo extends JpaRepository<BankEmployee, Integer> {
             "    a.department_id," +
             "    a.level_id," +
             "    a.position_id)\n" +
-            "from Employee a order by a.emp_id desc")
+            "from BankEmployee a order by a.emp_id desc")
     Page<BankEmployeeDto> getAllBankEmployeePaging(Pageable pageable);
 
     @Query("select\n" +
@@ -55,6 +56,9 @@ public interface BankEmployeeRepo extends JpaRepository<BankEmployee, Integer> {
             "    a.department_id," +
             "    a.level_id," +
             "    a.position_id)\n" +
-            "from Employee a where a.emp_id=:id")
+            "from BankEmployee a where a.emp_id=:id")
     BankEmployeeDto getBankEmployeeById(Integer id);
+
+    @Query("select new com.hrm.hrm_pro.dto.BankEmployeeDto(a.emp_id, a.firstname, a.lastname, a.patronymic) from BankEmployee a where a.condition='1' order by a.create_date desc")
+    List<BankEmployeeDto> getBankEmployeeList();
 }

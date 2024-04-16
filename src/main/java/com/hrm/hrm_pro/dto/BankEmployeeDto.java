@@ -53,4 +53,11 @@ public class BankEmployeeDto {
         this.level_id=level_id;
         this.position_id=position_id;
     }
+
+    public BankEmployeeDto(Integer emp_id, String firstname, String lastname, String patronymic) {
+        this.emp_id = emp_id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.patronymic = patronymic;
+    }
 }

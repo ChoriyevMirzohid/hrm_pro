@@ -36,7 +36,9 @@ public class BankEmployeeC {
             Model model){
         List<EmpCondition> conditionList = empConditionRepo.findAll();
         model.addAttribute("conditionList", conditionList);
-        model.addAttribute("bankBlocks", bankBlockS.getAllBankBlock());
+        model.addAttribute("blockList", bankBlockS.getAllBankBlock());
+        model.addAttribute("departmentList", bankDepartmentS.getAllBankDepartment());
+        model.addAttribute("directorateList", bankDirectorateS.getAllBankDirectorate());
         model.addAttribute("list", bankEmployeeS.getAllBankEmployeePaging(num, size));
         return "bank-employee";
     }
@@ -49,7 +51,6 @@ public class BankEmployeeC {
         model.addAttribute("blockList", bankBlockS.getAllBankBlock());
         model.addAttribute("departmentList", bankDepartmentS.getAllBankDepartment());
         model.addAttribute("directorateList", bankDirectorateS.getAllBankDirectorate());
-        model.addAttribute("blockList", bankBlockS.getAllBankBlock());
         model.addAttribute("positionList", empPositionS.getAllEmpPosition());
         model.addAttribute("levelList", empLevelS.getAllEmpLevel());
         model.addAttribute("conditionList", conditionList);

@@ -53,7 +53,7 @@
                         <div class="col-lg-4 col-md-6 col-sm-12">
                             <div class="mb-4">
                                 <label class="form-label form-label-class"><span class="label-symbol">*</span>Block</label>
-                                <select name="block" required class="form-select form-select-lg form-change-class">
+                                <select name="block_id" required class="form-select form-select-lg form-change-class">
                                     <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.BankBlockC"*/-->
                                     <option th:each="item: ${blockList}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}" th:selected="${item.id==itemData.block_id}"></option>
                                 </select>

@@ -116,6 +116,7 @@
               </thead>
 
               <tbody>
+                <!--/*@thymesVar id="content" type="com.hrm.hrm_pro.controller.BankEmployeeC"*/-->
                 <tr th:each="item : ${list.content}" th:ondblclick="'itemForwardEmployee('+${item.emp_id}+')'">
                   <td class="fw-bold text-center" th:text="${item.emp_id}" />
                   <td th:text="${item.emp_depart_code}" />
@@ -141,50 +142,69 @@
 
     <div id="myModal" class="modal">
       <!-- Modal content -->
-      <div class="modal-content" style="width: 500px">
+      <div class="modal-content" style="width: 1000px">
         <div class="modal-header">
-          <span>Add information</span>
+          <span class="form-label-class">Add information</span>
         </div>
         <div class="modal-body">
           <!--/*@thymesVar id="bankDepartmentDto" type="com.hrm.hrm_pro.dto.bankEmployeeDto"*/-->
-          <form role="form" method="post" th:action="@{/bank-department/new}" th:object="${bankEmployeeDto}">
+          <form role="form" method="post" th:action="@{/bank-employee/new}" th:object="${bankEmployeeDto}">
+            <div class="row">
+              <div class="col-lg-6 col-md-12">
+                <div class="mb-3">
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Firstname</label>
+                  <input class="form-control form-control-lg" type="text" required name="firstname" placeholder="" />
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-12">
+                <div class="mb-3">
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Lastname</label>
+                  <input class="form-control form-control-lg" type="text" required name="lastname" placeholder="" />
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-12">
+                <div class="mb-3">
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Patronymic</label>
+                  <input class="form-control form-control-lg" type="text" required name="patronymic" placeholder="" />
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-12">
+                <div class="mb-3">
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Block</label>
+                  <select name="block_id" required class="form-select form-select-lg form-change-class">
+                    <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.BankBlockC"*/-->
+                    <option th:each="item: ${blockList}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}"></option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-12">
+                <div class="mb-3">
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Block</label>
+                  <select name="block_id" required class="form-select form-select-lg form-change-class">
+                    <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.BankBlockC"*/-->
+                    <option th:each="item: ${directorateList}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}"></option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-12">
+                <div class="mb-3">
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Block</label>
+                  <select name="block_id" required class="form-select form-select-lg form-change-class">
+                    <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.BankBlockC"*/-->
+                    <option th:each="item: ${departmentList}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}"></option>
+                  </select>
+                </div>
+              </div>
+
+            </div>
             <div class="mb-3">
               <label class="form-label">Code</label>
               <input class="form-control form-control-lg" type="text" required name="code" placeholder="Enter code" />
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Bank director</label>
-              <select name="directorate_id" required class="form-control form-control-lg">
-                <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
-                <option th:each="item: ${bankDirectorates}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}"></option>
-              </select>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Name(uz)</label>
-              <input class="form-control form-control-lg" type="text" required name="name_uz" placeholder="Enter name" />
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Name(ru)</label>
-              <input class="form-control form-control-lg" type="text" required name="name_ru" placeholder="Enter name" />
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Name(en)</label>
-              <input class="form-control form-control-lg" type="text" required name="name_en" placeholder="Enter name" />
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Deputy</label>
-              <input class="form-control form-control-lg" type="text" required name="deputy_id" placeholder="Enter deputy" />
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Status</label>
-              <select name="condition" required class="form-control form-control-lg">
-                <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
-                <option th:each="item: ${conditionList}" th:value="${item.code}" th:text="${item.code + '-' + item.name}"></option>
-              </select>
-            </div>
-            <div class="mt-4 mb-1 text-start">
-              <button type="submit" class="btn btn-lg btn-lg btn-primary">Save</button>
-              <input type="button" class="btn btn-lg btn-secondary btn-close-footer" value="Close">
             </div>
           </form>
         </div>

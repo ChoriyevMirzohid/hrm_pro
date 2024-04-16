@@ -169,7 +169,11 @@
 						</div>
 						<div class="mb-3">
 							<label class="form-label">Deputy</label>
-							<input class="form-control form-control-lg" type="text" required name="deputy_id" placeholder="Enter deputy" />
+							<select name="deputy_id" required class="form-select form-select-lg">
+								<!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.BankEmployeeC"*/-->
+								<option th:value="-100">In Vacant status</option>
+								<option th:each="item: ${employeeList}" th:value="${item.emp_id}" th:text="${item.firstname + ' ' + item.lastname + ' ' + item.patronymic}"></option>
+							</select>
 						</div>
 						<div class="mb-3">
 							<label class="form-label">Status</label>

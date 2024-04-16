@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "Employee")
+@Entity(name = "BankEmployee")
 @Table(name = "bank_employee")
 public class BankEmployee {
     @Id

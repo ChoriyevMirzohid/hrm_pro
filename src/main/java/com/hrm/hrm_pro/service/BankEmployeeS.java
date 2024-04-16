@@ -1,6 +1,5 @@
 package com.hrm.hrm_pro.service;
 
-import com.hrm.hrm_pro.dto.BankDirectorateDto;
 import com.hrm.hrm_pro.dto.BankEmployeeDto;
 import com.hrm.hrm_pro.dto.PagingResponse;
 import com.hrm.hrm_pro.repository.BankEmployeeRepo;
@@ -17,6 +16,10 @@ public class BankEmployeeS {
 
     public BankEmployeeS(BankEmployeeRepo bankEmployeeRepo) {
         this.bankEmployeeRepo = bankEmployeeRepo;
+    }
+
+    public List<BankEmployeeDto> getBankEmployeeList(){
+        return bankEmployeeRepo.getBankEmployeeList();
     }
 
     public PagingResponse getAllBankEmployeePaging(int pageNum, int pageSize) {
