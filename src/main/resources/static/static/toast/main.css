@@ -3,6 +3,10 @@
     top: 32px;
     right: 32px;
     z-index: 1;
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    font-family: "Roboto", sans-serif;
+    box-sizing: border-box;
 }
 
 .toast {

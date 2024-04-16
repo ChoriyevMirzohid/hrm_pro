@@ -54,8 +54,8 @@
                             <div class="mb-4">
                                 <label class="form-label form-label-class"><span class="label-symbol">*</span>Block</label>
                                 <select name="block" required class="form-select form-select-lg form-change-class">
-                                    <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
-                                    <option th:each="item: ${blockList}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}"></option>
+                                    <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.BankBlockC"*/-->
+                                    <option th:each="item: ${blockList}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}" th:selected="${item.id==itemData.block_id}"></option>
                                 </select>
                             </div>
                         </div>
@@ -65,7 +65,7 @@
                                 <label class="form-label form-label-class"><span class="label-symbol">*</span>Directorate</label>
                                 <select name="block" required class="form-select form-select-lg form-change-class">
                                     <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
-                                    <option th:each="item: ${directorateList}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}"></option>
+                                    <option th:each="item: ${directorateList}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}" th:selected="${item.id==itemData.directorate_id}"></option>
                                 </select>
                             </div>
                         </div>
@@ -75,7 +75,7 @@
                                 <label class="form-label form-label-class"><span class="label-symbol">*</span>Department</label>
                                 <select name="block" required class="form-select form-select-lg form-change-class">
                                     <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
-                                    <option th:each="item: ${departmentList}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}"></option>
+                                    <option th:each="item: ${departmentList}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}" th:selected="${item.id==itemData.department_id}"></option>
                                 </select>
                             </div>
                         </div>
@@ -111,7 +111,10 @@
                         <div class="col-lg-4 col-md-6 col-sm-12">
                             <div class="mb-4">
                                 <label class="form-label form-label-class"><span class="label-symbol">*</span>Level</label>
-                                <input class="form-control form-control-lg" th:value="${itemData.level}" type="text" required name="level"/>
+                                <select name="level" required class="form-select form-select-lg form-change-class">
+                                    <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
+                                    <option th:each="item: ${levelList}" th:value="${item.id}" th:text="${item.level_code + '-' + item.name_en}" th:selected="${item.id==itemData.level_id}"></option>
+                                </select>
                             </div>
                         </div>
 
@@ -120,7 +123,7 @@
                                 <label class="form-label form-label-class"><span class="label-symbol">*</span>Position</label>
                                 <select name="position" required class="form-select form-select-lg form-change-class">
                                     <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
-                                    <option th:each="item: ${positionList}" th:value="${item.code}" th:text="${item.code + '-' + item.name_en}"></option>
+                                    <option th:each="item: ${positionList}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}" th:selected="${item.id==itemData.position_id}"></option>
                                 </select>
                             </div>
                         </div>
@@ -130,7 +133,7 @@
                                 <label class="form-label form-label-class"><span class="label-symbol">*</span>Condition</label>
                                 <select name="condition" required class="form-select form-select-lg form-change-class">
                                     <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
-                                    <option th:each="item: ${conditionList}" th:value="${item.code}" th:text="${item.code + '-' + item.name}"></option>
+                                    <option th:each="item: ${conditionList}" th:value="${item.code}" th:text="${item.code + '-' + item.name}" th:selected="${item.code==itemData.condition}"></option>
                                 </select>
                             </div>
                         </div>

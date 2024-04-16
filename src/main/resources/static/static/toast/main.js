@@ -28,7 +28,7 @@ function toast({title='', message='', type='info', duration = 3000}){
         toast.style.animation= `appear ease 0.3s, fadeOut linear 1s ${delay}s forwards`;
         toast.innerHTML = `
             <div class="toast__icon">
-                <i class="${icon}"></i>
+                <i data-feather="${icon}"></i>
             </div>
     
             <div class="toast__body">
@@ -50,7 +50,7 @@ function showSuccess(){
         title: 'Success',
         message: 'Chúc mừng bạn đã đăng ký thành công!',
         type: 'success',
-        duration: 1000
+        duration: 2000
     });
 }
 
@@ -59,7 +59,7 @@ function showInfo(){
         title: 'Info',
         message: 'Chào mừng bạn đến với chúng tôi :v',
         type: 'info',
-        duration: 3000
+        duration: 2000
     });
 }
 
@@ -68,7 +68,7 @@ function showWarning(){
         title: 'Warning',
         message: 'Thông tin tài khoản hoặc mật khẩu không chính xác',
         type: 'warning',
-        duration: 3000
+        duration: 2000
     });
 }
 
@@ -77,6 +77,6 @@ function showError(){
         title: 'Error',
         message: 'Xảy ra lỗi trong quá trình đăng ký, vui lòng đăng ký lại!',
         type: 'error',
-        duration: 3000
+        duration: 2000
     });
 }

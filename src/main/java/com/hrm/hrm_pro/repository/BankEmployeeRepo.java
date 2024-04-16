@@ -25,8 +25,13 @@ public interface BankEmployeeRepo extends JpaRepository<BankEmployee, Integer> {
             "    a.employment_date,\n" +
             "    a.condition,\n" +
             "    a.create_date,\n" +
-            "    a.delete_date)\n" +
-            "from Employee a")
+            "    a.delete_date,\n" +
+            "    a.block_id,\n" +
+            "    a.directorate_id,\n" +
+            "    a.department_id," +
+            "    a.level_id," +
+            "    a.position_id)\n" +
+            "from Employee a order by a.emp_id desc")
     Page<BankEmployeeDto> getAllBankEmployeePaging(Pageable pageable);
 
     @Query("select\n" +
@@ -44,7 +49,12 @@ public interface BankEmployeeRepo extends JpaRepository<BankEmployee, Integer> {
             "    a.employment_date,\n" +
             "    a.condition,\n" +
             "    a.create_date,\n" +
-            "    a.delete_date)\n" +
+            "    a.delete_date,\n" +
+            "    a.block_id,\n" +
+            "    a.directorate_id,\n" +
+            "    a.department_id," +
+            "    a.level_id," +
+            "    a.position_id)\n" +
             "from Employee a where a.emp_id=:id")
     BankEmployeeDto getBankEmployeeById(Integer id);
 }
