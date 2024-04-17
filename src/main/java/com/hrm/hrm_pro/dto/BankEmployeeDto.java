@@ -43,7 +43,7 @@ public class BankEmployeeDto {
         this.short_name = short_name;
         this.level = level;
         this.position = position;
-        this.employment_date = new SimpleDateFormat("dd.MM.yyyy").format(employment_date);
+        this.employment_date = new SimpleDateFormat("yyyy-MM-dd").format(employment_date);
         this.condition = condition;
         this.create_date = new SimpleDateFormat("dd.MM.yyyy HH:mm").format(create_date);
         this.delete_date = delete_date != null ? (new SimpleDateFormat("dd.MM.yyyy HH:mm").format(delete_date)) : "";

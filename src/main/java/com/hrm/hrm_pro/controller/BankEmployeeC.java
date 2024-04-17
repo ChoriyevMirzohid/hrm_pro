@@ -1,8 +1,10 @@
 package com.hrm.hrm_pro.controller;
 
+import com.hrm.hrm_pro.dto.BankEmployeeDto;
 import com.hrm.hrm_pro.model.system_emp.EmpCondition;
 import com.hrm.hrm_pro.repository.EmpConditionRepo;
 import com.hrm.hrm_pro.service.*;
+import com.hrm.hrm_pro.utils.Utils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -37,9 +39,12 @@ public class BankEmployeeC {
         List<EmpCondition> conditionList = empConditionRepo.findAll();
         model.addAttribute("conditionList", conditionList);
         model.addAttribute("blockList", bankBlockS.getAllBankBlock());
+        model.addAttribute("positionList", empPositionS.getAllEmpPosition());
+        model.addAttribute("levelList", empLevelS.getAllEmpLevel());
         model.addAttribute("departmentList", bankDepartmentS.getAllBankDepartment());
         model.addAttribute("directorateList", bankDirectorateS.getAllBankDirectorate());
         model.addAttribute("list", bankEmployeeS.getAllBankEmployeePaging(num, size));
+        model.addAttribute("curDate", Utils.getCurDate());
         return "bank-employee";
     }
 
@@ -56,5 +61,17 @@ public class BankEmployeeC {
         model.addAttribute("conditionList", conditionList);
         model.addAttribute("itemData", bankEmployeeS.getBankEmployeeById(id));
         return "bank-employee-item";
+    }
+
+    @PostMapping("/bank-employee/new")
+    public String save(@ModelAttribute("bankEmployeeDto")BankEmployeeDto bankEmployeeDto){
+        bankEmployeeS.save(bankEmployeeDto);
+        return "redirect:/bank-employee";
+    }
+
+    @PostMapping("/bank-employee/update/{emp_id}")
+    public String update(@PathVariable("emp_id") Integer emp_id, @ModelAttribute("bankEmployeeDto") BankEmployeeDto bankEmployeeDto){
+        bankEmployeeS.update(bankEmployeeDto, emp_id);
+        return "redirect:/bank-employee/"+emp_id;
     }
 }

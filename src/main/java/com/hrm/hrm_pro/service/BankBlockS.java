@@ -23,6 +23,10 @@ public class BankBlockS {
         return bankBlockRepo.getAllBankBlock();
     }
 
+    public BankBlockDto getBankBlockById(Integer id){
+        return bankBlockRepo.getBankBlockById(id);
+    }
+
     public PagingResponse getAllBankBlockPaging(int pageNum, int pageSize) {
         if (pageNum < 0){
             pageNum = 0;

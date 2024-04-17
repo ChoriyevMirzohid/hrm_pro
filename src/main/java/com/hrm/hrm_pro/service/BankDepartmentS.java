@@ -30,6 +30,10 @@ public class BankDepartmentS {
         return bankDirectorateS.getAllBankDirectorate();
     }
 
+    public BankDepartmentDto getBankDepartmentById(Integer id){
+        return bankDepartmentRepo.getBankDepartmentById(id);
+    }
+
     public PagingResponse getAllBankDepartmentPaging(int pageNum, int pageSize) {
         if (pageNum < 0){
             pageNum = 0;

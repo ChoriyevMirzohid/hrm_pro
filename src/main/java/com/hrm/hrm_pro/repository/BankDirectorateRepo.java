@@ -17,4 +17,7 @@ public interface BankDirectorateRepo extends JpaRepository<BankDirectorate, Inte
 
     @Query("select new com.hrm.hrm_pro.dto.BankDirectorateDto(a.id, a.code, a.block_id, a.name_uz, a.name_ru, a.name_en, a.deputy_id, a.condition, a.create_date, a.delete_date) from BankDirectorate a where a.condition='1' order by a.code")
     List<BankDirectorateDto> getAllBankDirectorate();
+
+    @Query("select new com.hrm.hrm_pro.dto.BankDirectorateDto(a.id, a.code, a.block_id, a.name_uz, a.name_ru, a.name_en, a.deputy_id, a.condition, a.create_date, a.delete_date) from BankDirectorate a where a.id=:id and a.condition='1' order by a.code")
+    BankDirectorateDto getBankDirectorateById(Integer id);
 }

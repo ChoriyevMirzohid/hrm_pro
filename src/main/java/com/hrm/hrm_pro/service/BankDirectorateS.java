@@ -25,6 +25,10 @@ public class BankDirectorateS {
         return bankDirectorateRepo.getAllBankDirectorate();
     }
 
+    public BankDirectorateDto getBankDirectorateById(Integer id){
+        return bankDirectorateRepo.getBankDirectorateById(id);
+    }
+
     public PagingResponse getAllBankBlockPaging(int pageNum, int pageSize) {
         if (pageNum < 0){
             pageNum = 0;

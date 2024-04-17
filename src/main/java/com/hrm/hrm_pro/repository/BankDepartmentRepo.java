@@ -1,7 +1,6 @@
 package com.hrm.hrm_pro.repository;
 
 import com.hrm.hrm_pro.dto.BankDepartmentDto;
-import com.hrm.hrm_pro.dto.BankDirectorateDto;
 import com.hrm.hrm_pro.model.system_emp.BankDepartment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,4 +17,7 @@ public interface BankDepartmentRepo extends JpaRepository<BankDepartment, Intege
 
     @Query("select new com.hrm.hrm_pro.dto.BankDepartmentDto(a.id, a.code, a.directorate_id, a.name_uz, a.name_ru, a.name_en, a.deputy_id, a.condition, a.create_date, a.delete_date) from BankDepartment a where a.condition='1' order by a.code")
     List<BankDepartmentDto> getAllBankDepartment();
+
+    @Query("select new com.hrm.hrm_pro.dto.BankDepartmentDto(a.id, a.code, a.directorate_id, a.name_uz, a.name_ru, a.name_en, a.deputy_id, a.condition, a.create_date, a.delete_date) from BankDepartment a where a.id=:id and a.condition='1' order by a.code")
+    BankDepartmentDto getBankDepartmentById(Integer id);
 }
