@@ -28,7 +28,9 @@
         <main class="content">
             <div class="container-fluid p-0">
                 <div class="d-flex justify-content-between">
-                    <div></div>
+                    <div>
+                        <span class="fw-bolder fs-3" th:text="${itemData.firstname + ' ' + itemData.lastname + ' ' + itemData.patronymic}"></span>
+                    </div>
                     <div>
                         <a th:href="@{/bank-employee}" class="btn btn-secondary mb-3">
                             <span><i class="align-middle mb-1" data-feather="arrow-left"></i></span>
@@ -165,11 +167,11 @@
 
                         <div class="mt-4 d-flex justify-content-between">
                             <div>
-                                <button class="btn btn-primary">Update data</button>
+                                <button class="btn btn-primary" id="changeEmpAccessBtn" disabled>Update data</button>
                             </div>
                             <div>
-                                <input type="checkbox" id="change" name="change" />
-                                <label class="fw-bolder" for="change">Do you change the information<span class="label-symbol">*</span></label>
+                                <input type="checkbox" onclick="empInfoChangeAccess()" id="changeEmpAccess" />
+                                <label class="fw-bolder" for="changeEmpAccess">Do you change the information<span class="label-symbol">*</span></label>
                             </div>
                         </div>
 

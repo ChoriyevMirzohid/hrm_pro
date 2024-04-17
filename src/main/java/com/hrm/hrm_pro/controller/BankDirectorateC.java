@@ -2,11 +2,10 @@ package com.hrm.hrm_pro.controller;
 
 import com.hrm.hrm_pro.dto.BankDirectorateDto;
 import com.hrm.hrm_pro.model.system_emp.EmpCondition;
-import com.hrm.hrm_pro.model.system_user.UserCondition;
 import com.hrm.hrm_pro.repository.EmpConditionRepo;
-import com.hrm.hrm_pro.repository.UserConditionRepo;
 import com.hrm.hrm_pro.service.BankBlockS;
 import com.hrm.hrm_pro.service.BankDirectorateS;
+import com.hrm.hrm_pro.service.BankEmployeeS;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,11 +20,13 @@ public class BankDirectorateC {
     final EmpConditionRepo empConditionRepo;
     final BankDirectorateS bankDirectorateS;
     final BankBlockS bankBlockS;
+    final BankEmployeeS bankEmployeeS;
 
-    public BankDirectorateC(EmpConditionRepo empConditionRepo, BankDirectorateS bankDirectorateS, BankBlockS bankBlockS) {
+    public BankDirectorateC(EmpConditionRepo empConditionRepo, BankDirectorateS bankDirectorateS, BankBlockS bankBlockS, BankEmployeeS bankEmployeeS) {
         this.empConditionRepo = empConditionRepo;
         this.bankDirectorateS = bankDirectorateS;
         this.bankBlockS = bankBlockS;
+        this.bankEmployeeS = bankEmployeeS;
     }
 
     @GetMapping("/bank-directorate")
@@ -36,6 +37,7 @@ public class BankDirectorateC {
         List<EmpCondition> conditionList = empConditionRepo.findAll();
         model.addAttribute("conditionList", conditionList);
         model.addAttribute("bankBlocks", bankBlockS.getAllBankBlock());
+        model.addAttribute("employeeList", bankEmployeeS.getBankEmployeeList());
         model.addAttribute("list", bankDirectorateS.getAllBankBlockPaging(num, size));
         return "bank-directorate";
     }

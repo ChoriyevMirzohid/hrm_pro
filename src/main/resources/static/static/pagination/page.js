@@ -8,6 +8,15 @@ document.querySelector(".paging-select-drop-btn").addEventListener("click", () =
     }
 });
 
-const itemForwardEmployee = (id) => {
+function itemForwardEmployee(id){
     window.location.href='/bank-employee/'+id;
+}
+
+function empInfoChangeAccess(){
+    let x = document.getElementById("changeEmpAccess").checked;
+    if (x){
+        document.getElementById("changeEmpAccessBtn").disabled = false;
+    }else{
+        document.getElementById("changeEmpAccessBtn").disabled = true;
+    }
 }
