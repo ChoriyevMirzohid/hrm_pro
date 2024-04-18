@@ -36,7 +36,7 @@ public class EmpPositionC {
     }
 
     @PostMapping("/bank-emp-position/new")
-    public String save(@ModelAttribute("bankDepartmentDto") EmpPositionDto empPositionDto){
+    public String save(@ModelAttribute("empPositionDto") EmpPositionDto empPositionDto){
         empPositionS.save(empPositionDto);
         return "redirect:/bank-emp-position";
     }

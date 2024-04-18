@@ -11,30 +11,22 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Entity(name = "User")
-@Table(name = "users")
-public class User {
+@Entity(name = "UserAccess")
+@Table(name = "user_access")
+public class UserAccess {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(length = 40)
-    private String fullname;
+    @Column(nullable = false)
+    private Integer user_id;
 
-    @Column(length = 50, unique = true)
-    private String login;
-
-    @Column(length = 100)
-    private String password;
-
-    @Column(length = 50, unique = true)
-    private String email;
+    @Column(nullable = false)
+    private Integer module_id;
 
     @Column(nullable = false, length = 3)
     private String condition;
 
     @CreationTimestamp
     private Timestamp create_date;
-
-    private Timestamp delete_date;
 }

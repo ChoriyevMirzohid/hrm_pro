@@ -8,7 +8,7 @@
 	<meta name="author" content="">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" th:href="@{/static/img/icons/icon-48x48.png}" />
-	<title>Sign In</title>
+	<title>Login</title>
 
 	<link th:href="@{/static/css/app.css}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -26,7 +26,7 @@
 								<div class="text-center mb-3">
 									<img th:src="@{/static/img/photos/logo_ipoteka.png}" alt="Charles Hall" class="img-fluid" width="200" height="auto" />
 								</div>
-								<form>
+								<form method="post" role="form" th:action="@{/auth/login}" th:object="${loginDto}">
 									<div class="mb-3">
 										<label class="form-label">Login</label>
 										<input class="form-control form-control-lg" type="text" name="login" placeholder="Enter your login" />
@@ -34,9 +34,6 @@
 									<div class="mb-3">
 										<label class="form-label">Password</label>
 										<input class="form-control form-control-lg" type="password" name="password" placeholder="Enter your password" />
-										<small>
-											<a href="index.html">Forgot password?</a>
-										</small>
 									</div>
 									<div>
 										<label class="form-check">
@@ -45,7 +42,7 @@
 										</label>
 									</div>
 									<div class="text-center mt-3">
-										<button type="submit" class="btn btn-lg btn-primary">Sign in</button>
+										<button type="submit" class="btn btn-lg btn-primary">Login</button>
 									</div>
 								</form>
 							</div>

@@ -2,7 +2,7 @@ package com.hrm.hrm_pro.service;
 
 import com.hrm.hrm_pro.dto.PagingResponse;
 import com.hrm.hrm_pro.dto.UserRegDto;
-import com.hrm.hrm_pro.model.system_user.User;
+import com.hrm.hrm_pro.model.system_user.UserEntity;
 import com.hrm.hrm_pro.repository.UserRegRepo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,7 +20,7 @@ public class UserRegS {
     }
 
     public void save(UserRegDto userRegDto) {
-        User user = new User();
+        UserEntity user = new UserEntity();
         user.setFullname(userRegDto.getFullname());
         user.setEmail(userRegDto.getEmail());
         user.setCondition(userRegDto.getCondition());
