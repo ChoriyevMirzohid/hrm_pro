@@ -1,10 +1,12 @@
 package com.hrm.hrm_pro.controller;
 
+import com.hrm.hrm_pro.common.RedirectLogin;
 import com.hrm.hrm_pro.dto.BankEmployeeDto;
 import com.hrm.hrm_pro.model.system_emp.EmpCondition;
 import com.hrm.hrm_pro.repository.EmpConditionRepo;
 import com.hrm.hrm_pro.service.*;
 import com.hrm.hrm_pro.utils.Utils;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +37,8 @@ public class BankEmployeeC {
     public String getPage(
             @RequestParam(value = "num", defaultValue = "0", required = false) int num,
             @RequestParam(value = "size", defaultValue = "10", required = false) int size,
-            Model model){
+            Model model,
+            HttpSession httpSession){
         List<EmpCondition> conditionList = empConditionRepo.findAll();
         model.addAttribute("conditionList", conditionList);
         model.addAttribute("blockList", bankBlockS.getAllBankBlock());
@@ -45,7 +48,7 @@ public class BankEmployeeC {
         model.addAttribute("directorateList", bankDirectorateS.getAllBankDirectorate());
         model.addAttribute("list", bankEmployeeS.getAllBankEmployeePaging(num, size));
         model.addAttribute("curDate", Utils.getCurDate());
-        return "bank-employee";
+        return RedirectLogin.redirectLogin( "bank-employee", httpSession);
     }
 
     @GetMapping("/bank-employee/{id}")

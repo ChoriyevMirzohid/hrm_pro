@@ -1,10 +1,12 @@
 package com.hrm.hrm_pro.controller;
 
+import com.hrm.hrm_pro.common.RedirectLogin;
 import com.hrm.hrm_pro.dto.BankDepartmentDto;
 import com.hrm.hrm_pro.dto.EmpLevelDto;
 import com.hrm.hrm_pro.model.system_emp.EmpCondition;
 import com.hrm.hrm_pro.repository.EmpConditionRepo;
 import com.hrm.hrm_pro.service.EmpLevelS;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,11 +30,12 @@ public class EmpLevelC {
     public String getPage(
             @RequestParam(value = "num", defaultValue = "0", required = false) int num,
             @RequestParam(value = "size", defaultValue = "10", required = false) int size,
-            Model model){
+            Model model,
+            HttpSession httpSession){
         List<EmpCondition> conditionList = empConditionRepo.findAll();
         model.addAttribute("conditionList", conditionList);
         model.addAttribute("list", empLevelS.getAllEmpLevelPaging(num, size));
-        return "bank-emp-level";
+        return RedirectLogin.redirectLogin( "bank-emp-level", httpSession);
     }
 
     @PostMapping("/bank-emp-level/new")

@@ -157,31 +157,31 @@
                     <!--/*@thymesVar id="userRegDto" type="com.hrm.hrm_pro.dto.UserRegDto"*/-->
                     <form role="form" method="post" th:action="@{/user-register/new}" th:object="${userRegDto}">
                         <div class="mb-3">
-                            <label class="form-label">Fullname</label>
+                            <label class="form-label form-label-class"><span class="label-symbol">*</span>Fullname</label>
                             <input class="form-control form-control-lg" type="text" required name="fullname" placeholder="Enter fullname" />
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Email</label>
+                            <label class="form-label form-label-class"><span class="label-symbol">*</span>Email</label>
                             <input class="form-control form-control-lg" type="email" required name="email" placeholder="Enter email" />
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Create new login</label>
+                            <label class="form-label form-label-class"><span class="label-symbol">*</span>Create new login</label>
                             <input class="form-control form-control-lg" type="text" required name="login" placeholder="Enter login" />
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Create new Password</label>
+                            <label class="form-label form-label-class"><span class="label-symbol">*</span>Create new Password</label>
                             <input class="form-control form-control-lg" type="password" required name="password" placeholder="Enter password" />
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Status</label>
-                            <select name="condition" required class="form-control form-control-lg">
+                            <label class="form-label form-label-class"><span class="label-symbol">*</span>Status</label>
+                            <select name="condition" required class="form-select form-select-lg">
                                 <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
                                 <option th:each="item: ${conditionList}" th:value="${item.code}" th:text="${item.code + '-' + item.name}"></option>
                             </select>
                         </div>
                         <div class="mt-4 mb-1 text-start">
-                            <button type="submit" class="btn btn-lg btn-lg btn-primary">Save</button>
-                            <input type="button" class="btn btn-lg btn-secondary btn-close-footer" value="Close">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                            <input type="button" class="btn btn-secondary btn-close-footer" value="Close">
                         </div>
                     </form>
                 </div>
