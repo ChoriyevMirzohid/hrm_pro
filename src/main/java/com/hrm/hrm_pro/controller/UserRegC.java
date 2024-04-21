@@ -30,6 +30,7 @@ public class UserRegC {
             HttpSession httpSession){
         List<UserCondition> conditionList = conditionRepo.findAll();
         model.addAttribute("conditionList", conditionList);
+        model.addAttribute("roleList", userRegS.getAllRole());
         model.addAttribute("list", userRegS.getAllUsersPaging(num, size));
         return RedirectLogin.redirectLogin( "user-reg", httpSession);
     }
@@ -38,5 +39,17 @@ public class UserRegC {
     public String createUserReg(@ModelAttribute("userReg") UserRegDto userRegDto){
         userRegS.save(userRegDto);
         return "redirect:/user-register";
+    }
+
+    @GetMapping("/profile")
+    public String getPageProfile(Model model, HttpSession httpSession){
+        if (httpSession.getAttribute("username") != null){
+            model.addAttribute("itemData", userRegS.getUserById(httpSession.getAttribute("username").toString()));
+        }else{
+            return "redirect:/login";
+        }
+        model.addAttribute("roleList", userRegS.getAllRole());
+        model.addAttribute("conditionList", conditionRepo.findAll());
+        return RedirectLogin.redirectLogin("profile", httpSession);
     }
 }

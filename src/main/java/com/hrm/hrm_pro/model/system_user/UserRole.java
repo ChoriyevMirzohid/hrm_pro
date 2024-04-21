@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.sql.Timestamp;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,9 +18,15 @@ public class UserRole {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(length = 2)
-    private Integer code;
+    private Integer user_id;
 
-    @Column(length = 20)
-    private String name;
+    private Integer role_code;
+
+    @Column(nullable = false, length = 3)
+    private String condition;
+
+    @CreationTimestamp
+    private Timestamp create_date;
+
+    private Timestamp delete_date;
 }

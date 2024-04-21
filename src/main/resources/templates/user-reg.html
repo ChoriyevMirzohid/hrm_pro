@@ -103,6 +103,7 @@
                                 <th>Email</th>
                                 <th>Login</th>
                                 <th>Password</th>
+                                <th>User Role</th>
                                 <th>Condition</th>
                                 <th>Created date</th>
                                 <th>Action</th>
@@ -113,7 +114,7 @@
                             <!--/*@thymesVar id="users" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
                             <tr th:each="item : ${list.content}">
                                 <td class="fw-bold text-center" th:text="${item.id}" />
-                                <td th:text="${item.fullname}" />
+                                <td th:text="${item.firstname + ' ' + item.lastname + ' ' + item.patronymic}" />
                                 <td th:text="${item.email}" />
                                 <td th:text="${item.login}" />
                                 <td>
@@ -123,6 +124,13 @@
                                             <i class="align-middle text-info" data-feather="eye-off"></i>
                                         </span>
                                     </div>
+                                </td>
+                                <td>
+                                    <!--/*@thymesVar id="roleList" type=""*/-->
+                                    <span th:each="itemRole : ${roleList}"
+                                          th:if="${itemRole.code} == ${item.role_code}">
+                                        <span th:text="${itemRole.title}"></span>
+                                    </span>
                                 </td>
                                 <td>
                                     <!--/*@thymesVar id="conditionList" type=""*/-->
@@ -149,36 +157,77 @@
 
         <div id="myModal" class="modal">
             <!-- Modal content -->
-            <div class="modal-content" style="width: 500px">
+            <div class="modal-content" style="width: 1000px">
                 <div class="modal-header">
-                    <span>Add information</span>
+                    <span class="form-label-class">Add information</span>
                 </div>
                 <div class="modal-body">
                     <!--/*@thymesVar id="userRegDto" type="com.hrm.hrm_pro.dto.UserRegDto"*/-->
                     <form role="form" method="post" th:action="@{/user-register/new}" th:object="${userRegDto}">
-                        <div class="mb-3">
-                            <label class="form-label form-label-class"><span class="label-symbol">*</span>Fullname</label>
-                            <input class="form-control form-control-lg" type="text" required name="fullname" placeholder="Enter fullname" />
+                        <div class="row">
+                            <div class="col-lg-6 col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Firstname</label>
+                                    <input class="form-control form-control-lg" type="text" required name="firstname" placeholder="Enter Firstname" />
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Lastname</label>
+                                    <input class="form-control form-control-lg" type="text" required name="lastname" placeholder="Enter lastname" />
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Patronymic</label>
+                                    <input class="form-control form-control-lg" type="text" required name="patronymic" placeholder="Enter patronymic" />
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Email</label>
+                                    <input class="form-control form-control-lg" type="email" required name="email" placeholder="Enter email" />
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Create new login</label>
+                                    <input class="form-control form-control-lg" type="text" required name="login" placeholder="Enter login" />
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Create new Password</label>
+                                    <input class="form-control form-control-lg" type="password" required name="password" placeholder="Enter password" />
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>User Role</label>
+                                    <select name="role_code" required class="form-select form-select-lg">
+                                        <!--/*@thymesVar id="roleList" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
+                                        <option th:each="item: ${roleList}" th:value="${item.code}" th:text="${item.title}"></option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Status</label>
+                                    <select name="condition" required class="form-select form-select-lg">
+                                        <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
+                                        <option th:each="item: ${conditionList}" th:value="${item.code}" th:text="${item.code + '-' + item.name}"></option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label form-label-class"><span class="label-symbol">*</span>Email</label>
-                            <input class="form-control form-control-lg" type="email" required name="email" placeholder="Enter email" />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label form-label-class"><span class="label-symbol">*</span>Create new login</label>
-                            <input class="form-control form-control-lg" type="text" required name="login" placeholder="Enter login" />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label form-label-class"><span class="label-symbol">*</span>Create new Password</label>
-                            <input class="form-control form-control-lg" type="password" required name="password" placeholder="Enter password" />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label form-label-class"><span class="label-symbol">*</span>Status</label>
-                            <select name="condition" required class="form-select form-select-lg">
-                                <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
-                                <option th:each="item: ${conditionList}" th:value="${item.code}" th:text="${item.code + '-' + item.name}"></option>
-                            </select>
-                        </div>
+
                         <div class="mt-4 mb-1 text-start">
                             <button type="submit" class="btn btn-primary">Save</button>
                             <input type="button" class="btn btn-secondary btn-close-footer" value="Close">

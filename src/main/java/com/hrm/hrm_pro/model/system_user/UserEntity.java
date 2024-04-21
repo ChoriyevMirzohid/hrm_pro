@@ -18,8 +18,14 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(length = 40)
-    private String fullname;
+    @Column(length = 40, nullable = false)
+    private String firstname;
+
+    @Column(length = 40, nullable = false)
+    private String lastname;
+
+    @Column(length = 40, nullable = false)
+    private String patronymic;
 
     @Column(length = 50, unique = true)
     private String login;
