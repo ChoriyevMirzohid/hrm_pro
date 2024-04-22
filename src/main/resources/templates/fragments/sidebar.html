@@ -6,9 +6,9 @@
             </a>
 
             <ul class="sidebar-nav">
-                <li class="sidebar-header">
-                    Pages
-                </li>
+<!--                <li class="sidebar-header">-->
+<!--                    Pages-->
+<!--                </li>-->
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" th:href="@{/dashboard}">
@@ -16,54 +16,20 @@
                     </a>
                 </li>
 
+
+                <!--/*@thymesVar id="systems" type=""*/-->
+                <li th:each="item : ${session.systems}" class="sidebar-item">
+                    <a class="sidebar-link" th:href="@{/profile}">
+                        <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
+                    </a>
+                </li>
+
+
                 <li class="sidebar-item">
                     <a class="sidebar-link" th:href="@{/login}">
                         <i class="align-middle" data-feather="user"></i> <span class="align-middle">Sign In</span>
                     </a>
                 </li>
-
-                <li class="sidebar-item">
-                    <a class="sidebar-link" th:href="@{/user-register}">
-                        <i class="align-middle" data-feather="book"></i> <span class="align-middle">User registration</span>
-                    </a>
-                </li>
-
-                <li class="sidebar-item">
-                    <a class="sidebar-link" th:href="@{/bank-employee}">
-                        <i class="align-middle" data-feather="book"></i> <span class="align-middle">Bank employee</span>
-                    </a>
-                </li>
-
-                <li class="sidebar-item">
-                    <a class="sidebar-link" th:href="@{/bank-block}">
-                        <i class="align-middle" data-feather="book"></i> <span class="align-middle">Bank block</span>
-                    </a>
-                </li>
-
-                <li class="sidebar-item">
-                    <a class="sidebar-link" th:href="@{/bank-directorate}">
-                        <i class="align-middle" data-feather="book"></i> <span class="align-middle">Bank directorate</span>
-                    </a>
-                </li>
-
-                <li class="sidebar-item">
-                    <a class="sidebar-link" th:href="@{/bank-department}">
-                        <i class="align-middle" data-feather="book"></i> <span class="align-middle">Bank department</span>
-                    </a>
-                </li>
-
-                <li class="sidebar-item">
-                    <a class="sidebar-link" th:href="@{/bank-emp-level}">
-                        <i class="align-middle" data-feather="book"></i> <span class="align-middle">Bank Employee Level</span>
-                    </a>
-                </li>
-
-                <li class="sidebar-item">
-                    <a class="sidebar-link" th:href="@{/bank-emp-position}">
-                        <i class="align-middle" data-feather="book"></i> <span class="align-middle">Bank Employee Position</span>
-                    </a>
-                </li>
-
                 <li class="sidebar-item">
                     <a class="sidebar-link text-info" th:href="@{/logout}">
                         <i class="align-middle" data-feather="log-out"></i> <span class="align-middle">Log out</span>
