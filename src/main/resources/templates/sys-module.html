@@ -55,23 +55,23 @@
                                     </button>
                                     <ul class="dropdown-menu paging-drop-ul">
                                         <li>
-                                            <a class="paging-select-option" th:href="@{/bank-block?num=0&size=10}">10</a>
+                                            <a class="paging-select-option" th:href="@{/sys-module?num=0&size=10}">10</a>
                                         </li>
                                         <li>
-                                            <a class="paging-select-option" th:href="@{/bank-block?num=0&size=20}">20</a>
+                                            <a class="paging-select-option" th:href="@{/sys-module?num=0&size=20}">20</a>
                                         </li>
                                         <li>
-                                            <a class="paging-select-option" th:href="@{/bank-block?num=0&size=50}">50</a>
+                                            <a class="paging-select-option" th:href="@{/sys-module?num=0&size=50}">50</a>
                                         </li>
                                         <li>
-                                            <a class="paging-select-option" th:href="@{/bank-block?num=0&size=100}">100</a>
+                                            <a class="paging-select-option" th:href="@{/sys-module?num=0&size=100}">100</a>
                                         </li>
                                     </ul>
                                 </div>
                                 <input type="button" th:value="${list.totalElements}" readonly class="form-control form-control-sm paging-total-input">
                             </div>
                             <div class="d-flex align-items-center paging-input-block">
-                                <a th:href="@{/bank-block(num=${(list.pageNum)-1},size=${list.pageSize})}"
+                                <a th:href="@{/sys-module(num=${(list.pageNum)-1},size=${list.pageSize})}"
                                    class="btn btn-primary btn-sm"
                                    th:style="${(list.pageNum+1)==1} ? 'display:none' : 'display:block'">
                                     <i class="align-middle" data-feather="chevrons-left"></i>
@@ -82,7 +82,7 @@
                                 </button>
                                 <input type="button" th:value="${list.pageNum+1}" class="form-control form-control-sm text-center paging-input">
                                 <input type="button" th:value="${list.totalPages}" readonly class="form-control form-control-sm text-center paging-total-page-number">
-                                <a th:href="@{/bank-block(num=${list.pageNum+1},size=${list.pageSize})}"
+                                <a th:href="@{/sys-module(num=${list.pageNum+1},size=${list.pageSize})}"
                                    class="btn btn-primary btn-sm"
                                    th:style="${(list.pageNum+1)>=list.totalPages} ? 'display:none' : 'display:block'">
                                     <i class="align-middle" data-feather="chevrons-right"></i>
@@ -103,7 +103,9 @@
                                 <th>Name(uz)</th>
                                 <th>Name(ru)</th>
                                 <th>Name(en)</th>
-                                <th>Deputy</th>
+                                <th>Page url</th>
+                                <th>Page type</th>
+                                <th>Page icon</th>
                                 <th>Condition</th>
                                 <th>Created date</th>
                                 <th>Action</th>
@@ -118,7 +120,9 @@
                                 <td th:text="${item.name_uz}" />
                                 <td th:text="${item.name_ru}" />
                                 <td th:text="${item.name_en}" />
-                                <td th:text="${item.deputy_id}" />
+                                <td th:text="${item.page_url}" />
+                                <td th:text="${item.page_type}" />
+                                <td th:text="${item.page_icon}" />
                                 <td>
                                     <!--/*@thymesVar id="conditionList" type=""*/-->
                                     <span th:each="itemCon : ${conditionList}"
@@ -149,8 +153,8 @@
                     <span class="fw-bolder">Add information</span>
                 </div>
                 <div class="modal-body">
-                    <!--/*@thymesVar id="bankBlockDto" type="com.hrm.hrm_pro.dto.BankBlockDto"*/-->
-                    <form role="form" method="post" th:action="@{/bank-block/new}" th:object="${bankBlockDto}">
+                    <!--/*@thymesVar id="sysModuleDto" type="com.hrm.hrm_pro.dto.SysModuleDto"*/-->
+                    <form role="form" method="post" th:action="@{/sys-module/new}" th:object="${sysModuleDto}">
                         <div class="mb-3">
                             <label class="form-label form-label-class"><span class="label-symbol">*</span>Code</label>
                             <input class="form-control form-control-lg" type="text" required name="code" placeholder="Enter code" />
@@ -167,14 +171,22 @@
                             <label class="form-label form-label-class"><span class="label-symbol">*</span>Name(en)</label>
                             <input class="form-control form-control-lg" type="text" required name="name_en" placeholder="Enter name" />
                         </div>
+
                         <div class="mb-3">
-                            <label class="form-label form-label-class"><span class="label-symbol">*</span>Deputy</label>
-                            <select name="deputy_id" required class="form-select form-select-lg">
-                                <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.BankEmployeeC"*/-->
-                                <option th:value="-100">In Vacant status</option>
-                                <option th:each="item: ${employeeList}" th:value="${item.emp_id}" th:text="${item.firstname + ' ' + item.lastname + ' ' + item.patronymic}"></option>
-                            </select>
+                            <label class="form-label form-label-class"><span class="label-symbol">*</span>Page url</label>
+                            <input class="form-control form-control-lg" type="text" required name="page_url" placeholder="Enter name" />
                         </div>
+
+                        <div class="mb-3">
+                            <label class="form-label form-label-class"><span class="label-symbol">*</span>Page type</label>
+                            <input class="form-control form-control-lg" type="text" required name="page_type" placeholder="Enter name" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label form-label-class"><span class="label-symbol">*</span>Page icon</label>
+                            <input class="form-control form-control-lg" type="text" required name="page_icon" placeholder="Enter name" />
+                        </div>
+
                         <div class="mb-3">
                             <label class="form-label form-label-class"><span class="label-symbol">*</span>Status</label>
                             <select name="condition" required class="form-control form-control-lg">

@@ -16,6 +16,11 @@
                     </a>
                 </li>
 
+                <li class="sidebar-item">
+                    <a class="sidebar-link" th:href="@{/sys-module}">
+                        <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">System modules</span>
+                    </a>
+                </li>
 
                 <!--/*@thymesVar id="systems" type=""*/-->
                 <li th:each="item : ${session.systems}" class="sidebar-item">
