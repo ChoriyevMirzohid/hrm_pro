@@ -16,19 +16,14 @@
                     </a>
                 </li>
 
-                <li class="sidebar-item">
-                    <a class="sidebar-link" th:href="@{/sys-module}">
-                        <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">System modules</span>
-                    </a>
-                </li>
-
                 <!--/*@thymesVar id="systems" type=""*/-->
                 <li th:each="item : ${session.systems}" class="sidebar-item">
-                    <a class="sidebar-link" th:href="@{/profile}">
-                        <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
+                    <a class="sidebar-link" th:href="@{'/' + ${item.getPage_url()}}">
+                        <i class="align-middle" th:data-feather="${item.getPage_icon()}"></i>
+                        <span class="align-middle" th:text="${item.getName_en()}"></span>
+                        <span th:if="${item.page_role=='super_admin'}" class="fw-bolder menu-role-type text-info">A</span>
                     </a>
                 </li>
-
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" th:href="@{/login}">

@@ -148,51 +148,70 @@
 
         <div id="myModal" class="modal">
             <!-- Modal content -->
-            <div class="modal-content" style="width: 500px">
+            <div class="modal-content" style="width: 800px">
                 <div class="modal-header">
                     <span class="fw-bolder">Add information</span>
                 </div>
                 <div class="modal-body">
                     <!--/*@thymesVar id="sysModuleDto" type="com.hrm.hrm_pro.dto.SysModuleDto"*/-->
                     <form role="form" method="post" th:action="@{/sys-module/new}" th:object="${sysModuleDto}">
-                        <div class="mb-3">
-                            <label class="form-label form-label-class"><span class="label-symbol">*</span>Code</label>
-                            <input class="form-control form-control-lg" type="text" required name="code" placeholder="Enter code" />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label form-label-class"><span class="label-symbol">*</span>Name(uz)</label>
-                            <input class="form-control form-control-lg" type="text" required name="name_uz" placeholder="Enter name" />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label form-label-class"><span class="label-symbol">*</span>Name(ru)</label>
-                            <input class="form-control form-control-lg" type="text" required name="name_ru" placeholder="Enter name" />
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label form-label-class"><span class="label-symbol">*</span>Name(en)</label>
-                            <input class="form-control form-control-lg" type="text" required name="name_en" placeholder="Enter name" />
-                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Code</label>
+                                    <input class="form-control form-control-lg" type="text" required name="code" placeholder="Enter code" />
+                                </div>
 
-                        <div class="mb-3">
-                            <label class="form-label form-label-class"><span class="label-symbol">*</span>Page url</label>
-                            <input class="form-control form-control-lg" type="text" required name="page_url" placeholder="Enter name" />
-                        </div>
+                                <div class="mb-3">
+                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Name(uz)</label>
+                                    <input class="form-control form-control-lg" type="text" required name="name_uz" placeholder="Enter name" />
+                                </div>
 
-                        <div class="mb-3">
-                            <label class="form-label form-label-class"><span class="label-symbol">*</span>Page type</label>
-                            <input class="form-control form-control-lg" type="text" required name="page_type" placeholder="Enter name" />
-                        </div>
+                                <div class="mb-3">
+                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Name(ru)</label>
+                                    <input class="form-control form-control-lg" type="text" required name="name_ru" placeholder="Enter name" />
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Name(en)</label>
+                                    <input class="form-control form-control-lg" type="text" required name="name_en" placeholder="Enter name" />
+                                </div>
+                            </div>
 
-                        <div class="mb-3">
-                            <label class="form-label form-label-class"><span class="label-symbol">*</span>Page icon</label>
-                            <input class="form-control form-control-lg" type="text" required name="page_icon" placeholder="Enter name" />
-                        </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Page url</label>
+                                    <input class="form-control form-control-lg" type="text" required name="page_url" placeholder="Enter name" />
+                                </div>
 
-                        <div class="mb-3">
-                            <label class="form-label form-label-class"><span class="label-symbol">*</span>Status</label>
-                            <select name="condition" required class="form-control form-control-lg">
-                                <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
-                                <option th:each="item: ${conditionList}" th:value="${item.code}" th:text="${item.code + '-' + item.name}"></option>
-                            </select>
+                                <div class="mb-3">
+                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Page type</label>
+                                    <select name="page_type" required class="form-select form-select-lg">
+                                        <option value="main">Main</option>
+                                        <option value="inside">Inside</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Page icon</label>
+                                    <input class="form-control form-control-lg" type="text" required name="page_icon" placeholder="Enter name" />
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Page role</label>
+                                    <select name="page_role" required class="form-select form-select-lg">
+                                        <option value="user_admin">user_admin</option>
+                                        <option value="super_admin">super_admin</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Status</label>
+                                    <select name="condition" required class="form-control form-control-lg">
+                                        <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
+                                        <option th:each="item: ${conditionList}" th:value="${item.code}" th:text="${item.code + '-' + item.name}"></option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                         <div class="mt-4 mb-1 text-start">
                             <button type="submit" class="btn btn-primary">Save</button>

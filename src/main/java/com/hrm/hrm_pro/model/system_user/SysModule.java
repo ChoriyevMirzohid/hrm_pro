@@ -39,6 +39,8 @@ public class SysModule {
     @Column(nullable = false)
     private String page_type;
 
+    private String page_role;
+
     @Column(nullable = false, length = 3)
     private String condition;
 

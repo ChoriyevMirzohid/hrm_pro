@@ -55,23 +55,23 @@
                   </button>
                   <ul class="dropdown-menu paging-drop-ul">
                     <li>
-                      <a class="paging-select-option" th:href="@{/bank-department?num=0&size=10}">10</a>
+                      <a class="paging-select-option" th:href="@{/bank-employee?num=0&size=10}">10</a>
                     </li>
                     <li>
-                      <a class="paging-select-option" th:href="@{/bank-department?num=0&size=20}">20</a>
+                      <a class="paging-select-option" th:href="@{/bank-employee?num=0&size=20}">20</a>
                     </li>
                     <li>
-                      <a class="paging-select-option" th:href="@{/bank-department?num=0&size=50}">50</a>
+                      <a class="paging-select-option" th:href="@{/bank-employee?num=0&size=50}">50</a>
                     </li>
                     <li>
-                      <a class="paging-select-option" th:href="@{/bank-department?num=0&size=100}">100</a>
+                      <a class="paging-select-option" th:href="@{/bank-employee?num=0&size=100}">100</a>
                     </li>
                   </ul>
                 </div>
                 <input type="button" th:value="${list.totalElements}" readonly class="form-control form-control-sm paging-total-input">
               </div>
               <div class="d-flex align-items-center paging-input-block">
-                <a th:href="@{/bank-department(num=${(list.pageNum)-1},size=${list.pageSize})}"
+                <a th:href="@{/bank-employee(num=${(list.pageNum)-1},size=${list.pageSize})}"
                    class="btn btn-primary btn-sm"
                    th:style="${(list.pageNum+1)==1} ? 'display:none' : 'display:block'">
                   <i class="align-middle" data-feather="chevrons-left"></i>
@@ -82,7 +82,7 @@
                 </button>
                 <input type="button" th:value="${list.pageNum+1}" class="form-control form-control-sm text-center paging-input">
                 <input type="button" th:value="${list.totalPages}" readonly class="form-control form-control-sm text-center paging-total-page-number">
-                <a th:href="@{/bank-department(num=${list.pageNum+1},size=${list.pageSize})}"
+                <a th:href="@{/bank-employee(num=${list.pageNum+1},size=${list.pageSize})}"
                    class="btn btn-primary btn-sm"
                    th:style="${(list.pageNum+1)>=list.totalPages} ? 'display:none' : 'display:block'">
                   <i class="align-middle" data-feather="chevrons-right"></i>

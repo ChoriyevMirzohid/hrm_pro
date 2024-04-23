@@ -106,13 +106,12 @@
                                 <th>User Role</th>
                                 <th>Condition</th>
                                 <th>Created date</th>
-                                <th>Action</th>
                             </tr>
                             </thead>
 
                             <tbody>
                             <!--/*@thymesVar id="users" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
-                            <tr th:each="item : ${list.content}">
+                            <tr th:each="item : ${list.content}" th:ondblclick="'itemForwardUserAccess('+${item.id}+')'">
                                 <td class="fw-bold text-center" th:text="${item.id}" />
                                 <td th:text="${item.firstname + ' ' + item.lastname + ' ' + item.patronymic}" />
                                 <td th:text="${item.email}" />
@@ -140,13 +139,6 @@
                                     </span>
                                 </td>
                                 <td th:text="${item.create_date}" />
-                                <td>
-                                    <div class="text-center">
-                                        <span class="text-warning">
-                                            <i class="align-middle fs-4" data-feather="edit"></i>
-                                        </span>
-                                    </div>
-                                </td>
                             </tr>
                             </tbody>
                         </table>

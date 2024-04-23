@@ -12,6 +12,10 @@ function itemForwardEmployee(id){
     window.location.href='/bank-employee/'+id;
 }
 
+function itemForwardUserAccess(id){
+    window.location.href='/user-access-module/'+id;
+}
+
 function empInfoChangeAccess(){
     let x = document.getElementById("changeEmpAccess").checked;
     if (x){

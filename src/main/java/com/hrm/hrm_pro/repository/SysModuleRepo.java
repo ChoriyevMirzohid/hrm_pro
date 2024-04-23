@@ -11,9 +11,13 @@ import java.util.List;
 
 @Repository
 public interface SysModuleRepo extends JpaRepository<SysModule, Integer> {
-    @Query("select new com.hrm.hrm_pro.dto.SysModuleDto(a.id, a.code, a.name_uz, a.name_ru, a.name_en, a.page_url, a.page_icon, a.page_type, a.condition, a.create_date) from SysModule a where a.condition='1' order by a.code")
-    List<SysModuleDto> getAllSysModule();
 
-    @Query("select new com.hrm.hrm_pro.dto.SysModuleDto(a.id, a.code, a.name_uz, a.name_ru, a.name_en, a.page_url, a.page_icon, a.page_type, a.condition, a.create_date) from SysModule a where a.condition='1' order by a.code desc")
+    @Query("select new com.hrm.hrm_pro.dto.SysModuleDto(a.id, a.code, a.name_uz, a.name_ru, a.name_en, a.page_url, a.page_icon, a.page_type, a.page_role, a.condition, a.create_date) from SysModule a where a.page_role in('user_admin', 'super_admin') and a.condition='1' and a.page_type='main' order by a.code")
+    List<SysModuleDto> getAllSysModuleSAdmin();
+
+    @Query("select new com.hrm.hrm_pro.dto.SysModuleDto(a.id, a.code, a.name_uz, a.name_ru, a.name_en, a.page_url, a.page_icon, a.page_type, a.page_role, a.condition, a.create_date) from SysModule a where a.page_role in('user_admin') and a.condition='1' and a.page_type='main' order by a.code")
+    List<SysModuleDto> getAllSysModuleAdmin();
+
+    @Query("select new com.hrm.hrm_pro.dto.SysModuleDto(a.id, a.code, a.name_uz, a.name_ru, a.name_en, a.page_url, a.page_icon, a.page_type, a.page_role, a.condition, a.create_date) from SysModule a where a.condition='1' order by a.code desc")
     Page<SysModuleDto> getAllSysModulePaging(Pageable pageable);
 }
