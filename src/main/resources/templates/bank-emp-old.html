@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
+  <meta name="author" content="AdminKit">
+  <meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="shortcut icon" th:href="@{/static/img/icons/icon-48x48.png}">
+  <title>Bank Employee</title>
+
+  <link th:href="@{/static/css/app.css}" rel="stylesheet">
+  <link th:href="@{/static/modal/modal.css}" rel="stylesheet">
+  <link th:href="@{/static/pagination/page.css}" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<div class="wrapper">
+  <div th:replace="fragments/sidebar :: sidebar"></div>
+
+  <div class="main">
+    <div th:replace="fragments/navbar :: navbar"></div>
+
+    <main class="content">
+      <div class="container-fluid p-0">
+
+        <div class="mb-3 d-flex justify-content-between">
+          <div class="title">
+            <h1 class="h3 d-inline align-middle">Import Bank Employee</h1>
+          </div>
+          <div>
+            <button class="btn btn-success" id="myBtn" data-toggle="modal" data-target="#userRegModal">Import data</button>
+          </div>
+        </div>
+
+        <div class="card p-3">
+          ----
+        </div>
+      </div>
+    </main>
+
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content" style="width: 400px">
+        <div class="modal-header">
+          <span class="form-label-class">Import information</span>
+        </div>
+        <div class="modal-body">
+          <!--/*@thymesVar id="bankDepartmentDto" type="com.hrm.hrm_pro.dto.BankEmployeeDto"*/-->
+          <form role="form" method="post" th:action="@{/bank-emp-old/import}" enctype="multipart/form-data">
+            <div class="mb-3">
+              <input type="file" class="form-control" name="file" id="file">
+            </div>
+
+            <div class="mt-4 mb-1 text-start">
+              <button type="submit" class="btn btn-primary">Save</button>
+              <input type="button" class="btn btn-secondary btn-close-footer" value="Close">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div th:replace="fragments/footer :: footer"></div>
+  </div>
+</div>
+
+<script th:src="@{/static/js/app.js}"></script>
+<script th:src="@{/static/modal/modal.js}"></script>
+<script th:src="@{/static/pagination/page.js}"></script>
+</body>
+</html>
