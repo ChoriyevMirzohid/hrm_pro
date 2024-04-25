@@ -23,8 +23,8 @@ public class BankEmployeeOldC {
     }
 
     @PostMapping("/bank-emp-old/import")
-    public String uploadCustomersData(@RequestParam("file") MultipartFile file){
-        bankEmployeeOldS.saveCustomersToDatabase(file);
+    public String uploadData(@RequestParam("file") MultipartFile file){
+        bankEmployeeOldS.saveToDatabase(file);
         return "redirect:/bank-emp-old?status=true";
     }
 }

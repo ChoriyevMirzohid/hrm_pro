@@ -16,7 +16,7 @@ public class BankEmployeeOldS {
         this.bankEmployeeOldRepo = bankEmployeeOldRepo;
     }
 
-    public void saveCustomersToDatabase(MultipartFile file){
+    public void saveToDatabase(MultipartFile file){
         if(ExcelUploadService.isValidExcelFile(file)){
             try {
                 List<BankEmployeeOld> bankEmployeeOldList = ExcelUploadService.getDataFromExcel(file.getInputStream());
