@@ -36,11 +36,27 @@ public class ExcelUploadService {
                 while (cellIterator.hasNext()){
                     Cell cell = cellIterator.next();
                     switch (cellIndex){
-                        case 0 -> bankEmployeeOld.setCustomerId((int) cell.getNumericCellValue());
-                        case 1 -> bankEmployeeOld.setFirstName(cell.getStringCellValue());
-                        case 2 -> bankEmployeeOld.setLastName(cell.getStringCellValue());
-                        case 3 -> bankEmployeeOld.setCountry(cell.getStringCellValue());
-                        case 4 -> bankEmployeeOld.setTelephone(cell.getStringCellValue());
+                        case 0 -> bankEmployeeOld.setNumber((int) cell.getNumericCellValue());
+                        case 1 -> bankEmployeeOld.setCode_unique(cell.getStringCellValue());
+                        case 2 -> bankEmployeeOld.setBank_block(cell.getStringCellValue());
+                        case 3 -> bankEmployeeOld.setBank_direct(cell.getStringCellValue());
+                        case 4 -> bankEmployeeOld.setBank_dep(cell.getStringCellValue());
+                        case 5 -> bankEmployeeOld.setBank_dep_insade(cell.getStringCellValue());
+                        case 6 -> bankEmployeeOld.setEmp_position(cell.getStringCellValue());
+                        case 7 -> bankEmployeeOld.setEmp_level(cell.getStringCellValue());
+                        case 8 -> bankEmployeeOld.setEmp_manager(cell.getStringCellValue());
+                        case 9 -> bankEmployeeOld.setSub_employee(cell.getStringCellValue());
+                        case 10 -> bankEmployeeOld.setLevel_require(cell.getStringCellValue());
+                        case 11 -> bankEmployeeOld.setEmp_skill(cell.getStringCellValue());
+                        case 12 -> bankEmployeeOld.setMain_obligation(cell.getStringCellValue());
+                        case 13 -> bankEmployeeOld.setFunc_desc(cell.getStringCellValue());
+                        case 14 -> bankEmployeeOld.setResponsibility(cell.getStringCellValue());
+                        case 15 -> bankEmployeeOld.setEmp_law(cell.getStringCellValue());
+                        case 16 -> bankEmployeeOld.setConf_direct_man1(cell.getStringCellValue());
+                        case 17 -> bankEmployeeOld.setConf_direct_man2(cell.getStringCellValue());
+                        case 18 -> bankEmployeeOld.setConf_direct_man3(cell.getStringCellValue());
+                        case 19 -> bankEmployeeOld.setConf_direct_man4(cell.getStringCellValue());
+                        case 20 -> bankEmployeeOld.setFullname(cell.getStringCellValue());
                         default -> {
                         }
                     }

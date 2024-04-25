@@ -38,7 +38,132 @@
         </div>
 
         <div class="card p-3">
-          ----
+          <div class="mt-1 mb-3 d-flex justify-content-between">
+            <div class="d-flex align-items-center paging">
+              <div class="d-flex align-items-center">
+                <div class="filter-block">
+                  <button class="form-control form-control-sm">Search</button>
+                </div>
+                <div class="export-file">
+                  <button class="form-control form-control-sm">
+                    <i class="align-middle" data-feather="download"></i>
+                  </button>
+                </div>
+                <div class="paging-select-drop dropdown">
+                  <button class="btn btn-sm dropdown-toggle paging-select-drop-btn" type="button" data-toggle="dropdown">
+                    <span class="paging-select-show" th:text="${list.pageSize}"></span>
+                  </button>
+                  <ul class="dropdown-menu paging-drop-ul">
+                    <li>
+                      <a class="paging-select-option" th:href="@{/bank-emp-old?num=0&size=10}">10</a>
+                    </li>
+                    <li>
+                      <a class="paging-select-option" th:href="@{/bank-emp-old?num=0&size=20}">20</a>
+                    </li>
+                    <li>
+                      <a class="paging-select-option" th:href="@{/bank-emp-old?num=0&size=50}">50</a>
+                    </li>
+                    <li>
+                      <a class="paging-select-option" th:href="@{/bank-emp-old?num=0&size=100}">100</a>
+                    </li>
+                  </ul>
+                </div>
+                <input type="button" th:value="${list.totalElements}" readonly class="form-control form-control-sm paging-total-input">
+              </div>
+              <div class="d-flex align-items-center paging-input-block">
+                <a th:href="@{/bank-emp-old(num=${(list.pageNum)-1},size=${list.pageSize})}"
+                   class="btn btn-primary btn-sm"
+                   th:style="${(list.pageNum+1)==1} ? 'display:none' : 'display:block'">
+                  <i class="align-middle" data-feather="chevrons-left"></i>
+                </a>
+                <button class="btn btn-primary btn-sm" th:disabled="${(list.pageNum+1)==1}"
+                        th:style="${(list.pageNum+1)==1} ? 'display:block' : 'display:none'">
+                  <i class="align-middle" data-feather="chevrons-left"></i>
+                </button>
+                <input type="button" th:value="${list.pageNum+1}" class="form-control form-control-sm text-center paging-input">
+                <input type="button" th:value="${list.totalPages}" readonly class="form-control form-control-sm text-center paging-total-page-number">
+                <a th:href="@{/bank-emp-old(num=${list.pageNum+1},size=${list.pageSize})}"
+                   class="btn btn-primary btn-sm"
+                   th:style="${(list.pageNum+1)>=list.totalPages} ? 'display:none' : 'display:block'">
+                  <i class="align-middle" data-feather="chevrons-right"></i>
+                </a>
+                <button class="btn btn-primary btn-sm" th:disabled="${(list.pageNum+1)>=list.totalPages}"
+                        th:style="${(list.pageNum+1)>=list.totalPages} ? 'display:block' : 'display:none'">
+                  <i class="align-middle" data-feather="chevrons-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover table-striped">
+              <thead>
+              <tr>
+                <th>emp_id</th>
+                <th>number</th>
+                <th class="th-big-size">code_unique</th>
+                <th class="th-big-size">bank_block</th>
+                <th>bank_direct</th>
+                <th>bank_dep</th>
+                <th>bank_dep_insade</th>
+                <th>emp_position</th>
+                <th>emp_level</th>
+                <th>emp_manager</th>
+                <th>sub_employee</th>
+                <th>level_require</th>
+                <th>emp_skill</th>
+                <th>main_obligation</th>
+                <th>func_desc</th>
+                <th>responsibility</th>
+                <th>emp_law</th>
+                <th>conf_direct_man1</th>
+                <th>conf_direct_man2</th>
+                <th>conf_direct_man3</th>
+                <th>conf_direct_man4</th>
+                <th>fullname</th>
+              </tr>
+              </thead>
+
+              <tbody>
+              <!--/*@thymesVar id="users" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
+              <tr th:each="item : ${list.content}">
+                <td class="fw-bold text-center position-relative">
+                  <span class="see-text-data" th:text="${item.emp_id}"></span>
+                  <span><i class="align-middle data-see-icon" data-feather="more-horizontal" th:onclick="|seeInfo(${item.emp_id})|"></i></span>
+                </td>
+
+                <td class="position-relative">
+                  <span class="see-text-data" th:text="${#strings.length(item.code_unique)>50 ? #strings.substring(item.code_unique,0,50) : item.code_unique}"></span>
+                  <span><i class="align-middle data-see-icon" data-feather="more-horizontal"></i></span>
+                </td>
+
+<!--                <td>-->
+<!--                  <span th:text="${#strings.length(item.code_unique)>50 ? #strings.substring(item.code_unique,0,50) : item.code_unique}"></span>-->
+<!--                  <span><i class="align-middle data-see-icon" data-feather="more-horizontal" th:onclick="|seeInfo(${item.code_unique})|"></i></span>-->
+<!--                </td>-->
+                <td th:text="${item.bank_block}" />
+                <td th:text="${item.bank_block}" />
+                <td th:text="${item.bank_direct}" />
+                <td th:text="${item.bank_dep}" />
+                <td th:text="${item.bank_dep_insade}" />
+                <td th:text="${item.emp_position}" />
+                <td th:text="${item.emp_level}" />
+                <td th:text="${item.emp_manager}" />
+                <td th:text="${item.sub_employee}" />
+                <td th:text="${item.level_require}" />
+                <td th:text="${item.emp_skill}" />
+                <td th:text="${item.main_obligation}" />
+                <td th:text="${item.func_desc}" />
+                <td th:text="${item.responsibility}" />
+                <td th:text="${item.emp_law}" />
+                <td th:text="${item.conf_direct_man1}" />
+                <td th:text="${item.conf_direct_man2}" />
+                <td th:text="${item.conf_direct_man3}" />
+                <td th:text="${item.conf_direct_man4}" />
+                <td th:text="${item.fullname}" />
+              </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </main>
@@ -61,6 +186,19 @@
               <input type="button" class="btn btn-secondary btn-close-footer" value="Close">
             </div>
           </form>
+        </div>
+      </div>
+    </div>
+
+    <div id="seeModal" class="modal">
+      <div class="modal-content" style="width: 500px">
+        <div class="see-close-data">
+          <i class="align-middle btn-close-footer-see" onclick="footerSee()" data-feather="x"></i>
+        </div>
+        <div class="modal-body">
+          <div class="modal-body-see">
+            <span id="see-data-item"></span>
+          </div>
         </div>
       </div>
     </div>
