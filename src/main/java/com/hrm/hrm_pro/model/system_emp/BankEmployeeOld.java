@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.sql.Timestamp;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -56,4 +59,9 @@ public class BankEmployeeOld {
     private String conf_direct_man4;
     @Column(length = 2000)
     private String fullname;
+
+    @CreationTimestamp
+    private Timestamp create_date;
+    @Column(length = 3, nullable = false)
+    private String condition;
 }

@@ -28,11 +28,15 @@ public class BankEmployeeOldC {
     public String getPage(
             @RequestParam(value = "num", defaultValue = "0", required = false) int num,
             @RequestParam(value = "size", defaultValue = "10", required = false) int size,
+            @RequestParam(value = "filter", defaultValue = "", required = false) String filter,
             Model model,
             HttpSession session){
-        List<EmpCondition> conditionList = empConditionRepo.findAll();
-        model.addAttribute("conditionList", conditionList);
-        model.addAttribute("list", bankEmployeeOldS.getAllBankEmpOldPaging(num, size));
+        if (session != null){
+            List<EmpCondition> conditionList = empConditionRepo.findAll();
+            model.addAttribute("conditionList", conditionList);
+            model.addAttribute("filter", filter);
+            model.addAttribute("list", bankEmployeeOldS.getAllBankEmpOldPaging(num, size, filter));
+        }
         return RedirectLogin.redirectLogin("bank-emp-old", session);
     }
 

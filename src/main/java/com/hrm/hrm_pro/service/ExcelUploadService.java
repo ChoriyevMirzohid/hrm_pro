@@ -33,8 +33,10 @@ public class ExcelUploadService {
                 Iterator<Cell> cellIterator = row.iterator();
                 int cellIndex = 0;
                 BankEmployeeOld bankEmployeeOld = new BankEmployeeOld();
+                bankEmployeeOld.setCondition("1");
                 while (cellIterator.hasNext()){
                     Cell cell = cellIterator.next();
+
                     switch (cellIndex){
                         case 0 -> bankEmployeeOld.setNumber((int) cell.getNumericCellValue());
                         case 1 -> bankEmployeeOld.setCode_unique(cell.getStringCellValue());

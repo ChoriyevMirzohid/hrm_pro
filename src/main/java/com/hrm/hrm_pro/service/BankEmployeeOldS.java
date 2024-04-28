@@ -1,6 +1,5 @@
 package com.hrm.hrm_pro.service;
 
-import com.hrm.hrm_pro.dto.BankBlockDto;
 import com.hrm.hrm_pro.dto.PagingResponse;
 import com.hrm.hrm_pro.model.system_emp.BankEmployeeOld;
 import com.hrm.hrm_pro.repository.BankEmployeeOldRepo;
@@ -12,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class BankEmployeeOldS {
@@ -21,15 +21,20 @@ public class BankEmployeeOldS {
         this.bankEmployeeOldRepo = bankEmployeeOldRepo;
     }
 
-    public PagingResponse getAllBankEmpOldPaging(int pageNum, int pageSize) {
+    public PagingResponse getAllBankEmpOldPaging(int pageNum, int pageSize, String filter) {
         if (pageNum < 0){
             pageNum = 0;
         }
         if (pageSize <= 0){
             pageSize = 10;
         }
+        if (filter.equals("")){
+            filter = "F";
+        }else {
+            filter = filter.toLowerCase();
+        }
         Pageable pageable = PageRequest.of(pageNum, pageSize);
-        Page<BankEmployeeOld> bankEmpPage = bankEmployeeOldRepo.getAllBankEmpOldPaging(pageable);
+        Page<BankEmployeeOld> bankEmpPage = bankEmployeeOldRepo.getAllBankEmpOldPaging(pageable, filter);
         List<?> bankEmpList = bankEmpPage.stream().toList();
 
         PagingResponse pagingResponse = new PagingResponse();
