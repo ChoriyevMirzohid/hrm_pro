@@ -34,6 +34,7 @@ public interface BankEmployeeOldRepo extends JpaRepository<BankEmployeeOld, Inte
             "a.create_date,\n" +
             "COALESCE(a.condition, '')) from BankEmployeeOld a where \n" +
             "CONCAT('F', a.emp_id, COALESCE(lower(a.fullname), '')) like %:filter% \n" +
+            "and a.fullname is not null \n" +
             "ORDER BY a.emp_id DESC")
     Page<BankEmployeeOld> getAllBankEmpOldPaging(Pageable pageable, String filter);
 }

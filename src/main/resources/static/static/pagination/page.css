@@ -81,7 +81,7 @@
 }
 
 .th-big-size{
-    width: 250px;
+    width: max-content;
 }
 
 .data-see-icon{

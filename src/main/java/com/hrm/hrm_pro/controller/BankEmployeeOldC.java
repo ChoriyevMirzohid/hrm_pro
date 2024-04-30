@@ -1,6 +1,7 @@
 package com.hrm.hrm_pro.controller;
 
 import com.hrm.hrm_pro.common.RedirectLogin;
+import com.hrm.hrm_pro.model.system_emp.BankEmployeeOld;
 import com.hrm.hrm_pro.model.system_emp.EmpCondition;
 import com.hrm.hrm_pro.repository.EmpConditionRepo;
 import com.hrm.hrm_pro.service.BankEmployeeOldS;

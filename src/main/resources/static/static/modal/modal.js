@@ -16,10 +16,11 @@ btn.onclick = function() {
     modal.style.display = "block";
 }
 
-function seeInfo(key, text){
+function seeInfo(text){
     seeModal.style.display="block";
-    document.getElementById("see-data-item").innerHTML=text;
+    document.getElementById("see-data-item").innerHTML=text.toString();
 }
+
 function footerSee(){
     seeModal.style.display='none';
 }
