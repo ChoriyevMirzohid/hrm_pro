@@ -81,7 +81,11 @@
 }
 
 .defaultWidth{
-
+    position: relative;
+    width: 200px;
+}
+.defaultWidth div{
+    width: inherit;
 }
 .setWidth{
     position: relative;

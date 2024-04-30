@@ -153,7 +153,7 @@
 <!--                  <span th:text="${#strings.length(item.code_unique)>50 ? #strings.substring(item.code_unique,0,50) : item.code_unique}"></span>-->
 <!--                  <span><i class="align-middle data-see-icon" data-feather="more-horizontal" th:onclick="|seeInfo(${item.code_unique})|"></i></span>-->
 <!--                </td>-->
-                <td th:class="${#strings.length(item.code_unique) > 50 ? 'setWidth concat' : 'defaultWidth'}">
+                <td th:classappend="${#strings.length(item.code_unique) > 50 ? 'setWidth concat' : 'defaultWidth'}">
                   <div>
                     <span th:text="${item.code_unique}"></span>
                     <span><i class="align-middle data-see-icon" data-feather="more-horizontal" th:onclick="|seeInfo('${item.emp_id}')|"></i></span>
