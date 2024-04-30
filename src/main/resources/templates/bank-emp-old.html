@@ -104,14 +104,15 @@
                 </form>
             </div>
           </div>
+
           <div class="table-responsive">
             <table class="table table-bordered table-hover table-striped">
               <thead>
               <tr>
                 <th>EmpId</th>
                 <th>Number</th>
-                <th class="th-big-size">CodeUnique</th>
-                <th class="th-big-size">BankBlock</th>
+                <th>CodeUnique</th>
+                <th>BankBlock</th>
                 <th>BankDirectorate</th>
                 <th>BankDepartment</th>
                 <th>BankDepartmentInside</th>
@@ -137,8 +138,10 @@
               <!--/*@thymesVar id="users" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
               <tr th:each="item : ${list.content}">
                 <td class="fw-bold text-center position-relative">
-                  <span class="see-text-data" th:text="${item.emp_id}"></span>
-                  <span><i class="align-middle data-see-icon" data-feather="more-horizontal" th:onclick="|seeInfo('${item.getBank_block()}')|"></i></span>
+                  <div>
+                    <span class="see-text-data" th:text="${item.emp_id}"></span>
+                    <span><i class="align-middle data-see-icon" data-feather="more-horizontal" th:onclick="|seeInfo('${item.emp_id}')|"></i></span>
+                  </div>
                 </td>
 
                 <td class="position-relative">
@@ -150,7 +153,12 @@
 <!--                  <span th:text="${#strings.length(item.code_unique)>50 ? #strings.substring(item.code_unique,0,50) : item.code_unique}"></span>-->
 <!--                  <span><i class="align-middle data-see-icon" data-feather="more-horizontal" th:onclick="|seeInfo(${item.code_unique})|"></i></span>-->
 <!--                </td>-->
-                <td style="width: auto" th:text="${item.bank_block}" />
+                <td th:class="${#strings.length(item.code_unique) > 50 ? 'setWidth concat' : 'defaultWidth'}">
+                  <div>
+                    <span th:text="${item.code_unique}"></span>
+                    <span><i class="align-middle data-see-icon" data-feather="more-horizontal" th:onclick="|seeInfo('${item.emp_id}')|"></i></span>
+                  </div>
+                </td>
                 <td th:text="${item.bank_block}" />
                 <td th:text="${item.bank_direct}" />
                 <td th:text="${item.bank_dep}" />
@@ -175,7 +183,8 @@
             </table>
           </div>
         </div>
-      </div>
+        </div>
+
     </main>
 
     <div id="myModal" class="modal">

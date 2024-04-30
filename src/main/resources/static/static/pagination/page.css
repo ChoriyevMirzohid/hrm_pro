@@ -80,10 +80,20 @@
     font-size: 10px;
 }
 
-.th-big-size{
-    width: max-content;
-}
+.defaultWidth{
 
+}
+.setWidth{
+    position: relative;
+    width: 300px;
+}
+.concat div{
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    width: inherit;
+}
 .data-see-icon{
     color: rgb(128, 128, 128);
     font-size: 5px;
