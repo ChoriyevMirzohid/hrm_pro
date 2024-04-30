@@ -153,12 +153,13 @@
 <!--                  <span th:text="${#strings.length(item.code_unique)>50 ? #strings.substring(item.code_unique,0,50) : item.code_unique}"></span>-->
 <!--                  <span><i class="align-middle data-see-icon" data-feather="more-horizontal" th:onclick="|seeInfo(${item.code_unique})|"></i></span>-->
 <!--                </td>-->
-                <td th:classappend="${#strings.length(item.code_unique) > 50 ? 'setWidth concat' : 'defaultWidth'}">
+                <td th:classappend="${#strings.length(item.code_unique) > 50 ? 'setWidth' : 'defaultWidth'}">
                   <div>
                     <span th:text="${item.code_unique}"></span>
-                    <span><i class="align-middle data-see-icon" data-feather="more-horizontal" th:onclick="|seeInfo('${item.emp_id}')|"></i></span>
+                    <span><i class="align-middle data-see-icon" data-feather="more-horizontal" th:onclick="|seeInfo('${item.code_unique}')|"></i></span>
                   </div>
                 </td>
+
                 <td th:text="${item.bank_block}" />
                 <td th:text="${item.bank_direct}" />
                 <td th:text="${item.bank_dep}" />
