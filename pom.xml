@@ -67,7 +67,6 @@
 			<artifactId>poi-ooxml</artifactId>
 			<version>5.2.5</version>
 		</dependency>
-
 	</dependencies>
 
 	<build>
@@ -88,7 +87,7 @@
 	</build>
 	<repositories>
 		<repository>
-			<id/>
+			<id>central</id>
 			<url>https://repo.maven.apache.org/maven2/</url>
 		</repository>
 	</repositories>
