@@ -140,13 +140,13 @@
                 <td class="fw-bold text-center position-relative">
                   <div>
                     <span class="see-text-data" th:text="${item.emp_id}"></span>
-                    <span><i class="align-middle data-see-icon" data-feather="more-horizontal"></i></span>
+                    <span><i class="align-middle data-see-icon" data-feather="more-horizontal" id="emp_id" onclick="seeInfoClick()"></i></span>
                   </div>
                 </td>
 
                 <td class="position-relative">
                   <span class="see-text-data"></span>
-                  <span><i class="align-middle data-see-icon" data-feather="more-horizontal"></i></span>
+                  <span><i class="align-middle data-see-icon" data-feather="more-horizontal"  onclick="seeInfoClick()"></i></span>
                 </td>
 
 <!--                <td>-->
@@ -155,8 +155,8 @@
 <!--                </td>-->
                 <td th:classappend="${#strings.length(item.code_unique) > 50 ? 'setWidth' : 'defaultWidth'}">
                   <div>
-                    <span th:text="${item.code_unique}"></span>
-                    <span><i class="align-middle data-see-icon" data-feather="more-horizontal" th:onclick="|seeInfo('${item.code_unique}')|"></i></span>
+                    <span class="see-text-data" th:text="${item.code_unique}"></span>
+                    <span><i class="align-middle data-see-icon" data-feather="more-horizontal" onclick="seeInfoClick()"></i></span>
                   </div>
                 </td>
 

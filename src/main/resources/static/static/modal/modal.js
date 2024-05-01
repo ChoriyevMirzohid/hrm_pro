@@ -16,11 +16,6 @@ btn.onclick = function() {
     modal.style.display = "block";
 }
 
-function seeInfo(text){
-    seeModal.style.display="block";
-    document.getElementById("see-data-item").innerHTML=text.toString();
-}
-
 function footerSee(){
     seeModal.style.display='none';
 }
@@ -32,9 +27,17 @@ btn_footer_see.onclick = function() {
     seeModal.style.display = "none";
 }
 
-// When the user clicks anywhere outside of the modal, close it
-//window.onclick = function(event) {
-//    if (event.target == modal) {
-//        modal.style.display = "none";
-//    }
-//}
+function seeInfoClick(){
+    const seeBtnInfo = document.getElementById("emp_id");
+    const dataItem = document.getElementById("emp_id").innerHTML;
+    console.log(dataItem);
+    seeBtnInfo.addEventListener('click', seeInfo(dataItem));
+}
+function seeInfo(str){
+    seeModal.style.display="block";
+    if (str!==''){
+        document.getElementById("see-data-item").innerHTML=str;
+    }else{
+        document.getElementById("see-data-item").innerHTML="No data found";
+    }
+}
