@@ -1,5 +1,6 @@
 package com.hrm.hrm_pro.service;
 
+import com.hrm.hrm_pro.dto.BankEmployeeDto;
 import com.hrm.hrm_pro.dto.PagingResponse;
 import com.hrm.hrm_pro.model.system_emp.BankEmployeeOld;
 import com.hrm.hrm_pro.repository.BankEmployeeOldRepo;
@@ -56,5 +57,9 @@ public class BankEmployeeOldS {
                 throw new IllegalArgumentException("The file is not a valid excel file");
             }
         }
+    }
+
+    public BankEmployeeOld getBankEmployeeById(Integer emp_id) {
+        return bankEmployeeOldRepo.getBankEmployeeById(emp_id);
     }
 }
