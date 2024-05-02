@@ -34,6 +34,7 @@ function getEmployeeById(emp_id, id){
 }
 
 function seeInfo(str){
+    document.getElementById("see-data-item").innerHTML='';
     seeModal.style.display="block";
     if (str!==''){
         document.getElementById("see-data-item").innerHTML=str;
