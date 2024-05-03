@@ -5,15 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-
 import java.sql.Timestamp;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Entity(name = "BankEmployeeOld")
-@Table(name = "bank_employee_old")
-public class BankEmployeeOld {
+@Entity(name = "BankEmp")
+@Table(name = "bank_emp")
+public class BankEmp {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer emp_id;
@@ -57,8 +56,18 @@ public class BankEmployeeOld {
     private String conf_direct_man3;
     @Column(length = 2000)
     private String conf_direct_man4;
-    @Column(length = 2000)
-    private String fullname;
+
+    @Column(length = 40)
+    private String firstname;
+
+    @Column(length = 40)
+    private String lastname;
+
+    @Column(length = 40)
+    private String patronymic;
+
+    @Column(length = 20)
+    private String creation_type;
 
     @CreationTimestamp
     private Timestamp create_date;

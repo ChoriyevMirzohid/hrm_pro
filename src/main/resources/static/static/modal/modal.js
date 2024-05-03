@@ -17,3 +17,16 @@ function closeCreateEmpModal(){
     let importEmpModal = document.getElementById("createEmpModal");
     importEmpModal.style.display = "none";
 }
+
+function seeInfo(str){
+    let seeModal = document.getElementById("seeModal");
+    document.getElementById("see-data-item").innerHTML='';
+    seeModal.style.display="block";
+    if (str!==''){
+        document.getElementById("see-data-item").innerHTML=str;
+    }
+}
+function footerSee(){
+    let seeModal = document.getElementById("seeModal");
+    seeModal.style.display="none";
+}

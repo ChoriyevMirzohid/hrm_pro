@@ -113,6 +113,9 @@
     color: black;
     background-color: rgb(128, 128, 128);
 }
+.main-see-text{
+    font-weight: bolder;
+}
 .data-see-icon:hover{
     color: black;
     background-color: rgb(202, 237, 255);

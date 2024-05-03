@@ -53,23 +53,23 @@
                   </button>
                   <ul class="dropdown-menu paging-drop-ul">
                     <li>
-                      <a class="paging-select-option" th:href="@{/bank-emp-old(num=0,size=10,filter=${filter})}">10</a>
+                      <a class="paging-select-option" th:href="@{/bank-emp(num=0,size=10,filter=${filter})}">10</a>
                     </li>
                     <li>
-                      <a class="paging-select-option" th:href="@{/bank-emp-old(num=0,size=20,filter=${filter})}">20</a>
+                      <a class="paging-select-option" th:href="@{/bank-emp(num=0,size=20,filter=${filter})}">20</a>
                     </li>
                     <li>
-                      <a class="paging-select-option" th:href="@{/bank-emp-old(num=0,size=50,filter=${filter})}">50</a>
+                      <a class="paging-select-option" th:href="@{/bank-emp(num=0,size=50,filter=${filter})}">50</a>
                     </li>
                     <li>
-                      <a class="paging-select-option" th:href="@{/bank-emp-old(num=0,size=100,filter=${filter})}">100</a>
+                      <a class="paging-select-option" th:href="@{/bank-emp(num=0,size=100,filter=${filter})}">100</a>
                     </li>
                   </ul>
                 </div>
                 <input type="button" th:value="${list.totalElements}" readonly class="form-control form-control-sm paging-total-input">
               </div>
               <div class="d-flex align-items-center paging-input-block">
-                <a th:href="@{/bank-emp-old(num=${(list.pageNum)-1},size=${list.pageSize},filter=${filter})}"
+                <a th:href="@{/bank-emp(num=${(list.pageNum)-1},size=${list.pageSize},filter=${filter})}"
                    class="btn btn-primary btn-sm"
                    th:style="${(list.pageNum+1)==1} ? 'display:none' : 'display:block'">
                   <i class="align-middle" data-feather="chevrons-left"></i>
@@ -80,7 +80,7 @@
                 </button>
                 <input type="button" th:value="${list.pageNum+1}" class="form-control form-control-sm text-center paging-input">
                 <input type="button" th:value="${list.totalPages}" readonly class="form-control form-control-sm text-center paging-total-page-number">
-                <a th:href="@{/bank-emp-old(num=${list.pageNum+1},size=${list.pageSize},filter=${filter})}"
+                <a th:href="@{/bank-emp(num=${list.pageNum+1},size=${list.pageSize},filter=${filter})}"
                    class="btn btn-primary btn-sm"
                    th:style="${(list.pageNum+1)>=list.totalPages} ? 'display:none' : 'display:block'">
                   <i class="align-middle" data-feather="chevrons-right"></i>
@@ -92,14 +92,14 @@
               </div>
             </div>
             <div class="filter-block">
-                <form th:action="@{/bank-emp-old}">
+                <form th:action="@{/bank-emp}">
                   <div class="d-flex align-items-center">
                     <input type="search" th:value="${filter}" placeholder="Filter" class="form-control form-control-sm" name="filter">
                     <div class="me-1">
                       <input type="submit" class="form-control form-control-sm btn-primary" value="Filter">
                     </div>
                     <div>
-                      <input type="button" class="form-control form-control-sm btn-secondary" value="Clear" onclick="window.location='/bank-emp-old'">
+                      <input type="button" class="form-control form-control-sm btn-secondary" value="Clear" onclick="window.location='/bank-emp'">
                     </div>
                   </div>
                 </form>
@@ -113,6 +113,7 @@
                 <th>EmpId</th>
                 <th>Number</th>
                 <th>CodeUnique</th>
+                <th>Fullname</th>
                 <th>BankBlock</th>
                 <th>BankDirectorate</th>
                 <th>BankDepartment</th>
@@ -131,7 +132,6 @@
                 <th>ConfirmDirectorateMan2</th>
                 <th>ConfirmDirectorateMan3</th>
                 <th>ConfirmDirectorateMan4</th>
-                <th>Fullname</th>
               </tr>
               </thead>
 
@@ -154,8 +154,15 @@
 
                 <td th:classappend="${#strings.length(item.code_unique) > 50 ? 'setWidth' : 'defaultWidth'}">
                   <div>
-                    <span class="see-text-data" th:text="${item.code_unique}"></span>
+                    <span class="see-text-data main-see-text" th:text="${item.code_unique}"></span>
                     <span><i class="align-middle data-see-icon" data-feather="more-horizontal" th:onclick="|getEmployeeById(${item.emp_id}, 3)|"></i></span>
+                  </div>
+                </td>
+
+                <td th:classappend="${#strings.length(item.firstname + ' ' + item.lastname + ' ' + item.patronymic) > 50 ? 'setWidth' : 'defaultWidth'}">
+                  <div>
+                    <span class="see-text-data main-see-text" th:text="${item.firstname + ' ' + item.lastname + ' ' + item.patronymic}"></span>
+                    <span><i class="align-middle data-see-icon" data-feather="more-horizontal" th:onclick="|getEmployeeById(${item.emp_id}, 22)|"></i></span>
                   </div>
                 </td>
 
@@ -285,13 +292,6 @@
                   </div>
                 </td>
 
-                <td th:classappend="${#strings.length(item.fullname) > 50 ? 'setWidth' : 'defaultWidth'}">
-                  <div>
-                    <span class="see-text-data" th:text="${item.fullname}"></span>
-                    <span><i class="align-middle data-see-icon" data-feather="more-horizontal" th:onclick="|getEmployeeById(${item.emp_id}, 22)|"></i></span>
-                  </div>
-                </td>
-
               </tr>
               </tbody>
             </table>
@@ -308,7 +308,7 @@
         </div>
         <div class="modal-body">
           <!--/*@thymesVar id="bankDepartmentDto" type="com.hrm.hrm_pro.dto.BankEmployeeDto"*/-->
-          <form role="form" method="post" th:action="@{/bank-emp-old/import}" enctype="multipart/form-data">
+          <form role="form" method="post" th:action="@{/bank-emp/import}" enctype="multipart/form-data">
             <div class="mb-3">
               <input type="file" class="form-control" name="file" id="file">
             </div>
@@ -325,86 +325,170 @@
 
     <div id="createEmpModal" class="modal">
       <!-- Modal content -->
-      <div class="modal-content" style="width: 1000px">
+      <div class="modal-content" style="width: 80%">
         <div class="modal-header">
           <span class="form-label-class">Add information</span>
         </div>
         <div class="modal-body">
-          <!--/*@thymesVar id="bankDepartmentDto" type="com.hrm.hrm_pro.dto.BankEmployeeDto"*/-->
-          <form role="form" method="post" th:action="@{/bank-employee/new}" th:object="${bankEmployeeDto}">
+          <!--/*@thymesVar id="bankDepartmentDto" type="com.hrm.hrm_pro.dto.bankEmpDto"*/-->
+          <form role="form" method="post" th:action="@{/bank-emp/new}" th:object="${bankEmpDto}">
             <div class="row">
-              <div class="col-lg-6 col-md-12">
+              <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>Firstname</label>
                   <input class="form-control form-control-lg" type="text" required name="firstname" placeholder="" />
                 </div>
               </div>
 
-              <div class="col-lg-6 col-md-12">
+              <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>Lastname</label>
                   <input class="form-control form-control-lg" type="text" required name="lastname" placeholder="" />
                 </div>
               </div>
 
-              <div class="col-lg-6 col-md-12">
+              <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>Patronymic</label>
                   <input class="form-control form-control-lg" type="text" required name="patronymic" placeholder="" />
                 </div>
               </div>
 
-              <div class="col-lg-6 col-md-12">
+              <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>Block</label>
-                  <select name="block_id" required class="form-select form-select-lg form-change-class">
+                  <select name="bank_block" required class="form-select form-select-lg form-change-class">
                     <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.BankBlockC"*/-->
-                    <option th:each="item: ${blockList}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}"></option>
+                    <option th:each="item: ${blockList}" th:value="${item.code}" th:text="${item.code + '-' + item.name_en}"></option>
                   </select>
                 </div>
               </div>
 
-              <div class="col-lg-6 col-md-12">
+              <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>Directorate</label>
-                  <select name="directorate_id" required class="form-select form-select-lg form-change-class">
+                  <select name="bank_direct" required class="form-select form-select-lg form-change-class">
                     <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.BankBlockC"*/-->
-                    <option th:each="item: ${directorateList}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}"></option>
+                    <option th:each="item: ${directorateList}" th:value="${item.code}" th:text="${item.code + '-' + item.name_en}"></option>
                   </select>
                 </div>
               </div>
 
-              <div class="col-lg-6 col-md-12">
+              <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>Department</label>
-                  <select name="department_id" required class="form-select form-select-lg form-change-class">
+                  <select name="bank_dep" required class="form-select form-select-lg form-change-class">
                     <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.BankBlockC"*/-->
-                    <option th:each="item: ${departmentList}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}"></option>
+                    <option th:each="item: ${departmentList}" th:value="${item.code}" th:text="${item.code + '-' + item.name_en}"></option>
                   </select>
                 </div>
               </div>
 
-              <div class="col-lg-6 col-md-12">
+              <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>Level</label>
-                  <select name="level_id" required class="form-select form-select-lg form-change-class">
+                  <select name="emp_level" required class="form-select form-select-lg form-change-class">
                     <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
                     <option th:each="item: ${levelList}" th:value="${item.id}" th:text="${item.level_code + '-' + item.name_en}"></option>
                   </select>
                 </div>
               </div>
 
-              <div class="col-lg-6 col-md-12">
+              <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>Position</label>
-                  <select name="position_id" required class="form-select form-select-lg form-change-class">
+                  <select name="emp_position" required class="form-select form-select-lg form-change-class">
                     <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
                     <option th:each="item: ${positionList}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}"></option>
                   </select>
                 </div>
               </div>
 
-              <div class="col-lg-6 col-md-12">
+              <div class="col-lg-4 col-md-6">
+                <div class="mb-3">
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Employee Manager</label>
+                  <input class="form-control form-control-lg" type="text" required name="emp_manager" placeholder="" />
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6">
+                <div class="mb-3">
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Sub Employee</label>
+                  <textarea class="form-control form-control-lg" rows="2" required name="sub_employee" placeholder=""></textarea>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6">
+                <div class="mb-3">
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Level Require</label>
+                  <textarea class="form-control form-control-lg" rows="2" required name="level_require" placeholder=""></textarea>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6">
+                <div class="mb-3">
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Emp skills</label>
+                  <textarea class="form-control form-control-lg" rows="2" required name="emp_skill" placeholder=""></textarea>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6">
+                <div class="mb-3">
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Main obligation</label>
+                  <textarea class="form-control form-control-lg" rows="2" required name="main_obligation" placeholder=""></textarea>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6">
+                <div class="mb-3">
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Func description</label>
+                  <textarea class="form-control form-control-lg" rows="2" required name="func_desc" placeholder=""></textarea>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6">
+                <div class="mb-3">
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Responsibility</label>
+                  <textarea class="form-control form-control-lg" rows="2" required name="responsibility" placeholder=""></textarea>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6">
+                <div class="mb-3">
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Employee Law</label>
+                  <textarea class="form-control form-control-lg" rows="2" required name="emp_law" placeholder=""></textarea>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6">
+                <div class="mb-3">
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>conf_direct_man1</label>
+                  <input class="form-control form-control-lg" type="text" required name="conf_direct_man1" placeholder="" />
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6">
+                <div class="mb-3">
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>conf_direct_man2</label>
+                  <input class="form-control form-control-lg" type="text" required name="conf_direct_man2" placeholder="" />
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6">
+                <div class="mb-3">
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>conf_direct_man3</label>
+                  <input class="form-control form-control-lg" type="text" required name="conf_direct_man3" placeholder="" />
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6">
+                <div class="mb-3">
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>conf_direct_man4</label>
+                  <input class="form-control form-control-lg" type="text" required name="conf_direct_man4" placeholder="" />
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>Condition</label>
                   <select name="condition" required class="form-select form-select-lg form-change-class">
@@ -414,7 +498,7 @@
                 </div>
               </div>
 
-              <div class="col-lg-6 col-md-12">
+              <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>Employment date</label>
                   <input class="form-control form-control-lg" type="date" th:value="${curDate}" required name="employment_date" placeholder="" />

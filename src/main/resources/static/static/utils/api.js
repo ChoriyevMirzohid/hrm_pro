@@ -26,17 +26,9 @@ function getEmployeeById(emp_id, id){
                 case 19: seeInfo(res.conf_direct_man2);break;
                 case 20: seeInfo(res.conf_direct_man3);break;
                 case 21: seeInfo(res.conf_direct_man4);break;
-                case 22: seeInfo(res.fullname);break;
+                case 22: seeInfo(res.firstname + ' ' + res.lastname + ' ' + res.patronymic);break;
                 default: seeInfo("");
             }
         }
     })
-}
-
-function seeInfo(str){
-    document.getElementById("see-data-item").innerHTML='';
-    seeModal.style.display="block";
-    if (str!==''){
-        document.getElementById("see-data-item").innerHTML=str;
-    }
 }
