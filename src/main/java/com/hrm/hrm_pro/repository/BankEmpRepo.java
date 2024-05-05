@@ -1,5 +1,6 @@
 package com.hrm.hrm_pro.repository;
 
+import com.hrm.hrm_pro.dto.BankEmpDto;
 import com.hrm.hrm_pro.model.system_emp.BankEmp;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -1,10 +1,12 @@
 package com.hrm.hrm_pro.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
+@AllArgsConstructor
 @NoArgsConstructor
 @Data
 public class BankEmpDto {
@@ -33,11 +35,12 @@ public class BankEmpDto {
     private String firstname;
     private String lastname;
     private String patronymic;
+    private String creation_type;
 
     private String create_date;
     private String condition;
 
-    public BankEmpDto(Integer emp_id, int number, String code_unique, String bank_block, String bank_direct, String bank_dep, String bank_dep_insade, String emp_position, String emp_level, String emp_manager, String sub_employee, String level_require, String emp_skill, String main_obligation, String func_desc, String responsibility, String emp_law, String conf_direct_man1, String conf_direct_man2, String conf_direct_man3, String conf_direct_man4, String firstname, String lastname, String patronymic, Timestamp create_date, String condition) {
+    public BankEmpDto(Integer emp_id, int number, String code_unique, String bank_block, String bank_direct, String bank_dep, String bank_dep_insade, String emp_position, String emp_level, String emp_manager, String sub_employee, String level_require, String emp_skill, String main_obligation, String func_desc, String responsibility, String emp_law, String conf_direct_man1, String conf_direct_man2, String conf_direct_man3, String conf_direct_man4, String firstname, String lastname, String patronymic, String creation_type, Timestamp create_date, String condition) {
         this.emp_id = emp_id;
         this.number = number;
         this.code_unique = code_unique;
@@ -62,6 +65,7 @@ public class BankEmpDto {
         this.firstname = firstname;
         this.lastname = lastname;
         this.patronymic = patronymic;
+        this.creation_type = creation_type;
         this.create_date = new SimpleDateFormat("dd.MM.yyyy HH:mm").format(create_date);
         this.condition = condition;
     }

@@ -26,7 +26,24 @@ function seeInfo(str){
         document.getElementById("see-data-item").innerHTML=str;
     }
 }
-function footerSee(){
+function footerSeeHide(){
     let seeModal = document.getElementById("seeModal");
     seeModal.style.display="none";
+}
+
+function showModal(){
+    let modal = document.getElementById("myModal");
+    modal.style.display="block";
+}
+function hideModal(){
+    let modal = document.getElementById("myModal");
+    modal.style.display="none";
+}
+function exportShowModal(){
+    let exportModal = document.getElementById("exportModal");
+    exportModal.style.display="block";
+}
+function exportHideModal(){
+    let exportModal = document.getElementById("exportModal");
+    exportModal.style.display="none";
 }

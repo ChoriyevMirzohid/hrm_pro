@@ -1,5 +1,6 @@
 package com.hrm.hrm_pro.controller;
 
+import com.hrm.hrm_pro.common.EmpExportFile;
 import com.hrm.hrm_pro.common.RedirectLogin;
 import com.hrm.hrm_pro.dto.BankEmpDto;
 import com.hrm.hrm_pro.model.system_emp.BankEmp;
@@ -7,13 +8,12 @@ import com.hrm.hrm_pro.model.system_emp.EmpCondition;
 import com.hrm.hrm_pro.repository.EmpConditionRepo;
 import com.hrm.hrm_pro.service.*;
 import com.hrm.hrm_pro.utils.Utils;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
@@ -26,8 +26,9 @@ public class BankEmpC {
     final BankDirectorateS bankDirectorateS;
     final EmpPositionS empPositionS;
     final EmpLevelS empLevelS;
+    final EmpExportFile empExportFile;
 
-    public BankEmpC(BankEmpS bankEmpS, EmpConditionRepo empConditionRepo, BankBlockS bankBlockS, BankDepartmentS bankDepartmentS, BankDirectorateS bankDirectorateS, EmpPositionS empPositionS, EmpLevelS empLevelS) {
+    public BankEmpC(BankEmpS bankEmpS, EmpConditionRepo empConditionRepo, BankBlockS bankBlockS, BankDepartmentS bankDepartmentS, BankDirectorateS bankDirectorateS, EmpPositionS empPositionS, EmpLevelS empLevelS, EmpExportFile empExportFile) {
         this.bankEmpS = bankEmpS;
         this.empConditionRepo = empConditionRepo;
         this.bankBlockS = bankBlockS;
@@ -35,6 +36,7 @@ public class BankEmpC {
         this.bankDirectorateS = bankDirectorateS;
         this.empPositionS = empPositionS;
         this.empLevelS = empLevelS;
+        this.empExportFile = empExportFile;
     }
 
     @GetMapping("/bank-emp")
@@ -68,6 +70,13 @@ public class BankEmpC {
     @PostMapping("/bank-emp/import")
     public String uploadData(@RequestParam("file") MultipartFile file){
         bankEmpS.saveToDatabase(file);
+        return "redirect:/bank-emp";
+    }
+
+    @GetMapping("/bank-emp/download/{emp_id}")
+    public String downloadFile(@PathVariable Integer emp_id, Model model,
+                               HttpServletRequest request, HttpServletResponse response){
+        empExportFile.getDocFile(emp_id, request, response);
         return "redirect:/bank-emp";
     }
 }
