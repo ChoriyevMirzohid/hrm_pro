@@ -4,6 +4,7 @@ import com.aspose.words.*;
 import com.hrm.hrm_pro.model.system_emp.BankEmp;
 import com.hrm.hrm_pro.repository.BankEmpRepo;
 import com.hrm.hrm_pro.service.BankEmpS;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 @Service
 public class EmpExportFile {
@@ -21,6 +24,23 @@ public class EmpExportFile {
                 this.bankEmpRepo = bankEmpRepo;
         }
 
+        public String pathFile(HttpServletRequest request){
+                ServletContext servletContext = request.getServletContext();
+                String contextPath = servletContext.getRealPath("/");
+                URL file = null; String filePath = null;  String pathFile = null;
+                try {
+                        file = servletContext.getResource("/static/files/shablon.docx");
+                } catch (MalformedURLException ex) {
+                        ex.printStackTrace();
+                }
+                System.out.println(contextPath);
+                        filePath = file.getPath();
+                        pathFile = contextPath == null ? filePath : contextPath;
+
+                System.out.println(pathFile);
+                return pathFile;
+        }
+
         public void getDocFile(Integer emp_id, HttpServletRequest request, HttpServletResponse response){
                 String pathFile = "C:\\Users\\user\\Desktop\\Gulasal\\shablon.docx";
                 String pathLicense = "D:\\JavaProjects\\hrm_pro\\src\\main\\resources\\Aspose.Total.Java.lic";
@@ -28,7 +48,7 @@ public class EmpExportFile {
                 License license = null;
                 InputStream fileStream = null;
                 String filename = "hrm-doc.docx";
-
+                pathFile(request);
                 try {
                         license = new License();
                         license.setLicense(pathLicense);
