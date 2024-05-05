@@ -74,9 +74,9 @@ public class BankEmpC {
     }
 
     @GetMapping("/bank-emp/download/{emp_id}")
-    public String downloadFile(@PathVariable Integer emp_id, Model model,
+    public String downloadFile(@PathVariable Integer emp_id,
                                HttpServletRequest request, HttpServletResponse response){
         empExportFile.getDocFile(emp_id, request, response);
-        return "redirect:/bank-emp";
+        return "bank-emp";
     }
 }
