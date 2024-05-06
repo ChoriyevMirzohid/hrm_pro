@@ -18,52 +18,52 @@ public class BankEmp {
     private Integer emp_id;
 
     private int number;
-    @Column(length = 2000)
+    @Column(length = 5000)
     private String code_unique;
     @Column(length = 2000)
     private String bank_block;
-    @Column(length = 2000)
+    @Column(length = 5000)
     private String bank_direct;
-    @Column(length = 2000)
+    @Column(length = 5000)
     private String bank_dep;
-    @Column(length = 2000)
+    @Column(length = 5000)
     private String bank_dep_insade;
-    @Column(length = 2000)
+    @Column(length = 5000)
     private String emp_position;
-    @Column(length = 2000)
+    @Column(length = 5000)
     private String emp_level;
-    @Column(length = 2000)
+    @Column(length = 5000)
     private String emp_manager;
-    @Column(length = 2000)
+    @Column(length = 5000)
     private String sub_employee;
-    @Column(length = 2000)
+    @Column(length = 5000)
     private String level_require;
-    @Column(length = 2000)
+    @Column(length = 5000)
     private String emp_skill;
-    @Column(length = 2000)
+    @Column(length = 5000)
     private String main_obligation;
-    @Column(length = 2000)
+    @Column(length = 5000)
     private String func_desc;
-    @Column(length = 2000)
+    @Column(length = 5000)
     private String responsibility;
-    @Column(length = 2000)
+    @Column(length = 5000)
     private String emp_law;
-    @Column(length = 2000)
+    @Column(length = 5000)
     private String conf_direct_man1;
-    @Column(length = 2000)
+    @Column(length = 5000)
     private String conf_direct_man2;
-    @Column(length = 2000)
+    @Column(length = 5000)
     private String conf_direct_man3;
-    @Column(length = 2000)
+    @Column(length = 5000)
     private String conf_direct_man4;
 
-    @Column(length = 40)
+    @Column(length = 200)
     private String firstname;
 
-    @Column(length = 40)
+    @Column(length = 200)
     private String lastname;
 
-    @Column(length = 40)
+    @Column(length = 200)
     private String patronymic;
 
     @Column(length = 20)

@@ -120,6 +120,12 @@
     color: black;
     background-color: rgb(202, 237, 255);
 }
+.data-checkbox{
+    z-index: 1;
+    position: absolute;
+    right: 2px;
+    top: 2px;
+}
 .see-close-data{
     position: relative;
 }

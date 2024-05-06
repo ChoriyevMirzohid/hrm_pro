@@ -1,6 +1,5 @@
 package com.hrm.hrm_pro.service;
 
-import com.hrm.hrm_pro.dto.BankDirectorateDto;
 import com.hrm.hrm_pro.dto.BankEmployeeDto;
 import com.hrm.hrm_pro.dto.PagingResponse;
 import com.hrm.hrm_pro.model.system_emp.BankEmployee;

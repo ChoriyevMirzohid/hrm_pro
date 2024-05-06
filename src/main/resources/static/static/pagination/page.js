@@ -24,3 +24,36 @@ function empInfoChangeAccess(){
         document.getElementById("changeEmpAccessBtn").disabled = true;
     }
 }
+
+function checkedEmpId(id){
+    const checkEmpArray = [];
+    let btn = document.getElementById("exportEmpBtn");
+    let empBtnChecks = document.querySelectorAll(".data-checkbox");
+    let empIdValues = document.querySelectorAll(".see-text-id");
+
+    for (let i = 0, len = empBtnChecks.length; i < len; i++) {
+        if (empBtnChecks[i].checked){
+            checkEmpArray.push(empIdValues[i].innerHTML);
+        }
+    }
+
+    if (checkEmpArray.length > 0){
+        btn.disabled=false;
+    }else{
+        btn.disabled=true;
+    }
+}
+
+function bankEmpExportDoc(){
+    const checkEmpArray = [];
+    let empBtnChecks = document.querySelectorAll(".data-checkbox");
+    let empIdValues = document.querySelectorAll(".see-text-id");
+
+    for (let i = 0, len = empBtnChecks.length; i < len; i++) {
+        if (empBtnChecks[i].checked){
+            checkEmpArray.push(empIdValues[i].innerHTML);
+        }
+    }
+    console.log("/bank-emp/export/" + "[" + checkEmpArray + "]");
+    window.location.href="/bank-emp/export/" + checkEmpArray;
+}

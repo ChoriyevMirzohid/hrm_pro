@@ -44,7 +44,7 @@
             <div class="d-flex align-items-center paging">
               <div class="d-flex align-items-center">
                 <div class="export-file">
-                  <button class="form-control form-control-sm" onclick="exportShowModal()">
+                  <button class="form-control form-control-sm text-primary" id="exportEmpBtn" disabled onclick="exportShowModal()">
                     <i class="align-middle" data-feather="download"></i>
                   </button>
                 </div>
@@ -111,28 +111,28 @@
             <table class="table table-bordered table-hover table-striped">
               <thead>
               <tr>
-                <th>EmpId</th>
-                <th>Number</th>
-                <th>CodeUnique</th>
-                <th>Fullname</th>
-                <th>BankBlock</th>
-                <th>BankDirectorate</th>
-                <th>BankDepartment</th>
-                <th>BankDepartmentInside</th>
-                <th>EmpPosition</th>
-                <th>EmpLevel</th>
-                <th>EmpManager</th>
-                <th>SubEmployee</th>
-                <th>LevelRequire</th>
-                <th>EmpSkill</th>
-                <th>MainObligation</th>
-                <th>FuncDesc</th>
-                <th>Responsibility</th>
-                <th>EmpLaw</th>
-                <th>ConfirmDirectorateMan1</th>
-                <th>ConfirmDirectorateMan2</th>
-                <th>ConfirmDirectorateMan3</th>
-                <th>ConfirmDirectorateMan4</th>
+                <th>Уникальный сотрудника</th>
+                <th>Порядковый номер</th>
+                <th>Уникальный номер подраз(присваевается на уровне Дирекции)</th>
+                <th>ФИО сотрудника</th>
+                <th>Наименование подразделения  1-уровня (уровень.Блока)</th>
+                <th>Наименование подразделения  2-уровня (уровень.Дирекции)</th>
+                <th>Наименование подразделения  3-уровня (уровень.Департамента)</th>
+                <th>Наименование подразделения  4-уровня (заполняется.при.наличии)</th>
+                <th>Должность сотрудника</th>
+                <th>Категория(долж.руководитель)</th>
+                <th>Место структуре организации</th>
+                <th>Работники в подчинении (должности, количество) для категории руководитель</th>
+                <th>Требования к должности</th>
+                <th>Образование и необходимый опыт в работе</th>
+                <th>Основные обязанности</th>
+                <th>Детализированное описание функционала и задач</th>
+                <th>Ответственность работника</th>
+                <th>Полномочия и права</th>
+                <th>ФИО руководителя, который утверждает ДИ</th>
+                <th>ФИО руководителя, который согласует ДИ</th>
+                <th>ФИО руководителя, который согласует ДИ</th>
+                <th>ФИО руководителя, который согласует ДИ</th>
               </tr>
               </thead>
 
@@ -141,8 +141,10 @@
               <tr th:each="item : ${list.content}">
                 <td class="fw-bold text-center position-relative">
                   <div>
-                    <span class="see-text-data" th:text="${item.emp_id}"></span>
-                    <span><i class="align-middle data-see-icon" data-feather="more-horizontal" th:onclick="|getEmployeeById(${item.emp_id}, 1)|"></i></span>
+                    <span class="see-text-data see-text-id" th:text="${item.emp_id}"></span>
+                    <span>
+                      <input type="checkbox" class="data-checkbox" th:onchange="|checkedEmpId(${item.emp_id})|">
+                    </span>
                   </div>
                 </td>
 
@@ -341,28 +343,28 @@
             <div class="row">
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
-                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Firstname</label>
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Имя сотрудника</label>
                   <input class="form-control form-control-lg" type="text" required name="firstname" placeholder="" />
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
-                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Lastname</label>
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Фамилия сотрудника</label>
                   <input class="form-control form-control-lg" type="text" required name="lastname" placeholder="" />
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
-                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Patronymic</label>
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Отчество сотрудника</label>
                   <input class="form-control form-control-lg" type="text" required name="patronymic" placeholder="" />
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
-                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Block</label>
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Блок банка </label>
                   <select name="bank_block" required class="form-select form-select-lg form-change-class">
                     <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.BankBlockC"*/-->
                     <option th:each="item: ${blockList}" th:value="${item.code}" th:text="${item.code + '-' + item.name_en}"></option>
@@ -372,7 +374,7 @@
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
-                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Directorate</label>
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Дирекция банка</label>
                   <select name="bank_direct" required class="form-select form-select-lg form-change-class">
                     <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.BankBlockC"*/-->
                     <option th:each="item: ${directorateList}" th:value="${item.code}" th:text="${item.code + '-' + item.name_en}"></option>
@@ -382,7 +384,7 @@
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
-                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Department</label>
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Департамент банка</label>
                   <select name="bank_dep" required class="form-select form-select-lg form-change-class">
                     <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.BankBlockC"*/-->
                     <option th:each="item: ${departmentList}" th:value="${item.code}" th:text="${item.code + '-' + item.name_en}"></option>
@@ -392,7 +394,7 @@
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
-                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Level</label>
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Уровень сотрудника </label>
                   <select name="emp_level" required class="form-select form-select-lg form-change-class">
                     <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
                     <option th:each="item: ${levelList}" th:value="${item.id}" th:text="${item.level_code + '-' + item.name_en}"></option>
@@ -402,7 +404,7 @@
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
-                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Position</label>
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Должность сотрудника</label>
                   <select name="emp_position" required class="form-select form-select-lg form-change-class">
                     <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
                     <option th:each="item: ${positionList}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}"></option>
@@ -412,91 +414,91 @@
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
-                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Employee Manager</label>
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Менеджер сотрудников</label>
                   <input class="form-control form-control-lg" type="text" required name="emp_manager" placeholder="" />
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
-                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Sub Employee</label>
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Работники в подчинении</label>
                   <textarea class="form-control form-control-lg" rows="2" required name="sub_employee" placeholder=""></textarea>
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
-                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Level Require</label>
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Требования к должности	</label>
                   <textarea class="form-control form-control-lg" rows="2" required name="level_require" placeholder=""></textarea>
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
-                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Emp skills</label>
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Образование и необходимый</label>
                   <textarea class="form-control form-control-lg" rows="2" required name="emp_skill" placeholder=""></textarea>
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
-                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Main obligation</label>
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Основные обязанности	</label>
                   <textarea class="form-control form-control-lg" rows="2" required name="main_obligation" placeholder=""></textarea>
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
-                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Func description</label>
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Детализированное описание функционала и задач</label>
                   <textarea class="form-control form-control-lg" rows="2" required name="func_desc" placeholder=""></textarea>
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
-                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Responsibility</label>
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Ответственность работника	</label>
                   <textarea class="form-control form-control-lg" rows="2" required name="responsibility" placeholder=""></textarea>
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
-                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Employee Law</label>
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Полномочия и права	</label>
                   <textarea class="form-control form-control-lg" rows="2" required name="emp_law" placeholder=""></textarea>
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
-                  <label class="form-label form-label-class"><span class="label-symbol">*</span>conf_direct_man1</label>
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>ФИО руководителя, который утверждает ДИ	</label>
                   <input class="form-control form-control-lg" type="text" required name="conf_direct_man1" placeholder="" />
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
-                  <label class="form-label form-label-class"><span class="label-symbol">*</span>conf_direct_man2</label>
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>ФИО руководителя, который согласует ДИ	</label>
                   <input class="form-control form-control-lg" type="text" required name="conf_direct_man2" placeholder="" />
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
-                  <label class="form-label form-label-class"><span class="label-symbol">*</span>conf_direct_man3</label>
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>ФИО руководителя, который согласует ДИ	</label>
                   <input class="form-control form-control-lg" type="text" required name="conf_direct_man3" placeholder="" />
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
-                  <label class="form-label form-label-class"><span class="label-symbol">*</span>conf_direct_man4</label>
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>ФИО руководителя, который согласует ДИ</label>
                   <input class="form-control form-control-lg" type="text" required name="conf_direct_man4" placeholder="" />
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
-                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Condition</label>
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Состояние</label>
                   <select name="condition" required class="form-select form-select-lg form-change-class">
                     <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
                     <option th:each="item: ${conditionList}" th:value="${item.code}" th:text="${item.code + '-' + item.name}"></option>
@@ -506,7 +508,7 @@
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
-                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Employment date</label>
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Дата приема на работу</label>
                   <input class="form-control form-control-lg" type="date" th:value="${curDate}" required name="employment_date" placeholder="" />
                 </div>
               </div>
@@ -545,21 +547,12 @@
         </div>
         <div class="modal-body">
           <div class="border-bottom d-flex align-items-center pb-2 mt-1">
-            <span>
-              <i data-feather="download" class="align-middle text-info"></i>
-            </span>
-            <span class="ms-2 mt-1">
-              <a th:href="@{/bank-emp/download/1}">Maxsus xodim ma'lumotini word faylga export qilish</a>
-            </span>
-          </div>
-
-          <div class="border-bottom d-flex align-items-center pb-2 mt-1">
-            <span>
-              <i data-feather="download" class="align-middle text-info"></i>
-            </span>
-            <span class="ms-2 mt-1">
-              Maxsus xodim ma'lumotini word faylga export qilish
-            </span>
+              <span>
+                 <i data-feather="download" class="align-middle text-info"></i>
+              </span>
+              <span class="ms-2 mt-1">
+                <a onclick="bankEmpExportDoc()">Maxsus xodim ma'lumotini word faylga export qilish</a>
+              </span>
           </div>
 
         </div>

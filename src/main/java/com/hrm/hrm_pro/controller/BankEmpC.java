@@ -3,6 +3,7 @@ package com.hrm.hrm_pro.controller;
 import com.hrm.hrm_pro.common.EmpExportFile;
 import com.hrm.hrm_pro.common.RedirectLogin;
 import com.hrm.hrm_pro.dto.BankEmpDto;
+import com.hrm.hrm_pro.dto.ExportIdDto;
 import com.hrm.hrm_pro.model.system_emp.BankEmp;
 import com.hrm.hrm_pro.model.system_emp.EmpCondition;
 import com.hrm.hrm_pro.repository.EmpConditionRepo;
@@ -11,10 +12,14 @@ import com.hrm.hrm_pro.utils.Utils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -73,10 +78,12 @@ public class BankEmpC {
         return "redirect:/bank-emp";
     }
 
-    @GetMapping("/bank-emp/download/{emp_id}")
-    public String downloadFile(@PathVariable Integer emp_id,
-                               HttpServletRequest request, HttpServletResponse response){
-        empExportFile.getDocFile(emp_id, request, response);
-        return "bank-emp";
+    @GetMapping("/bank-emp/export/{exportIds}")
+    public ResponseEntity<?> downloadFile(@PathVariable Integer[] exportIds, HttpServletRequest request, HttpServletResponse response){
+        List<Integer> arrayList = new ArrayList<>(List.of(exportIds));
+        for (Integer i : arrayList) {
+            empExportFile.getDocFile(i, request, response);
+        }
+        return ResponseEntity.ok(exportIds);
     }
 }
