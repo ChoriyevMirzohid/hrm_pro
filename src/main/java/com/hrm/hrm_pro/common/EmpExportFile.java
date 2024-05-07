@@ -15,7 +15,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -34,41 +36,52 @@ public class EmpExportFile {
                 return filePath;
         }
 
-        public void getDocFile(Integer emp_id, HttpServletRequest request, HttpServletResponse response){
-                String pathFile = pathFile("shablon.docx");
-                String pathLicense = pathFile("Aspose.Total.Java.lic");
+        public void getDocFile(List<Integer> arrayList, HttpServletRequest request, HttpServletResponse response){
+            String pathFile = pathFile("shablon.docx");
+            String pathLicense = pathFile("Aspose.Total.Java.lic");
 
-                        BankEmp bankEmp = bankEmpRepo.getBankEmployeeById(emp_id);
-                        Document document = null;
-                        License license = null;
-                        InputStream fileStream = null;
+            for (Integer emp_id : arrayList) {
+                BankEmp bankEmp = bankEmpRepo.getBankEmployeeById(emp_id);
+                Document document = null;
+                License license = null;
+                InputStream fileStream = null;
 
-                        try {
-                                license = new License();
-                                license.setLicense(pathLicense);
-                                fileStream = new FileInputStream(pathFile);
-                        }catch (Exception e){
-                                e.printStackTrace();
-                        }
+                try {
+                    license = new License();
+                    license.setLicense(pathLicense);
+                    fileStream = new FileInputStream(pathFile);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
 
-                        try {
-                            assert fileStream != null;
-                            document = new Document(fileStream);
-                                document.getRange().replace("/directorate/", bankEmp.getBank_direct(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
+                try {
+                    assert fileStream != null;
+                    document = new Document(fileStream);
+                    document.getRange().replace("/emp-level/", bankEmp.getLevel_require(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
+                    document.getRange().replace("/emp-position/", bankEmp.getEmp_position(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
+                    document.getRange().replace("/now-date/", new SimpleDateFormat("dd.MM.yyyy").format(new Date()), new FindReplaceOptions(FindReplaceDirection.FORWARD));
+                    document.getRange().replace("/first-last-name/", bankEmp.getFirstname(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
+                    document.getRange().replace("/func-desc/", bankEmp.getFunc_desc(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
+                    document.getRange().replace("/emp-responsibility/", bankEmp.getResponsibility(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
+                    document.getRange().replace("/main-obligation/", bankEmp.getMain_obligation(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
+                    document.getRange().replace("/directorate/", bankEmp.getBank_direct(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
+                    document.getRange().replace("/emp-skill/", bankEmp.getEmp_skill(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
+                    document.getRange().replace("/emp-manager/", bankEmp.getEmp_manager(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
 
-                                ByteArrayOutputStream dstStream = new ByteArrayOutputStream();
-                                OutputStream output = response.getOutputStream();
-                                document.save(dstStream, SaveFormat.DOCX);
-                                response.setCharacterEncoding("UTF-8");
-                                response.setHeader("Content-Type", "application/docx; charset=UTF-8");
-                                response.setHeader("Content-Disposition", "attachment;filename=\"" + bankEmp.getFirstname()+".docx");
-                                output.write(dstStream.toByteArray());
-                                output.flush();
-                                fileStream.close();
-                                output.close();
-                                dstStream.close();
-                        } catch (Exception e) {
-                                e.printStackTrace();
-                        }
+                    ByteArrayOutputStream dstStream = new ByteArrayOutputStream();
+                    OutputStream output = response.getOutputStream();
+                    document.save(dstStream, SaveFormat.DOCX);
+                    response.setCharacterEncoding("UTF-8");
+                    response.setHeader("Content-Type", "application/docx; charset=UTF-8");
+                    response.setHeader("Content-Disposition", "attachment;filename=\""+"Employee" + bankEmp.getEmp_id() + ".docx");
+                    output.write(dstStream.toByteArray());
+                    output.flush();
+                    fileStream.close();
+                    output.close();
+                    dstStream.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         }
 }

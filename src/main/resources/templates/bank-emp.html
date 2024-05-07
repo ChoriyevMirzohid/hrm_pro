@@ -397,7 +397,7 @@
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>Уровень сотрудника </label>
                   <select name="emp_level" required class="form-select form-select-lg form-change-class">
                     <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
-                    <option th:each="item: ${levelList}" th:value="${item.id}" th:text="${item.level_code + '-' + item.name_en}"></option>
+                    <option th:each="item: ${levelList}" th:value="${item.level_code}" th:text="${item.level_code + '-' + item.name_en}"></option>
                   </select>
                 </div>
               </div>
@@ -407,7 +407,7 @@
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>Должность сотрудника</label>
                   <select name="emp_position" required class="form-select form-select-lg form-change-class">
                     <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
-                    <option th:each="item: ${positionList}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}"></option>
+                    <option th:each="item: ${positionList}" th:value="${item.code}" th:text="${item.code + '-' + item.name_en}"></option>
                   </select>
                 </div>
               </div>

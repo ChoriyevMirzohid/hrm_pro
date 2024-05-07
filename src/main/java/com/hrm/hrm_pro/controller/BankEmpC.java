@@ -81,9 +81,7 @@ public class BankEmpC {
     @GetMapping("/bank-emp/export/{exportIds}")
     public ResponseEntity<?> downloadFile(@PathVariable Integer[] exportIds, HttpServletRequest request, HttpServletResponse response){
         List<Integer> arrayList = new ArrayList<>(List.of(exportIds));
-        for (Integer i : arrayList) {
-            empExportFile.getDocFile(i, request, response);
-        }
+        empExportFile.getDocFile(arrayList, request, response);
         return ResponseEntity.ok(exportIds);
     }
 }
