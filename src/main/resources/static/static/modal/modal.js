@@ -47,3 +47,12 @@ function exportHideModal(){
     let exportModal = document.getElementById("exportModal");
     exportModal.style.display="none";
 }
+
+function createUserRegModal(){
+    let importEmpModal = document.getElementById("userRegModal");
+    importEmpModal.style.display = "block";
+}
+function hideCreateUserRegModal(){
+    let modal = document.getElementById("userRegModal");
+    modal.style.display="none";
+}
