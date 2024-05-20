@@ -54,6 +54,5 @@ function bankEmpExportDoc(){
             checkEmpArray.push(empIdValues[i].innerHTML);
         }
     }
-    console.log("/bank-emp/export/" + "[" + checkEmpArray + "]");
     window.location.href="/bank-emp/export/" + checkEmpArray;
 }
