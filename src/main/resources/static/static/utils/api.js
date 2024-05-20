@@ -2,7 +2,7 @@
 function getEmployeeById(emp_id, id){
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:8080/bank-emp/'+emp_id,
+        url: 'http://192.168.28.22:8080/bank-emp/'+emp_id,
         success: function (res){
             switch (id){
                 case 1: seeInfo(res.emp_id);break;
