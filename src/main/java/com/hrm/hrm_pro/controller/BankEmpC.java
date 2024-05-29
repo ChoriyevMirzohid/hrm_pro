@@ -3,7 +3,6 @@ package com.hrm.hrm_pro.controller;
 import com.hrm.hrm_pro.common.EmpExportFile;
 import com.hrm.hrm_pro.common.RedirectLogin;
 import com.hrm.hrm_pro.dto.BankEmpDto;
-import com.hrm.hrm_pro.dto.ExportIdDto;
 import com.hrm.hrm_pro.model.system_emp.BankEmp;
 import com.hrm.hrm_pro.model.system_emp.EmpCondition;
 import com.hrm.hrm_pro.repository.EmpConditionRepo;
@@ -17,9 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Controller

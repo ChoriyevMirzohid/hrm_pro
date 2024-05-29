@@ -68,4 +68,8 @@ public class BankDepartmentS {
 
         bankDepartmentRepo.save(bankDepartment);
     }
+
+    public int getDepartCount() {
+        return bankDepartmentRepo.getDepartCount();
+    }
 }

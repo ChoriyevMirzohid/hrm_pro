@@ -1,6 +1,5 @@
 package com.hrm.hrm_pro.repository;
 
-import com.hrm.hrm_pro.dto.BankEmpDto;
 import com.hrm.hrm_pro.model.system_emp.BankEmp;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -134,4 +133,7 @@ public interface BankEmpRepo extends JpaRepository<BankEmp, Integer> {
             "a.firstname is not null and \n" +
             "a.emp_id=:emp_id")
     BankEmp getBankEmployeeById(Integer emp_id);
+
+    @Query("select count(a) from BankEmp a where a.condition = '1'")
+    int getEmpCount();
 }

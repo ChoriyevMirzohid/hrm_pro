@@ -7,6 +7,7 @@ import com.hrm.hrm_pro.service.BankEmployeeS;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin("*")
 @RestController
 public class BankEmployeeRC {
     final EmpExportFile empExportFile;

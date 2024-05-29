@@ -60,4 +60,8 @@ public class BankBlockS {
 
         bankBlockRepo.save(bankBlock);
     }
+
+    public int getBlockCount(){
+        return bankBlockRepo.getBlockCount();
+    }
 }

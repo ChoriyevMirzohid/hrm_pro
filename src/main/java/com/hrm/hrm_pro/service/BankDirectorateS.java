@@ -63,4 +63,8 @@ public class BankDirectorateS {
 
         bankDirectorateRepo.save(bankDirectorate);
     }
+
+    public int getDirecCount() {
+        return bankDirectorateRepo.getDirecCount();
+    }
 }

@@ -1,18 +1,14 @@
 package com.hrm.hrm_pro.service;
 
-import com.hrm.hrm_pro.common.EmpExportFile;
 import com.hrm.hrm_pro.dto.BankEmpDto;
 import com.hrm.hrm_pro.dto.PagingResponse;
 import com.hrm.hrm_pro.model.system_emp.BankEmp;
 import com.hrm.hrm_pro.repository.BankEmpRepo;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -110,5 +106,9 @@ public class BankEmpS {
 
         bankEmp = bankEmpRepo.save(bankEmp);
         return bankEmp;
+    }
+
+    public int getEmpCount(){
+        return bankEmpRepo.getEmpCount();
     }
 }
