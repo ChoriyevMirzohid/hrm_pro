@@ -33,13 +33,14 @@ public class BankEmpS {
         if (pageSize <= 0){
             pageSize = 10;
         }
-        if (filter.equals("")){
+        if (filter.isEmpty()){
             filter = "F";
         }else {
             filter = filter.toLowerCase();
         }
         Pageable pageable = PageRequest.of(pageNum, pageSize);
-        Page<BankEmp> bankEmpPage = bankEmpRepo.getAllBankEmpPaging(pageable, filter);
+        Page<BankEmp> bankEmpPage;
+        bankEmpPage = bankEmpRepo.getAllBankEmpPaging(pageable);
         List<?> bankEmpList = bankEmpPage.stream().toList();
 
         PagingResponse pagingResponse = new PagingResponse();

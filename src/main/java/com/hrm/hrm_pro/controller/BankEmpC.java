@@ -43,9 +43,9 @@ public class BankEmpC {
 
     @GetMapping("/bank-emp")
     public String getPage(
-            @RequestParam(value = "num", defaultValue = "0", required = false) int num,
-            @RequestParam(value = "size", defaultValue = "10", required = false) int size,
-            @RequestParam(value = "filter", defaultValue = "", required = false) String filter,
+            @RequestParam(name = "num", defaultValue = "0", required = false) int num,
+            @RequestParam(name = "size", defaultValue = "10", required = false) int size,
+            @RequestParam(name = "filter", defaultValue = "", required = false) String filter,
             Model model,
             HttpSession session){
         if (session != null){
@@ -59,6 +59,7 @@ public class BankEmpC {
             model.addAttribute("curDate", Utils.getCurDate());
             model.addAttribute("filter", filter);
             model.addAttribute("list", bankEmpS.getAllBankEmpPaging(num, size, filter));
+            System.out.println(bankEmpS.getAllBankEmpPaging(num, size, filter));
         }
         return RedirectLogin.redirectLogin("bank-emp", session);
     }
