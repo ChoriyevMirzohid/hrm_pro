@@ -2,7 +2,7 @@
     <nav id="sidebar" class="sidebar js-sidebar">
         <div class="sidebar-content js-simplebar">
             <a class="sidebar-brand" th:href="@{/dashboard}">
-                <span class="align-middle">Dashboard</span>
+                <span class="align-middle">HRMS</span>
             </a>
 
             <ul class="sidebar-nav">
@@ -12,7 +12,7 @@
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" th:href="@{/dashboard}">
-                        <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
+                        <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Панель управления</span>
                     </a>
                 </li>
 
@@ -20,7 +20,7 @@
                 <li th:each="item : ${session.systems}" class="sidebar-item">
                     <a class="sidebar-link" th:href="@{'/' + ${item.getPage_url()}}">
                         <i class="align-middle" th:data-feather="${item.getPage_icon()}"></i>
-                        <span class="align-middle" th:text="${item.getName_en()}"></span>
+                        <span class="align-middle" th:text="${item.getName_ru()}"></span>
                         <span th:if="${item.page_role=='super_admin'}" class="fw-bolder menu-role-type text-info">A</span>
                     </a>
                 </li>

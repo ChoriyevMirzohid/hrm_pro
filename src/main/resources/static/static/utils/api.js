@@ -2,7 +2,7 @@
 function getEmployeeById(emp_id, id){
     $.ajax({
         type: 'GET',
-        url: 'http://192.168.28.22:8080/bank-emp/'+emp_id,
+        url: 'http://192.168.28.22:8080/bank-emp-view/'+emp_id,
         success: function (res){
             switch (id){
                 case 1: seeInfo(res.emp_id);break;
@@ -27,6 +27,8 @@ function getEmployeeById(emp_id, id){
                 case 20: seeInfo(res.conf_direct_man3);break;
                 case 21: seeInfo(res.conf_direct_man4);break;
                 case 22: seeInfo(res.firstname + ' ' + res.lastname + ' ' + res.patronymic);break;
+                case 23: seeInfo(res.conf_direct_level1);break;
+                case 24: seeInfo(res.conf_direct_level2);break;
                 default: seeInfo("");
             }
         }

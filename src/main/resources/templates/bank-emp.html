@@ -130,15 +130,17 @@
                 <th>Ответственность работника</th>
                 <th>Полномочия и права</th>
                 <th>ФИО руководителя, который утверждает ДИ</th>
+                <th>Должность руководителя, который утверждает ДИ</th>
                 <th>ФИО руководителя, который согласует ДИ</th>
                 <th>ФИО руководителя, который согласует ДИ</th>
+                <th>Должность руководителя, который согласует ДИ</th>
                 <th>ФИО руководителя, который согласует ДИ</th>
               </tr>
               </thead>
 
               <tbody>
               <!--/*@thymesVar id="users" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
-              <tr th:each="item : ${list.content}">
+              <tr th:each="item : ${list.content}" th:ondblclick="|itemForwardEmp(${item.emp_id})|">
                 <td class="fw-bold text-center position-relative">
                   <div>
                     <span class="see-text-data see-text-id" th:text="${item.emp_id}"></span>
@@ -274,6 +276,13 @@
                   </div>
                 </td>
 
+                <td th:classappend="${#strings.length(item.conf_direct_level1) > 50 ? 'setWidth' : 'defaultWidth'}">
+                  <div>
+                    <span class="see-text-data" th:text="${item.conf_direct_level1}"></span>
+                    <span><i class="align-middle data-see-icon" data-feather="more-horizontal" th:onclick="|getEmployeeById(${item.emp_id}, 23)|"></i></span>
+                  </div>
+                </td>
+
                 <td th:classappend="${#strings.length(item.conf_direct_man2) > 50 ? 'setWidth' : 'defaultWidth'}">
                   <div>
                     <span class="see-text-data" th:text="${item.conf_direct_man2}"></span>
@@ -285,6 +294,13 @@
                   <div>
                     <span class="see-text-data" th:text="${item.conf_direct_man3}"></span>
                     <span><i class="align-middle data-see-icon" data-feather="more-horizontal" th:onclick="|getEmployeeById(${item.emp_id}, 20)|"></i></span>
+                  </div>
+                </td>
+
+                <td th:classappend="${#strings.length(item.conf_direct_level2) > 50 ? 'setWidth' : 'defaultWidth'}">
+                  <div>
+                    <span class="see-text-data" th:text="${item.conf_direct_level2}"></span>
+                    <span><i class="align-middle data-see-icon" data-feather="more-horizontal" th:onclick="|getEmployeeById(${item.emp_id}, 24)|"></i></span>
                   </div>
                 </td>
 
@@ -477,6 +493,13 @@
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Должность руководителя, который утверждает ДИ</label>
+                  <input class="form-control form-control-lg" type="text" required name="conf_direct_level1" placeholder="" />
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6">
+                <div class="mb-3">
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>ФИО руководителя, который согласует ДИ	</label>
                   <input class="form-control form-control-lg" type="text" required name="conf_direct_man2" placeholder="" />
                 </div>
@@ -486,6 +509,13 @@
                 <div class="mb-3">
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>ФИО руководителя, который согласует ДИ	</label>
                   <input class="form-control form-control-lg" type="text" required name="conf_direct_man3" placeholder="" />
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6">
+                <div class="mb-3">
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Должность руководителя, который согласует ДИ</label>
+                  <input class="form-control form-control-lg" type="text" required name="conf_direct_level2" placeholder="" />
                 </div>
               </div>
 

@@ -3,25 +3,22 @@ package com.hrm.hrm_pro.controller.rest;
 import com.hrm.hrm_pro.common.EmpExportFile;
 import com.hrm.hrm_pro.model.system_emp.BankEmp;
 import com.hrm.hrm_pro.service.BankEmpS;
-import com.hrm.hrm_pro.service.BankEmployeeS;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin("*")
 @RestController
-public class BankEmployeeRC {
+public class BankEmpRC {
     final EmpExportFile empExportFile;
-    final BankEmpS bankEmployeeOldS;
-    final BankEmployeeS bankEmployeeS;
+    final BankEmpS bankEmpS;
 
-    public BankEmployeeRC(EmpExportFile empExportFile, BankEmpS bankEmployeeOldS, BankEmployeeS bankEmployeeS) {
+    public BankEmpRC(EmpExportFile empExportFile, BankEmpS bankEmpS) {
         this.empExportFile = empExportFile;
-        this.bankEmployeeOldS = bankEmployeeOldS;
-        this.bankEmployeeS = bankEmployeeS;
+        this.bankEmpS = bankEmpS;
     }
 
-    @GetMapping("/bank-emp/{emp_id}")
+    @GetMapping("/bank-emp-view/{emp_id}")
     public ResponseEntity<BankEmp> getEmployeeById(@PathVariable("emp_id") Integer emp_id){
-        return ResponseEntity.ok().body(bankEmployeeOldS.getBankEmployeeById(emp_id));
+        return ResponseEntity.ok().body(bankEmpS.getBankEmpById(emp_id));
     }
 }

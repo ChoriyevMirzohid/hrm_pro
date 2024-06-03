@@ -28,21 +28,21 @@
 								</div>
 								<form method="post" role="form" th:action="@{/auth/login}" th:object="${loginDto}">
 									<div class="mb-3">
-										<label class="form-label">Login</label>
+										<label class="form-label">Логин</label>
 										<input class="form-control form-control-lg" type="text" name="login" placeholder="Enter your login" />
 									</div>
 									<div class="mb-3">
-										<label class="form-label">Password</label>
+										<label class="form-label">Пароль</label>
 										<input class="form-control form-control-lg" type="password" name="password" placeholder="Enter your password" />
 									</div>
 									<div>
 										<label class="form-check">
 											<input class="form-check-input bg-success" type="checkbox" value="remember-me" name="remember-me" checked>
-											<span class="form-check-label">Remember me next time</span>
+											<span class="form-check-label">Запомнить</span>
 										</label>
 									</div>
 									<div class="text-center mt-3">
-										<button type="submit" class="btn btn-lg btn-success">Login</button>
+										<button type="submit" class="btn btn-lg btn-success">Войти</button>
 									</div>
 								</form>
 							</div>

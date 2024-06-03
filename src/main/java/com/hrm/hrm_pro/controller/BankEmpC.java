@@ -3,6 +3,7 @@ package com.hrm.hrm_pro.controller;
 import com.hrm.hrm_pro.common.EmpExportFile;
 import com.hrm.hrm_pro.common.RedirectLogin;
 import com.hrm.hrm_pro.dto.BankEmpDto;
+import com.hrm.hrm_pro.dto.BankEmployeeDto;
 import com.hrm.hrm_pro.model.system_emp.BankEmp;
 import com.hrm.hrm_pro.model.system_emp.EmpCondition;
 import com.hrm.hrm_pro.repository.EmpConditionRepo;
@@ -59,9 +60,29 @@ public class BankEmpC {
             model.addAttribute("curDate", Utils.getCurDate());
             model.addAttribute("filter", filter);
             model.addAttribute("list", bankEmpS.getAllBankEmpPaging(num, size, filter));
-            System.out.println(bankEmpS.getAllBankEmpPaging(num, size, filter));
         }
         return RedirectLogin.redirectLogin("bank-emp", session);
+    }
+
+    @GetMapping("/bank-emp/{id}")
+    public String getPageItem(
+            @PathVariable Integer id,
+            Model model){
+        List<EmpCondition> conditionList = empConditionRepo.findAll();
+        model.addAttribute("blockList", bankBlockS.getAllBankBlock());
+        model.addAttribute("departmentList", bankDepartmentS.getAllBankDepartment());
+        model.addAttribute("directorateList", bankDirectorateS.getAllBankDirectorate());
+        model.addAttribute("positionList", empPositionS.getAllEmpPosition());
+        model.addAttribute("levelList", empLevelS.getAllEmpLevel());
+        model.addAttribute("conditionList", conditionList);
+        model.addAttribute("itemData", bankEmpS.getBankEmpById(id));
+        return "bank-emp-item";
+    }
+
+    @PostMapping("/bank-emp/update/{emp_id}")
+    public String update(@PathVariable("emp_id") Integer emp_id, @ModelAttribute("bankEmpDto") BankEmpDto bankEmpDto){
+        bankEmpS.saveBankEmployee(bankEmpDto); // update code
+        return "redirect:/bank-emp/"+emp_id;
     }
 
     @PostMapping("/bank-emp/new")

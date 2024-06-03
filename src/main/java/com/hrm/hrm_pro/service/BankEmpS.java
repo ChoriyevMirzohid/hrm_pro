@@ -40,7 +40,7 @@ public class BankEmpS {
         }
         Pageable pageable = PageRequest.of(pageNum, pageSize);
         Page<BankEmp> bankEmpPage;
-        bankEmpPage = bankEmpRepo.getAllBankEmpPaging(pageable);
+        bankEmpPage = bankEmpRepo.getAllBankEmpPaging(pageable, filter);
         List<?> bankEmpList = bankEmpPage.stream().toList();
 
         PagingResponse pagingResponse = new PagingResponse();
@@ -65,8 +65,8 @@ public class BankEmpS {
         }
     }
 
-    public BankEmp getBankEmployeeById(Integer emp_id) {
-        return bankEmpRepo.getBankEmployeeById(emp_id);
+    public BankEmp getBankEmpById(Integer emp_id) {
+        return bankEmpRepo.getBankEmpById(emp_id);
     }
 
     public BankEmp saveBankEmployee(BankEmpDto bankEmpDto) {
@@ -102,7 +102,7 @@ public class BankEmpS {
         String block_code = bankEmpDto.getBank_block();
         String direc_code = bankEmpDto.getBank_direct();
         String depart_code = bankEmpDto.getBank_dep();
-        String unique_code = block_code + "-" + direc_code + "-" + depart_code;
+        String unique_code = block_code + "/" + direc_code + "/" + depart_code;
         bankEmp.setCode_unique(unique_code);
 
         bankEmp = bankEmpRepo.save(bankEmp);

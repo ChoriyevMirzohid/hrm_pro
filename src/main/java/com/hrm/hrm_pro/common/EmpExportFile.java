@@ -41,7 +41,7 @@ public class EmpExportFile {
             String pathLicense = pathFile("Aspose.Total.Java.lic");
 
             for (Integer emp_id : arrayList) {
-                BankEmp bankEmp = bankEmpRepo.getBankEmployeeById(emp_id);
+                BankEmp bankEmp = bankEmpRepo.getBankEmpById(emp_id);
                 Document document = null;
                 License license = null;
                 InputStream fileStream = null;
@@ -57,16 +57,20 @@ public class EmpExportFile {
                 try {
                     assert fileStream != null;
                     document = new Document(fileStream);
-                    document.getRange().replace("/emp-level/", bankEmp.getLevel_require(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
+                    document.getRange().replace("/emp-fullname/", bankEmp.getFirstname() + " " + bankEmp.getLastname() + " " + bankEmp.getPatronymic(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
                     document.getRange().replace("/emp-position/", bankEmp.getEmp_position(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
-                    document.getRange().replace("/now-date/", new SimpleDateFormat("dd.MM.yyyy").format(new Date()), new FindReplaceOptions(FindReplaceDirection.FORWARD));
-                    document.getRange().replace("/first-last-name/", bankEmp.getFirstname(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
-                    document.getRange().replace("/func-desc/", bankEmp.getFunc_desc(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
-                    document.getRange().replace("/emp-responsibility/", bankEmp.getResponsibility(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
-                    document.getRange().replace("/main-obligation/", bankEmp.getMain_obligation(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
-                    document.getRange().replace("/directorate/", bankEmp.getBank_direct(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
+                    document.getRange().replace("/bank-directorate/", bankEmp.getBank_direct(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
+                    document.getRange().replace("/conf-direct-level1/", bankEmp.getConf_direct_level1(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
+                    document.getRange().replace("/level-require/", bankEmp.getLevel_require(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
                     document.getRange().replace("/emp-skill/", bankEmp.getEmp_skill(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
-                    document.getRange().replace("/emp-manager/", bankEmp.getEmp_manager(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
+                    document.getRange().replace("/main-obligation/", bankEmp.getMain_obligation(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
+                    document.getRange().replace("/func-desc/", bankEmp.getFunc_desc(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
+                    document.getRange().replace("/responsibility/", bankEmp.getResponsibility(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
+                    document.getRange().replace("/emp-law/", bankEmp.getEmp_law(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
+                    document.getRange().replace("/conf-direct-man1/", bankEmp.getEmp_law(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
+                    document.getRange().replace("/conf-direct-level2/", bankEmp.getEmp_law(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
+                    document.getRange().replace("/conf-direct-man3/", bankEmp.getEmp_law(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
+                    document.getRange().replace("/now-date/", new SimpleDateFormat("dd.MM.yyyy").format(new Date()), new FindReplaceOptions(FindReplaceDirection.FORWARD));
 
                     ByteArrayOutputStream dstStream = new ByteArrayOutputStream();
                     OutputStream output = response.getOutputStream();

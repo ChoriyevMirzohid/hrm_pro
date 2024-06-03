@@ -63,7 +63,7 @@ public class BankEmployeeC {
         model.addAttribute("levelList", empLevelS.getAllEmpLevel());
         model.addAttribute("conditionList", conditionList);
         model.addAttribute("itemData", bankEmployeeS.getBankEmployeeById(id));
-        return "bank-employee-item";
+        return "bank-emp-item";
     }
 
     @PostMapping("/bank-employee/new")

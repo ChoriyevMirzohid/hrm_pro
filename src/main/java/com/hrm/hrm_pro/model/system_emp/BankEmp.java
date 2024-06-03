@@ -50,10 +50,17 @@ public class BankEmp {
     private String emp_law;
     @Column(length = 5000)
     private String conf_direct_man1;
+
+    @Column(length = 5000)
+    private String conf_direct_level1;
+
     @Column(length = 5000)
     private String conf_direct_man2;
     @Column(length = 5000)
     private String conf_direct_man3;
+
+    @Column(length = 5000)
+    private String conf_direct_level2;
     @Column(length = 5000)
     private String conf_direct_man4;
 

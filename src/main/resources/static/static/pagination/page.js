@@ -8,8 +8,8 @@ document.querySelector(".paging-select-drop-btn").addEventListener("click", () =
     }
 });
 
-function itemForwardEmployee(id){
-    window.location.href='/bank-employee/'+id;
+function itemForwardEmp(id){
+    window.location.href='/bank-emp/'+id;
 }
 
 function itemForwardUserAccess(id){
