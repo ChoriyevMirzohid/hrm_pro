@@ -67,9 +67,9 @@ public class EmpExportFile {
                     document.getRange().replace("/func-desc/", bankEmp.getFunc_desc(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
                     document.getRange().replace("/responsibility/", bankEmp.getResponsibility(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
                     document.getRange().replace("/emp-law/", bankEmp.getEmp_law(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
-                    document.getRange().replace("/conf-direct-man1/", bankEmp.getEmp_law(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
-                    document.getRange().replace("/conf-direct-level2/", bankEmp.getEmp_law(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
-                    document.getRange().replace("/conf-direct-man3/", bankEmp.getEmp_law(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
+                    document.getRange().replace("/conf-direct-man1/", bankEmp.getConf_direct_man1(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
+                    document.getRange().replace("/conf-direct-level2/", bankEmp.getConf_direct_level2(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
+                    document.getRange().replace("/conf-direct-man3/", bankEmp.getConf_direct_man3(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
                     document.getRange().replace("/now-date/", new SimpleDateFormat("dd.MM.yyyy").format(new Date()), new FindReplaceOptions(FindReplaceDirection.FORWARD));
 
                     ByteArrayOutputStream dstStream = new ByteArrayOutputStream();

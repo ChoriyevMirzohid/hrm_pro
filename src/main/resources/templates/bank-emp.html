@@ -31,11 +31,11 @@
 
         <div class="mb-3 d-flex justify-content-between">
           <div class="title">
-            <h1 class="h3 d-inline align-middle">Bank Employee</h1>
+            <h1 class="h3 d-inline align-middle">Сотрудники банка</h1>
           </div>
           <div>
-            <button class="btn btn-success" data-toggle="modal" onclick="createEmpModal()">Create</button>
-            <button class="btn btn-success" data-toggle="modal" onclick="importEmpModal()">Import data</button>
+            <button class="btn btn-success" data-toggle="modal" onclick="createEmpModal()">Создать</button>
+            <button class="btn btn-success" data-toggle="modal" onclick="importEmpModal()">Импорт данных</button>
           </div>
         </div>
 
@@ -95,12 +95,12 @@
             <div class="filter-block">
                 <form th:action="@{/bank-emp}">
                   <div class="d-flex align-items-center">
-                    <input type="search" th:value="${filter}" placeholder="Filter" class="form-control" name="filter">
+                    <input type="search" th:value="${filter}" placeholder="Фильтр" class="form-control" name="filter">
                     <div class="me-1">
-                      <input type="submit" class="form-control btn-primary" value="Filter">
+                      <input type="submit" class="form-control btn-primary" value="Фильтр">
                     </div>
                     <div>
-                      <input type="button" class="form-control btn-secondary" value="Clear" onclick="window.location='/bank-emp'">
+                      <input type="button" class="form-control btn-secondary" value="Очистить" onclick="window.location='/bank-emp'">
                     </div>
                   </div>
                 </form>
@@ -573,7 +573,7 @@
           <i class="align-middle btn-close-footer-see" onclick="exportHideModal()" data-feather="x"></i>
         </div>
         <div class="modal-header">
-          <span class="export-modal-header">Export files</span>
+          <span class="export-modal-header">Экспорт файлов</span>
         </div>
         <div class="modal-body">
           <div class="border-bottom d-flex align-items-center pb-2 mt-1">
@@ -581,7 +581,7 @@
                  <i data-feather="download" class="align-middle text-info"></i>
               </span>
               <span class="ms-2 mt-1">
-                <a onclick="bankEmpExportDoc()">Maxsus xodim ma'lumotini word faylga export qilish</a>
+                <a onclick="bankEmpExportDoc()">Экспорт информации о сотрудниках в wорд файл</a>
               </span>
           </div>
 
