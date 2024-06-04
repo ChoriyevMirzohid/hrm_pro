@@ -30,10 +30,10 @@
 
 				<div class="mb-3 d-flex justify-content-between">
 					<div class="title">
-						<h1 class="h3 d-inline align-middle">Bank Block</h1>
+						<h1 class="h3 d-inline align-middle">Банк Блок</h1>
 					</div>
 					<div>
-						<button class="btn btn-success" id="myBtn" data-toggle="modal" data-target="#userRegModal" onclick="showModal()">Create</button>
+						<button class="btn btn-success" id="myBtn" data-toggle="modal" data-target="#bankBlock" onclick="showModal()">Создать</button>
 					</div>
 				</div>
 
@@ -42,7 +42,7 @@
 						<div class="d-flex align-items-center paging">
 							<div class="d-flex align-items-center">
 								<div class="filter-block">
-									<button class="form-control form-control-sm">Search</button>
+									<button class="form-control form-control-sm">Фильтр</button>
 								</div>
 								<div class="export-file">
 									<button class="form-control form-control-sm">
@@ -98,23 +98,20 @@
 						<table class="table table-bordered table-hover table-striped">
 							<thead>
 							<tr>
-								<th>ID</th>
-								<th>Code</th>
-								<th>Name(uz)</th>
-								<th>Name(ru)</th>
-								<th>Name(en)</th>
-								<th>Deputy</th>
-								<th>Condition</th>
-								<th>Created date</th>
-								<th>Action</th>
+								<th>Код блока</th>
+								<th>Название(uz)</th>
+								<th>Название(ru)</th>
+								<th>Название(en)</th>
+								<th>Менеджер</th>
+								<th>Состояние</th>
+								<th>Дата создания</th>
 							</tr>
 							</thead>
 
 							<tbody>
 							<!--/*@thymesVar id="users" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
 							<tr th:each="item : ${list.content}">
-								<td class="fw-bold text-center" th:text="${item.id}" />
-								<td th:text="${item.code}" />
+								<td class="fw-bold text-center" th:text="${item.code}" />
 								<td th:text="${item.name_uz}" />
 								<td th:text="${item.name_ru}" />
 								<td th:text="${item.name_en}" />
@@ -127,13 +124,6 @@
                                     </span>
 								</td>
 								<td th:text="${item.create_date}" />
-								<td>
-									<div class="text-center">
-                                        <span class="text-warning">
-                                            <i class="align-middle fs-4" data-feather="edit"></i>
-                                        </span>
-									</div>
-								</td>
 							</tr>
 							</tbody>
 						</table>
@@ -146,7 +136,7 @@
 			<!-- Modal content -->
 			<div class="modal-content" style="width: 500px">
 				<div class="modal-header">
-					<span class="fw-bolder">Add information</span>
+					<span class="fw-bolder">Добавить информацию</span>
 				</div>
 				<div class="modal-body">
 					<!--/*@thymesVar id="bankBlockDto" type="com.hrm.hrm_pro.dto.BankBlockDto"*/-->

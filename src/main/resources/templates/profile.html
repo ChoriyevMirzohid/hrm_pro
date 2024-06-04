@@ -34,7 +34,7 @@
                     <div>
                         <a th:href="@{/dashboard}" class="btn btn-secondary mb-3">
                             <span><i class="align-middle mb-1" data-feather="arrow-left"></i></span>
-                            <span>Back</span>
+                            <span>Назад</span>
                         </a>
                     </div>
                 </div>
@@ -42,43 +42,43 @@
                         <div class="row">
                             <div class="col-lg-4 col-md-6 col-sm-12">
                                 <div class="mb-4">
-                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Firstname</label>
+                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Имя сотрудника</label>
                                     <input class="form-control form-control-lg form-input-class" readonly th:value="${itemData.firstname}" type="text" required name="firstname"/>
                                 </div>
                             </div>
 
                             <div class="col-lg-4 col-md-6 col-sm-12">
                                 <div class="mb-4">
-                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Lastname</label>
+                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Фамилия</label>
                                     <input class="form-control form-control-lg form-input-class" readonly th:value="${itemData.lastname}" type="text" required name="lastname"/>
                                 </div>
                             </div>
 
                             <div class="col-lg-4 col-md-6 col-sm-12">
                                 <div class="mb-4">
-                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Patronymic</label>
+                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Отчество</label>
                                     <input class="form-control form-control-lg form-input-class" readonly th:value="${itemData.patronymic}" type="text" required name="patronymic"/>
                                 </div>
                             </div>
 
                             <div class="col-lg-4 col-md-6 col-sm-12">
                                 <div class="mb-4">
-                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Login</label>
+                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Логин</label>
                                     <input class="form-control form-control-lg form-input-class" readonly th:value="${itemData.login}" type="text" required name="login"/>
                                 </div>
                             </div>
 
                             <div class="col-lg-4 col-md-6 col-sm-12">
                                 <div class="mb-4">
-                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Email</label>
+                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Электронная почта</label>
                                     <input class="form-control form-control-lg form-input-class" readonly th:value="${itemData.email}" type="text" required name="email"/>
                                 </div>
                             </div>
 
                             <div class="col-lg-4 col-md-6 col-sm-12">
                                 <div class="mb-4">
-                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Role</label>
-                                    <select name="role_code" readonly required class="form-select form-select-lg">
+                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Права сотрудник</label>
+                                    <select name="role_code" readonly="true" class="form-select form-select-lg">
                                         <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
                                         <option th:each="item: ${roleList}" th:value="${item.code}" th:text="${item.code + '-' + item.title}" th:selected="${item.code==itemData.role_code}"></option>
                                     </select>
@@ -87,7 +87,7 @@
 
                             <div class="col-lg-4 col-md-6 col-sm-12">
                                 <div class="mb-4">
-                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Condition</label>
+                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Состояние</label>
                                     <select name="condition" readonly required class="form-select form-select-lg">
                                         <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
                                         <option th:each="item: ${conditionList}" th:value="${item.code}" th:text="${item.name}" th:selected="${item.code==itemData.condition}"></option>
@@ -97,7 +97,7 @@
 
                             <div class="col-lg-4 col-md-6 col-sm-12">
                                 <div class="mb-4">
-                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Created date</label>
+                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Дата создания</label>
                                     <input class="form-control form-control-lg form-input-class" readonly th:value="${itemData.create_date}" type="text" required name="create_date"/>
                                 </div>
                             </div>
