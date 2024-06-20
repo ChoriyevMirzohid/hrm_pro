@@ -23,11 +23,10 @@
                 <li th:each="item : ${session.systems}" class="sidebar-item">
                     <a class="sidebar-link" th:href="@{'/' + ${item.getPage_url()}}">
                         <i class="align-middle" th:data-feather="${item.getPage_icon()}"></i>
-                        <span class="align-middle" th:text="${item.getName_en()}"></span>
+                        <span class="align-middle" th:text="${item.getName_ru()}"></span>
                         <span th:if="${item.page_role=='super_admin'}" class="fw-bolder menu-role-type text-info">A</span>
                     </a>
                 </li>
-
             </ul>
         </div>
     </nav>
