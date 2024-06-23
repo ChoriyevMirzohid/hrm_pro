@@ -11,6 +11,7 @@
 	<title>Login</title>
 
 	<link th:href="@{/static/css/app.css}" rel="stylesheet">
+	<link th:href="@{/static/css/note.css}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
@@ -28,21 +29,21 @@
 								</div>
 								<form method="post" role="form" th:action="@{/auth/login}" th:object="${loginDto}">
 									<div class="mb-3">
-										<label class="form-label">Логин</label>
+										<label class="form-label"><span id="word_2"></span></label>
 										<input class="form-control form-control-lg" type="text" name="login" placeholder="Enter your login" />
 									</div>
 									<div class="mb-3">
-										<label class="form-label">Пароль</label>
+										<label class="form-label"><span id="word_3"></span></label>
 										<input class="form-control form-control-lg" type="password" name="password" placeholder="Enter your password" />
 									</div>
 									<div>
 										<label class="form-check">
 											<input class="form-check-input bg-success" type="checkbox" value="remember-me" name="remember-me" checked>
-											<span class="form-check-label">Запомнить</span>
-										</label>
+											<span class="form-check-label"><span id="word_4"></span></span>
+									 	</label>
 									</div>
 									<div class="text-center mt-3">
-										<button type="submit" class="btn btn-lg btn-success">Войти</button>
+										<button type="submit" class="btn btn-lg btn-success" onclick="checkStatus()"><span id="word_5"></span></button>
 									</div>
 								</form>
 							</div>
@@ -52,9 +53,19 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="note" th:style="${session.login_status == '-1' ? 'display:block' : 'display:none'}">
+		<div class="note-body">
+			<span class="note-icon"><i class="align-middle" data-feather="check-circle"></i></span>
+			<span class="note-text">
+				<span id="word_1"></span><span class="note-value" th:text="${session.login_status}"></span>
+			</span>
+		</div>
+	</div>
 </main>
 
 <script th:src="@{/static/js/app.js}"></script>
+<script th:src="@{/static/js/note.js}"></script>
 <script th:src="@{/static/utils/lang-config.js}"></script>
 <script th:src="@{/static/utils/lang-option.js}"></script>
 </body>

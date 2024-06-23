@@ -1,6 +1,6 @@
 
 if (localStorage.getItem("sys_lang") == null){
-    document.getElementById("current_lang").innerHTML="UZB";
+    document.getElementById("current_lang").innerHTML="RUS";
 }else{
     document.getElementById("current_lang").innerHTML=
         localStorage.getItem("sys_lang");

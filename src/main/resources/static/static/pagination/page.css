@@ -10,27 +10,29 @@
     margin-left: 10px;
 }
 .paging-input{
-    color: black;
-    margin-left: 3px;
+    color: #696969;
+    margin-left: 2px;
+    font-weight: bolder;
 }
 
 .paging-total-input{
-    color: black;
+    color: #696969;
     text-align: center;
-    margin-left: 3px;
+    margin-left: 2px;
+    font-weight: bolder;
 }
 
 :read-only.paging-total-input{
     background-color: white;
-    color: black;
 }
 .paging-total-page-number{
-    margin-left: 3px;
-    margin-right: 3px;
+    margin-left: 1px;
+    margin-right: 2px;
+    color: #696969;
+    font-weight: bolder;
 }
 :read-only.paging-total-page-number{
     background-color: white;
-    color: black;
 }
 .paging-drop-ul{
     list-style: none;
@@ -44,7 +46,9 @@
     margin-left: 3px;
 }
 .paging-select-drop-btn{
-    border: 1px solid rgb(219, 219, 219);
+    color: #696969;
+    font-weight: bolder;
+    border: 1px solid #c8c8c8;
 }
 .dropdown-menu{
     min-width: auto;
@@ -53,9 +57,10 @@
 
 .paging-select-option{
     text-decoration: none;
-    color: black;
+    color: #696969;
     padding: 1px 5px;
     text-decoration-style: solid;
+    font-weight: bolder;
 }
 
 .export-file{

@@ -1,0 +1,27 @@
+
+.note{
+    position: absolute;
+    top: 10%;
+    width: 100%;
+}
+.note-body{
+    margin: auto;
+    width: 300px;
+    border-radius: 4px;
+    padding: 10px 15px;
+    border: 1px solid #dddddd;
+    border-left: 4px solid orange;
+    border-bottom: 2px solid orange;
+    display: flex;
+    height: auto;
+    align-items: center;
+}
+.note-icon{
+    color: orange;
+}
+.note-text{
+    margin-left: 10px;
+}
+.note-value{
+    visibility: hidden;
+}

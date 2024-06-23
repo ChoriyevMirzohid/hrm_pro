@@ -32,8 +32,10 @@ public class AuthController {
         if (check){
             session.setAttribute("username", loginDto.getLogin());
             session.setAttribute("systems", sysModuleS.getAllSysModule(loginDto.getLogin()));
+            session.setAttribute("login_status", "1");
             returnStr = "redirect:/dashboard";
         }else {
+            session.setAttribute("login_status", "-1");
             returnStr = "redirect:/login";
         }
         return returnStr;

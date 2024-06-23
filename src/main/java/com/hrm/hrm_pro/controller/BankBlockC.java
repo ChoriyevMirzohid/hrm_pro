@@ -5,7 +5,6 @@ import com.hrm.hrm_pro.dto.BankBlockDto;
 import com.hrm.hrm_pro.model.system_emp.EmpCondition;
 import com.hrm.hrm_pro.repository.EmpConditionRepo;
 import com.hrm.hrm_pro.service.BankBlockS;
-import com.hrm.hrm_pro.service.BankEmployeeS;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,12 +18,10 @@ import java.util.List;
 public class BankBlockC {
     final BankBlockS bankBlockS;
     final EmpConditionRepo empConditionRepo;
-    final BankEmployeeS bankEmployeeS;
 
-    public BankBlockC(BankBlockS bankBlockS, EmpConditionRepo empConditionRepo, BankEmployeeS bankEmployeeS) {
+    public BankBlockC(BankBlockS bankBlockS, EmpConditionRepo empConditionRepo) {
         this.bankBlockS = bankBlockS;
         this.empConditionRepo = empConditionRepo;
-        this.bankEmployeeS = bankEmployeeS;
     }
 
     @GetMapping("/bank-block")
@@ -36,7 +33,6 @@ public class BankBlockC {
         List<EmpCondition> conditionList = empConditionRepo.findAll();
         model.addAttribute("conditionList", conditionList);
         model.addAttribute("list", bankBlockS.getAllBankBlockPaging(num, size));
-        model.addAttribute("employeeList", bankEmployeeS.getBankEmployeeList());
         return RedirectLogin.redirectLogin("bank-block", session);
     }
 

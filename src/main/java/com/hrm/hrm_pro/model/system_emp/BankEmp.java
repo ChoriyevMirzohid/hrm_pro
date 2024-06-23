@@ -80,4 +80,10 @@ public class BankEmp {
     private Timestamp create_date;
     @Column(length = 3, nullable = false)
     private String condition;
+
+    private int block_id;
+    private int direct_id;
+    private int depart_id;
+    private int position_id;
+    private int level_id;
 }

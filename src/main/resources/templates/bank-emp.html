@@ -44,7 +44,7 @@
             <div class="d-flex align-items-center paging">
               <div class="d-flex align-items-center">
                 <div class="export-file">
-                  <button class="form-control text-primary" id="exportEmpBtn" disabled onclick="exportShowModal()">
+                  <button class="form-control text-white btn btn-warning" id="exportEmpBtn" disabled onclick="exportShowModal()">
                     <i class="align-middle" data-feather="download"></i>
                   </button>
                 </div>
@@ -71,22 +71,22 @@
               </div>
               <div class="d-flex align-items-center paging-input-block">
                 <a th:href="@{/bank-emp(num=${(list.pageNum)-1},size=${list.pageSize})}"
-                   class="btn btn-primary"
+                   class="btn btn-warning"
                    th:style="${(list.pageNum+1)==1} ? 'display:none' : 'display:block'">
                   <i class="align-middle" data-feather="chevrons-left"></i>
                 </a>
-                <button class="btn btn-primary" th:disabled="${(list.pageNum+1)==1}"
+                <button class="btn btn-warning" th:disabled="${(list.pageNum+1)==1}"
                         th:style="${(list.pageNum+1)==1} ? 'display:block' : 'display:none'">
                   <i class="align-middle" data-feather="chevrons-left"></i>
                 </button>
                 <input type="button" th:value="${list.pageNum+1}" class="form-control text-center paging-input">
                 <input type="button" th:value="${list.totalPages}" readonly class="form-control text-center paging-total-page-number">
                 <a th:href="@{/bank-emp(num=${list.pageNum+1},size=${list.pageSize})}"
-                   class="btn btn-primary"
+                   class="btn btn-warning"
                    th:style="${(list.pageNum+1)>=list.totalPages} ? 'display:none' : 'display:block'">
                   <i class="align-middle" data-feather="chevrons-right"></i>
                 </a>
-                <button class="btn btn-primary" th:disabled="${(list.pageNum+1)>=list.totalPages}"
+                <button class="btn btn-warning" th:disabled="${(list.pageNum+1)>=list.totalPages}"
                         th:style="${(list.pageNum+1)>=list.totalPages} ? 'display:block' : 'display:none'">
                   <i class="align-middle" data-feather="chevrons-right"></i>
                 </button>
@@ -351,7 +351,7 @@
       <!-- Modal content -->
       <div class="modal-content" style="width: 80%">
         <div class="modal-header">
-          <span class="form-label-class">Add information</span>
+          <span class="form-label-class">Добавить информацию</span>
         </div>
         <div class="modal-body">
           <!--/*@thymesVar id="bankDepartmentDto" type="com.hrm.hrm_pro.dto.bankEmpDto"*/-->
@@ -360,21 +360,21 @@
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>Имя сотрудника</label>
-                  <input class="form-control form-control-lg" type="text" required name="firstname" placeholder="" />
+                  <input class="form-control form-control-lg form-change-class" type="text" required name="firstname" placeholder="" />
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>Фамилия сотрудника</label>
-                  <input class="form-control form-control-lg" type="text" required name="lastname" placeholder="" />
+                  <input class="form-control form-control-lg form-change-class" type="text" required name="lastname" placeholder="" />
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>Отчество сотрудника</label>
-                  <input class="form-control form-control-lg" type="text" required name="patronymic" placeholder="" />
+                  <input class="form-control form-control-lg form-change-class" type="text" required name="patronymic" placeholder="" />
                 </div>
               </div>
 
@@ -431,98 +431,98 @@
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>Менеджер сотрудников</label>
-                  <input class="form-control form-control-lg" type="text" required name="emp_manager" placeholder="" />
+                  <input class="form-control form-control-lg form-change-class" type="text" required name="emp_manager" placeholder="" />
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>Работники в подчинении</label>
-                  <textarea class="form-control form-control-lg" rows="2" required name="sub_employee" placeholder=""></textarea>
+                  <textarea class="form-control form-control-lg" rows="2" name="sub_employee" placeholder=""></textarea>
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>Требования к должности	</label>
-                  <textarea class="form-control form-control-lg" rows="2" required name="level_require" placeholder=""></textarea>
+                  <textarea class="form-control form-control-lg" rows="2" name="level_require" placeholder=""></textarea>
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>Образование и необходимый</label>
-                  <textarea class="form-control form-control-lg" rows="2" required name="emp_skill" placeholder=""></textarea>
+                  <textarea class="form-control form-control-lg" rows="2" name="emp_skill" placeholder=""></textarea>
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>Основные обязанности	</label>
-                  <textarea class="form-control form-control-lg" rows="2" required name="main_obligation" placeholder=""></textarea>
+                  <textarea class="form-control form-control-lg" rows="2" name="main_obligation" placeholder=""></textarea>
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>Детализированное описание функционала и задач</label>
-                  <textarea class="form-control form-control-lg" rows="2" required name="func_desc" placeholder=""></textarea>
+                  <textarea class="form-control form-control-lg" rows="2" name="func_desc" placeholder=""></textarea>
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>Ответственность работника	</label>
-                  <textarea class="form-control form-control-lg" rows="2" required name="responsibility" placeholder=""></textarea>
+                  <textarea class="form-control form-control-lg" rows="2" name="responsibility" placeholder=""></textarea>
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>Полномочия и права	</label>
-                  <textarea class="form-control form-control-lg" rows="2" required name="emp_law" placeholder=""></textarea>
+                  <textarea class="form-control form-control-lg" rows="2" name="emp_law" placeholder=""></textarea>
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>ФИО руководителя, который утверждает ДИ	</label>
-                  <input class="form-control form-control-lg" type="text" required name="conf_direct_man1" placeholder="" />
+                  <input class="form-control form-control-lg" type="text" name="conf_direct_man1" placeholder="" />
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>Должность руководителя, который утверждает ДИ</label>
-                  <input class="form-control form-control-lg" type="text" required name="conf_direct_level1" placeholder="" />
+                  <input class="form-control form-control-lg" type="text" name="conf_direct_level1" placeholder="" />
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>ФИО руководителя, который согласует ДИ	</label>
-                  <input class="form-control form-control-lg" type="text" required name="conf_direct_man2" placeholder="" />
+                  <input class="form-control form-control-lg" type="text" name="conf_direct_man2" placeholder="" />
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>ФИО руководителя, который согласует ДИ	</label>
-                  <input class="form-control form-control-lg" type="text" required name="conf_direct_man3" placeholder="" />
+                  <input class="form-control form-control-lg" type="text" name="conf_direct_man3" placeholder="" />
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>Должность руководителя, который согласует ДИ</label>
-                  <input class="form-control form-control-lg" type="text" required name="conf_direct_level2" placeholder="" />
+                  <input class="form-control form-control-lg" type="text" name="conf_direct_level2" placeholder="" />
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>ФИО руководителя, который согласует ДИ</label>
-                  <input class="form-control form-control-lg" type="text" required name="conf_direct_man4" placeholder="" />
+                  <input class="form-control form-control-lg" type="text" name="conf_direct_man4" placeholder="" />
                 </div>
               </div>
 
@@ -539,15 +539,15 @@
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>Дата приема на работу</label>
-                  <input class="form-control form-control-lg" type="date" th:value="${curDate}" required name="employment_date" placeholder="" />
+                  <input class="form-control form-control-lg" type="date" th:value="${curDate}" name="employment_date" placeholder="" />
                 </div>
               </div>
 
             </div>
 
             <div class="mt-4 mb-1 text-start">
-              <button type="submit" class="btn btn-lg btn-lg btn-primary">Save</button>
-              <input type="button" class="btn btn-lg btn-secondary" value="Close" onclick="closeCreateEmpModal()">
+              <button type="submit" class="btn btn-lg btn-lg btn-primary">Создать</button>
+              <input type="button" class="btn btn-lg btn-secondary" value="Закрыть" onclick="closeCreateEmpModal()">
             </div>
           </form>
         </div>

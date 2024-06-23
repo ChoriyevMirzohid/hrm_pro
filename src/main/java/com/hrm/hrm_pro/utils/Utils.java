@@ -11,7 +11,7 @@ public class Utils {
         return new SimpleDateFormat("yyyy-MM-dd").format(new Date());
     }
 
-    public static String getMd5(String input)
+    public static synchronized String getMd5(String input)
     {
         try {
             // Static getInstance method is called with hashing MD5

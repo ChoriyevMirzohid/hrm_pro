@@ -1,10 +1,8 @@
 package com.hrm.hrm_pro.common;
 
 import com.aspose.words.*;
-import com.hrm.hrm_pro.dto.ExportIdDto;
 import com.hrm.hrm_pro.model.system_emp.BankEmp;
 import com.hrm.hrm_pro.repository.BankEmpRepo;
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Service;
@@ -13,10 +11,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
