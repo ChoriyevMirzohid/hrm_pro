@@ -44,21 +44,21 @@
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label form-label-class"><span class="label-symbol">*</span>Имя сотрудника</label>
-                                    <input class="form-control form-control-lg" type="text" required name="firstname" placeholder="" />
+                                    <input class="form-control form-control-lg" th:value="${itemData.firstname}" type="text" required name="firstname" placeholder="" />
                                 </div>
                             </div>
 
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label form-label-class"><span class="label-symbol">*</span>Фамилия сотрудника</label>
-                                    <input class="form-control form-control-lg" type="text" required name="lastname" placeholder="" />
+                                    <input class="form-control form-control-lg" th:value="${itemData.lastname}" type="text" required name="lastname" placeholder="" />
                                 </div>
                             </div>
 
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label form-label-class"><span class="label-symbol">*</span>Отчество сотрудника</label>
-                                    <input class="form-control form-control-lg" type="text" required name="patronymic" placeholder="" />
+                                    <input class="form-control form-control-lg" th:value="${itemData.patronymic}" type="text" required name="patronymic" placeholder="" />
                                 </div>
                             </div>
 
@@ -115,98 +115,98 @@
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label form-label-class"><span class="label-symbol">*</span>Менеджер сотрудников</label>
-                                    <input class="form-control form-control-lg" type="text" required name="emp_manager" placeholder="" />
+                                    <input class="form-control form-control-lg" th:value="${itemData.emp_manager}" type="text" required name="emp_manager" placeholder="" />
                                 </div>
                             </div>
 
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label form-label-class"><span class="label-symbol">*</span>Работники в подчинении</label>
-                                    <textarea class="form-control form-control-lg" rows="2" required name="sub_employee" placeholder=""></textarea>
+                                    <textarea class="form-control form-control-lg" th:value="${itemData.sub_employee}" rows="2" required name="sub_employee" placeholder=""></textarea>
                                 </div>
                             </div>
 
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label form-label-class"><span class="label-symbol">*</span>Требования к должности	</label>
-                                    <textarea class="form-control form-control-lg" rows="2" required name="level_require" placeholder=""></textarea>
+                                    <textarea class="form-control form-control-lg" th:value="${itemData.level_require}" rows="2" required name="level_require" placeholder=""></textarea>
                                 </div>
                             </div>
 
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label form-label-class"><span class="label-symbol">*</span>Образование и необходимый</label>
-                                    <textarea class="form-control form-control-lg" rows="2" required name="emp_skill" placeholder=""></textarea>
+                                    <textarea class="form-control form-control-lg" th:value="${itemData.emp_skill}" rows="2" required name="emp_skill" placeholder=""></textarea>
                                 </div>
                             </div>
 
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label form-label-class"><span class="label-symbol">*</span>Основные обязанности	</label>
-                                    <textarea class="form-control form-control-lg" rows="2" required name="main_obligation" placeholder=""></textarea>
+                                    <textarea class="form-control form-control-lg" rows="2" th:value="${itemData.main_obligation}" required name="main_obligation" placeholder=""></textarea>
                                 </div>
                             </div>
 
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label form-label-class"><span class="label-symbol">*</span>Детализированное описание функционала и задач</label>
-                                    <textarea class="form-control form-control-lg" rows="2" required name="func_desc" placeholder=""></textarea>
+                                    <textarea class="form-control form-control-lg" rows="2" th:value="${itemData.func_desc}" required name="func_desc" placeholder=""></textarea>
                                 </div>
                             </div>
 
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label form-label-class"><span class="label-symbol">*</span>Ответственность работника	</label>
-                                    <textarea class="form-control form-control-lg" rows="2" required name="responsibility" placeholder=""></textarea>
+                                    <textarea class="form-control form-control-lg" rows="2" th:value="${itemData.responsibility}" required name="responsibility" placeholder=""></textarea>
                                 </div>
                             </div>
 
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label form-label-class"><span class="label-symbol">*</span>Полномочия и права	</label>
-                                    <textarea class="form-control form-control-lg" rows="2" required name="emp_law" placeholder=""></textarea>
+                                    <textarea class="form-control form-control-lg" rows="2" th:value="${itemData.emp_law}" required name="emp_law" placeholder=""></textarea>
                                 </div>
                             </div>
 
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label form-label-class"><span class="label-symbol">*</span>ФИО руководителя, который утверждает ДИ	</label>
-                                    <input class="form-control form-control-lg" type="text" required name="conf_direct_man1" placeholder="" />
+                                    <input class="form-control form-control-lg" type="text" th:value="${itemData.conf_direct_man1}" required name="conf_direct_man1" placeholder="" />
                                 </div>
                             </div>
 
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label form-label-class"><span class="label-symbol">*</span>Должность руководителя, который утверждает ДИ</label>
-                                    <input class="form-control form-control-lg" type="text" required name="conf_direct_level1" placeholder="" />
+                                    <input class="form-control form-control-lg" type="text" th:value="${itemData.conf_direct_level1}" required name="conf_direct_level1" placeholder="" />
                                 </div>
                             </div>
 
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label form-label-class"><span class="label-symbol">*</span>ФИО руководителя, который согласует ДИ	</label>
-                                    <input class="form-control form-control-lg" type="text" required name="conf_direct_man2" placeholder="" />
+                                    <input class="form-control form-control-lg" type="text" th:value="${itemData.conf_direct_man2}" required name="conf_direct_man2" placeholder="" />
                                 </div>
                             </div>
 
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label form-label-class"><span class="label-symbol">*</span>ФИО руководителя, который согласует ДИ	</label>
-                                    <input class="form-control form-control-lg" type="text" required name="conf_direct_man3" placeholder="" />
+                                    <input class="form-control form-control-lg" type="text" th:value="${itemData.conf_direct_man3}" required name="conf_direct_man3" placeholder="" />
                                 </div>
                             </div>
 
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label form-label-class"><span class="label-symbol">*</span>Должность руководителя, который согласует ДИ</label>
-                                    <input class="form-control form-control-lg" type="text" required name="conf_direct_level2" placeholder="" />
+                                    <input class="form-control form-control-lg" type="text" th:value="${itemData.conf_direct_level2}" required name="conf_direct_level2" placeholder="" />
                                 </div>
                             </div>
 
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label form-label-class"><span class="label-symbol">*</span>ФИО руководителя, который согласует ДИ</label>
-                                    <input class="form-control form-control-lg" type="text" required name="conf_direct_man4" placeholder="" />
+                                    <input class="form-control form-control-lg" type="text" th:value="${itemData.conf_direct_man4}" required name="conf_direct_man4" placeholder="" />
                                 </div>
                             </div>
 
@@ -223,7 +223,7 @@
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label form-label-class"><span class="label-symbol">*</span>Дата приема на работу</label>
-                                    <input class="form-control form-control-lg" type="date" th:value="${curDate}" required name="employment_date" placeholder="" />
+                                    <input class="form-control form-control-lg" th:value="${itemData.employment_date}" type="date" required name="employment_date" placeholder="" />
                                 </div>
                             </div>
 

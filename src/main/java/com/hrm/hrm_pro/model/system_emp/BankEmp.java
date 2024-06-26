@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+
+import java.sql.Date;
 import java.sql.Timestamp;
 
 @AllArgsConstructor
@@ -18,21 +20,21 @@ public class BankEmp {
     private Integer emp_id;
 
     private int number;
-    @Column(length = 5000)
+    @Column(length = 200)
     private String code_unique;
-    @Column(length = 2000)
+    @Column(length = 200)
     private String bank_block;
-    @Column(length = 5000)
+    @Column(length = 200)
     private String bank_direct;
-    @Column(length = 5000)
+    @Column(length = 200)
     private String bank_dep;
-    @Column(length = 5000)
+    @Column(length = 200)
     private String bank_dep_insade;
-    @Column(length = 5000)
+    @Column(length = 200)
     private String emp_position;
-    @Column(length = 5000)
+    @Column(length = 200)
     private String emp_level;
-    @Column(length = 5000)
+    @Column(length = 200)
     private String emp_manager;
     @Column(length = 5000)
     private String sub_employee;
@@ -48,20 +50,20 @@ public class BankEmp {
     private String responsibility;
     @Column(length = 5000)
     private String emp_law;
-    @Column(length = 5000)
+    @Column(length = 200)
     private String conf_direct_man1;
 
-    @Column(length = 5000)
+    @Column(length = 200)
     private String conf_direct_level1;
 
-    @Column(length = 5000)
+    @Column(length = 200)
     private String conf_direct_man2;
-    @Column(length = 5000)
+    @Column(length = 200)
     private String conf_direct_man3;
 
-    @Column(length = 5000)
+    @Column(length = 200)
     private String conf_direct_level2;
-    @Column(length = 5000)
+    @Column(length = 200)
     private String conf_direct_man4;
 
     @Column(length = 200)
@@ -75,6 +77,8 @@ public class BankEmp {
 
     @Column(length = 20)
     private String creation_type;
+
+    private Date employment_date;
 
     @CreationTimestamp
     private Timestamp create_date;
