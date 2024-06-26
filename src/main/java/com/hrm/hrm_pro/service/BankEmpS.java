@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BankEmpS {
@@ -69,8 +70,14 @@ public class BankEmpS {
         return bankEmpRepo.getBankEmpById(emp_id);
     }
 
-    public BankEmp saveBankEmployee(BankEmpDto bankEmpDto) {
-        BankEmp bankEmp = new BankEmp();
+    public BankEmp saveBankEmployee(BankEmpDto bankEmpDto, String type, Integer emp_id) {
+        BankEmp bankEmp = null;
+        if (type.equals("create")){
+            bankEmp = new BankEmp();
+        }
+        if (type.equals("update")){
+            bankEmp = bankEmpRepo.findById(emp_id).get();
+        }
         bankEmp.setNumber(1);
         bankEmp.setBank_block(bankEmpDto.getBank_block());
         bankEmp.setBank_direct(bankEmpDto.getBank_direct());
@@ -98,6 +105,7 @@ public class BankEmpS {
 
         bankEmp.setCondition("1");
         bankEmp.setCreation_type("create");
+        bankEmp.setEmployment_date(bankEmpDto.getEmployment_date());
 
         String block_code = bankEmpDto.getBank_block();
         String direc_code = bankEmpDto.getBank_direct();

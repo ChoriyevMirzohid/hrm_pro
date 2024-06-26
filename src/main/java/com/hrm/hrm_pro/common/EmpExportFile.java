@@ -61,7 +61,7 @@ public class EmpExportFile {
                     document.getRange().replace("/emp-skill/", bankEmp.getEmp_skill(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
                     document.getRange().replace("/main-obligation/", bankEmp.getMain_obligation(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
                     document.getRange().replace("/func-desc/", bankEmp.getFunc_desc(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
-                    document.getRange().replace("/responsibility/", bankEmp.getResponsibility(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
+                    document.getRange().replace("/emp-responsibility/", bankEmp.getResponsibility(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
                     document.getRange().replace("/emp-law/", bankEmp.getEmp_law(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
                     document.getRange().replace("/conf-direct-man1/", bankEmp.getConf_direct_man1(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
                     document.getRange().replace("/conf-direct-level2/", bankEmp.getConf_direct_level2(), new FindReplaceOptions(FindReplaceDirection.FORWARD));
@@ -73,7 +73,7 @@ public class EmpExportFile {
                     document.save(dstStream, SaveFormat.DOCX);
                     response.setCharacterEncoding("UTF-8");
                     response.setHeader("Content-Type", "application/docx; charset=UTF-8");
-                    response.setHeader("Content-Disposition", "attachment;filename=\""+"Employee" + bankEmp.getEmp_id() + ".docx");
+                    response.setHeader("Content-Disposition", "attachment;filename=\""+ bankEmp.getLastname() + " " + bankEmp.getLastname() + ".docx");
                     output.write(dstStream.toByteArray());
                     output.flush();
                     fileStream.close();

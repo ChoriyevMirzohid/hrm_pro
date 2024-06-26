@@ -3,6 +3,8 @@ package com.hrm.hrm_pro.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
@@ -38,6 +40,7 @@ public class BankEmpDto {
     private String lastname;
     private String patronymic;
     private String creation_type;
+    private Date employment_date;
 
     private String create_date;
     private String condition;

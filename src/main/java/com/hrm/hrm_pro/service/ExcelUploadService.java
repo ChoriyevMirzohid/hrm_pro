@@ -23,10 +23,10 @@ public class ExcelUploadService {
         List<BankEmp> bankEmployees = new ArrayList<>();
         try {
             XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
-            XSSFSheet sheet = workbook.getSheet("employees");
-            int rowIndex =0;
+            XSSFSheet sheet = workbook.getSheet("emp-sheet");
+            int rowIndex = 0;
             for (Row row : sheet){
-                if (rowIndex ==0){
+                if (rowIndex == 0){
                     rowIndex++;
                     continue;
                 }
@@ -56,16 +56,20 @@ public class ExcelUploadService {
                         case 14 -> bankEmp.setResponsibility(cell.getStringCellValue());
                         case 15 -> bankEmp.setEmp_law(cell.getStringCellValue());
                         case 16 -> bankEmp.setConf_direct_man1(cell.getStringCellValue());
-                        case 17 -> bankEmp.setConf_direct_man2(cell.getStringCellValue());
-                        case 18 -> bankEmp.setConf_direct_man3(cell.getStringCellValue());
-                        case 19 -> bankEmp.setConf_direct_man4(cell.getStringCellValue());
-                        case 20 -> bankEmp.setFirstname(cell.getStringCellValue());
+                        case 17 -> bankEmp.setConf_direct_level1(cell.getStringCellValue());
+                        case 18 -> bankEmp.setConf_direct_man2(cell.getStringCellValue());
+                        case 19 -> bankEmp.setConf_direct_man3(cell.getStringCellValue());
+                        case 20 -> bankEmp.setConf_direct_level2(cell.getStringCellValue());
+                        case 21 -> bankEmp.setConf_direct_man4(cell.getStringCellValue());
+                        case 22 -> bankEmp.setFirstname(cell.getStringCellValue());
                         default -> {
                         }
                     }
                     cellIndex++;
                 }
-                bankEmployees.add(bankEmp);
+                if (bankEmp.getFirstname()!=null){
+                    bankEmployees.add(bankEmp);
+                }
             }
         } catch (IOException e) {
             e.getStackTrace();
