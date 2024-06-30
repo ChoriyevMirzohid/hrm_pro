@@ -159,7 +159,9 @@
 
                 <td th:classappend="${#strings.length(item.code_unique) > 50 ? 'setWidth' : 'defaultWidth'}">
                   <div>
-                    <span class="see-text-data main-see-text" th:text="${item.code_unique}"></span>
+                    <span class="see-text-data main-see-text main-bg-color" th:text="${#strings.listSplit(item.code_unique, '/').get(0)}"></span>
+                    <span class="see-text-data main-see-text main-bg-color" th:text="${#strings.listSplit(item.code_unique, '/').get(1)}"></span>
+                    <span class="see-text-data main-see-text main-bg-color" th:text="${#strings.listSplit(item.code_unique, '/').get(2)}"></span>
                     <span><i class="align-middle data-see-icon" data-feather="more-horizontal" th:onclick="|getEmployeeById(${item.emp_id}, 3)|"></i></span>
                   </div>
                 </td>
@@ -173,6 +175,7 @@
 
                 <td th:classappend="${#strings.length(item.bank_block) > 50 ? 'setWidth' : 'defaultWidth'}">
                   <div>
+                    <span class="see-text-data main-see-text main-bg-color" th:text="${#strings.listSplit(item.code_unique, '/').get(0)}"></span>
                     <span class="see-text-data" th:text="${item.bank_block}"></span>
                     <span><i class="align-middle data-see-icon" data-feather="more-horizontal" th:onclick="|getEmployeeById(${item.emp_id}, 4)|"></i></span>
                   </div>
@@ -180,6 +183,7 @@
 
                 <td th:classappend="${#strings.length(item.bank_direct) > 50 ? 'setWidth' : 'defaultWidth'}">
                   <div>
+                    <span class="see-text-data main-see-text main-bg-color" th:text="${#strings.listSplit(item.code_unique, '/').get(1)}"></span>
                     <span class="see-text-data" th:text="${item.bank_direct}"></span>
                     <span><i class="align-middle data-see-icon" data-feather="more-horizontal" th:onclick="|getEmployeeById(${item.emp_id}, 5)|"></i></span>
                   </div>
@@ -187,6 +191,7 @@
 
                 <td th:classappend="${#strings.length(item.bank_dep) > 50 ? 'setWidth' : 'defaultWidth'}">
                   <div>
+                    <span class="see-text-data main-see-text main-bg-color" th:text="${#strings.listSplit(item.code_unique, '/').get(2)}"></span>
                     <span class="see-text-data" th:text="${item.bank_dep}"></span>
                     <span><i class="align-middle data-see-icon" data-feather="more-horizontal" th:onclick="|getEmployeeById(${item.emp_id}, 6)|"></i></span>
                   </div>
@@ -385,9 +390,9 @@
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>Блок банка </label>
-                  <select name="bank_block" required class="form-select form-select-lg form-change-class">
+                  <select id="block_id" name="block_id" onchange="blockListChange()" required class="form-select form-select-lg form-change-class">
                     <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.BankBlockC"*/-->
-                    <option th:each="item: ${blockList}" th:value="${item.code}" th:text="${item.code + '-' + item.name_en}"></option>
+                    <!--/<option th:each="item: ${blockList}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}"></option> /-->
                   </select>
                 </div>
               </div>
@@ -395,9 +400,9 @@
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>Дирекция банка</label>
-                  <select name="bank_direct" required class="form-select form-select-lg form-change-class">
+                  <select id="direct_id" name="direct_id" onchange="directListChange()" required class="form-select form-select-lg form-change-class">
                     <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.BankBlockC"*/-->
-                    <option th:each="item: ${directorateList}" th:value="${item.code}" th:text="${item.code + '-' + item.name_en}"></option>
+                    <!--/<option th:each="item: ${directorateList}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}"></option> /-->
                   </select>
                 </div>
               </div>
@@ -405,9 +410,9 @@
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>Департамент банка</label>
-                  <select name="bank_dep" required class="form-select form-select-lg form-change-class">
+                  <select id="depart_id" name="depart_id" required class="form-select form-select-lg form-change-class">
                     <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.BankBlockC"*/-->
-                    <option th:each="item: ${departmentList}" th:value="${item.code}" th:text="${item.code + '-' + item.name_en}"></option>
+                    <!--/<option th:each="item: ${departmentList}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}"></option>/-->
                   </select>
                 </div>
               </div>
@@ -415,9 +420,9 @@
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>Уровень сотрудника </label>
-                  <select name="emp_level" required class="form-select form-select-lg form-change-class">
+                  <select name="level_id" required class="form-select form-select-lg form-change-class">
                     <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
-                    <option th:each="item: ${levelList}" th:value="${item.level_code}" th:text="${item.level_code + '-' + item.name_en}"></option>
+                    <option th:each="item: ${levelList}" th:value="${item.id}" th:text="${item.level_code + '-' + item.name_en}"></option>
                   </select>
                 </div>
               </div>
@@ -425,9 +430,9 @@
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>Должность сотрудника</label>
-                  <select name="emp_position" required class="form-select form-select-lg form-change-class">
+                  <select name="position_id" required class="form-select form-select-lg form-change-class">
                     <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
-                    <option th:each="item: ${positionList}" th:value="${item.code}" th:text="${item.code + '-' + item.name_en}"></option>
+                    <option th:each="item: ${positionList}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}"></option>
                   </select>
                 </div>
               </div>
@@ -604,5 +609,6 @@
 <script th:src="@{/static/js/jquery.js}"></script>
 <script th:src="@{/static/utils/lang-config.js}"></script>
 <script th:src="@{/static/utils/lang-option.js}"></script>
+<script th:src="@{/static/utils/change.js}"></script>
 </body>
 </html>

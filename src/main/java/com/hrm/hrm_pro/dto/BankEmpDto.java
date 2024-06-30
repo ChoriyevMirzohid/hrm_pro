@@ -45,6 +45,12 @@ public class BankEmpDto {
     private String create_date;
     private String condition;
 
+    private int block_id;
+    private int direct_id;
+    private int depart_id;
+    private int position_id;
+    private int level_id;
+
     public BankEmpDto(Integer emp_id, int number, String code_unique, String bank_block, String bank_direct, String bank_dep, String bank_dep_insade, String emp_position, String emp_level, String emp_manager, String sub_employee, String level_require, String emp_skill, String main_obligation, String func_desc, String responsibility, String emp_law, String conf_direct_man1, String conf_direct_level1, String conf_direct_man2, String conf_direct_man3, String conf_direct_level2, String conf_direct_man4, String firstname, String lastname, String patronymic, String creation_type, Timestamp create_date, String condition) {
         this.emp_id = emp_id;
         this.number = number;

@@ -124,6 +124,13 @@
 .main-see-text{
     font-weight: bolder;
 }
+.main-bg-color{
+    color: black;
+    padding: 0 5px;
+    border-radius: 10px;
+    font-size: 13px;
+    border: 1px solid #1cbb8c;
+}
 .data-see-icon:hover{
     color: black;
     background-color: rgb(202, 237, 255);

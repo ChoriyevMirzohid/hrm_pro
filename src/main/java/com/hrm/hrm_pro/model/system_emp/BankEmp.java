@@ -22,17 +22,11 @@ public class BankEmp {
     private int number;
     @Column(length = 200)
     private String code_unique;
-    @Column(length = 200)
     private String bank_block;
-    @Column(length = 200)
     private String bank_direct;
-    @Column(length = 200)
     private String bank_dep;
-    @Column(length = 200)
     private String bank_dep_insade;
-    @Column(length = 200)
     private String emp_position;
-    @Column(length = 200)
     private String emp_level;
     @Column(length = 200)
     private String emp_manager;

@@ -70,21 +70,31 @@ public class BankEmpS {
         return bankEmpRepo.getBankEmpById(emp_id);
     }
 
-    public BankEmp saveBankEmployee(BankEmpDto bankEmpDto, String type, Integer emp_id) {
-        BankEmp bankEmp = null;
+    public BankEmp saveBankEmployee(BankEmp bankEmpDto, String type, Integer emp_id) {
+        BankEmp bankEmp = new BankEmp();
+        int numberTr = 0;
+        String unique_code = null;
         if (type.equals("create")){
-            bankEmp = new BankEmp();
+            numberTr = bankEmpRepo.getNumberTr();
+            bankEmp.setNumber(numberTr);
+
+            unique_code = bankBlockS.getBankBlockById(bankEmpDto.getBlock_id()).getCode() + "/" +
+                    bankDirectorateS.getBankDirectorateById(bankEmpDto.getDirect_id()).getCode() + "/" +
+                    bankDepartmentS.getBankDepartmentById(bankEmpDto.getDepart_id()).getCode();
         }
         if (type.equals("update")){
             bankEmp = bankEmpRepo.findById(emp_id).get();
+            unique_code = bankBlockS.getBankBlockById(bankEmpDto.getBlock_id()).getCode() + "/" +
+                    bankDirectorateS.getBankDirectorateById(bankEmpDto.getDirect_id()).getCode() + "/" +
+                    bankDepartmentS.getBankDepartmentById(bankEmpDto.getDepart_id()).getCode();
         }
-        bankEmp.setNumber(1);
-        bankEmp.setBank_block(bankEmpDto.getBank_block());
-        bankEmp.setBank_direct(bankEmpDto.getBank_direct());
-        bankEmp.setBank_dep(bankEmpDto.getBank_dep());
+        bankEmp.setCode_unique(unique_code);
+        bankEmp.setBlock_id(bankEmpDto.getBlock_id());
+        bankEmp.setDirect_id(bankEmpDto.getDirect_id());
+        bankEmp.setDepart_id(bankEmpDto.getDepart_id());
         bankEmp.setBank_dep_insade(bankEmpDto.getBank_dep_insade());
-        bankEmp.setEmp_position(bankEmpDto.getEmp_position());
-        bankEmp.setEmp_level(bankEmpDto.getEmp_level());
+        bankEmp.setPosition_id(bankEmpDto.getPosition_id());
+        bankEmp.setLevel_id(bankEmpDto.getLevel_id());
         bankEmp.setEmp_manager(bankEmpDto.getEmp_manager());
         bankEmp.setSub_employee(bankEmpDto.getSub_employee());
         bankEmp.setLevel_require(bankEmpDto.getLevel_require());
@@ -106,12 +116,6 @@ public class BankEmpS {
         bankEmp.setCondition("1");
         bankEmp.setCreation_type("create");
         bankEmp.setEmployment_date(bankEmpDto.getEmployment_date());
-
-        String block_code = bankEmpDto.getBank_block();
-        String direc_code = bankEmpDto.getBank_direct();
-        String depart_code = bankEmpDto.getBank_dep();
-        String unique_code = block_code + "/" + direc_code + "/" + depart_code;
-        bankEmp.setCode_unique(unique_code);
 
         bankEmp = bankEmpRepo.save(bankEmp);
         return bankEmp;

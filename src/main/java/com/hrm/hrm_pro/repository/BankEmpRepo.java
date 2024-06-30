@@ -87,4 +87,7 @@ public interface BankEmpRepo extends JpaRepository<BankEmp, Integer> {
 
     @Query("select count(a) from BankEmp a where a.condition = '1'")
     int getEmpCount();
+
+    @Query("select coalesce(MAX(a.number) + 1, 1) from BankEmp a")
+    int getNumberTr();
 }

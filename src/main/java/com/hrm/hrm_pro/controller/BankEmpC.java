@@ -79,13 +79,13 @@ public class BankEmpC {
     }
 
     @PostMapping("/bank-emp/update/{emp_id}")
-    public String update(@PathVariable("emp_id") Integer emp_id, @ModelAttribute("bankEmpDto") BankEmpDto bankEmpDto){
+    public String update(@PathVariable("emp_id") Integer emp_id, @ModelAttribute("bankEmpDto") BankEmp bankEmpDto){
         bankEmpS.saveBankEmployee(bankEmpDto, "update", emp_id); // update code
         return "redirect:/bank-emp/"+emp_id;
     }
 
     @PostMapping("/bank-emp/new")
-    public String save(@ModelAttribute("bankEmployeeDto") BankEmpDto bankEmpDto){
+    public String save(@ModelAttribute("bankEmpDto") BankEmp bankEmpDto){
         BankEmp bankEmpR = bankEmpS.saveBankEmployee(bankEmpDto, "create", 0);
         return "redirect:/bank-emp";
     }
