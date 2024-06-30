@@ -1,3 +1,4 @@
+
 $(document).ready(function (){
     getBlockAll("all");
     getDirectAll("all");
@@ -15,7 +16,7 @@ function directListChange(){
 function getBlockAll(type){
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:8080/bank-block/block-all',
+        url: host_ + '/bank-block/block-all',
         success: function (res) {
             let blocks = '';
             res.forEach((item)=>{
@@ -32,7 +33,7 @@ function getDirectAll(type){
     let id_ = document.getElementById("block_id").value;
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:8080/bank-direct/direct-all',
+        url: host_ + '/bank-direct/direct-all',
         success: function (res) {
             let direct = '';
             let id_direct = null;
@@ -63,7 +64,7 @@ function getDepartAll(type){
     let id_ = document.getElementById("direct_id").value;
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:8080/bank-depart/depart-all',
+        url: host_ + '/bank-depart/depart-all',
         success: function (res) {
             let depart = '';
             res.forEach((item)=>{
@@ -82,11 +83,9 @@ function getDepartAll(type){
 }
 
 function getDepartAll1(type, id_1){
-    let id_ = document.getElementById("direct_id").value;
-    console.log(id_1);
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:8080/bank-depart/depart-all',
+        url: host_ + '/bank-depart/depart-all',
         success: function (res) {
             let depart = '';
             res.forEach((item)=>{

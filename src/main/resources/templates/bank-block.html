@@ -30,7 +30,7 @@
 
 				<div class="mb-3 d-flex justify-content-between">
 					<div class="title">
-						<h1 class="h3 d-inline align-middle">Банк Блок</h1>
+						<h1 class="h3 d-inline align-middle fw-bolder page-title">Банк Блок</h1>
 					</div>
 					<div>
 						<button class="btn btn-success" id="myBtn" data-toggle="modal" data-target="#bankBlock" onclick="showModal()">Создать</button>
@@ -41,59 +41,70 @@
 					<div class="mt-1 mb-3 d-flex justify-content-between">
 						<div class="d-flex align-items-center paging">
 							<div class="d-flex align-items-center">
-								<div class="filter-block">
-									<button class="form-control form-control-sm">Фильтр</button>
-								</div>
 								<div class="export-file">
-									<button class="form-control form-control-sm">
+									<button class="form-control text-white btn btn-warning" id="exportEmpBtn" disabled>
 										<i class="align-middle" data-feather="download"></i>
 									</button>
 								</div>
 								<div class="paging-select-drop dropdown">
-									<button class="btn btn-sm dropdown-toggle paging-select-drop-btn" type="button" data-toggle="dropdown">
+									<button class="btn dropdown-toggle paging-select-drop-btn" type="button" data-toggle="dropdown">
 										<span class="paging-select-show" th:text="${list.pageSize}"></span>
 									</button>
 									<ul class="dropdown-menu paging-drop-ul">
 										<li>
-											<a class="paging-select-option" th:href="@{/bank-block?num=0&size=10}">10</a>
+											<a class="paging-select-option" th:href="@{/bank-block(num=0,size=10)}">10</a>
 										</li>
 										<li>
-											<a class="paging-select-option" th:href="@{/bank-block?num=0&size=20}">20</a>
+											<a class="paging-select-option" th:href="@{/bank-block(num=0,size=20)}">20</a>
 										</li>
 										<li>
-											<a class="paging-select-option" th:href="@{/bank-block?num=0&size=50}">50</a>
+											<a class="paging-select-option" th:href="@{/bank-block(num=0,size=50)}">50</a>
 										</li>
 										<li>
-											<a class="paging-select-option" th:href="@{/bank-block?num=0&size=100}">100</a>
+											<a class="paging-select-option" th:href="@{/bank-block(num=0,size=100)}">100</a>
 										</li>
 									</ul>
 								</div>
-								<input type="button" th:value="${list.totalElements}" readonly class="form-control form-control-sm paging-total-input">
+								<input type="button" th:value="${list.totalElements}" readonly class="form-control paging-total-input">
 							</div>
 							<div class="d-flex align-items-center paging-input-block">
 								<a th:href="@{/bank-block(num=${(list.pageNum)-1},size=${list.pageSize})}"
-								   class="btn btn-primary btn-sm"
+								   class="btn btn-warning"
 								   th:style="${(list.pageNum+1)==1} ? 'display:none' : 'display:block'">
 									<i class="align-middle" data-feather="chevrons-left"></i>
 								</a>
-								<button class="btn btn-primary btn-sm" th:disabled="${(list.pageNum+1)==1}"
+								<button class="btn btn-warning" th:disabled="${(list.pageNum+1)==1}"
 										th:style="${(list.pageNum+1)==1} ? 'display:block' : 'display:none'">
 									<i class="align-middle" data-feather="chevrons-left"></i>
 								</button>
-								<input type="button" th:value="${list.pageNum+1}" class="form-control form-control-sm text-center paging-input">
-								<input type="button" th:value="${list.totalPages}" readonly class="form-control form-control-sm text-center paging-total-page-number">
+								<input type="button" th:value="${list.pageNum+1}" class="form-control text-center paging-input">
+								<input type="button" th:value="${list.totalPages}" readonly class="form-control text-center paging-total-page-number">
 								<a th:href="@{/bank-block(num=${list.pageNum+1},size=${list.pageSize})}"
-								   class="btn btn-primary btn-sm"
+								   class="btn btn-warning"
 								   th:style="${(list.pageNum+1)>=list.totalPages} ? 'display:none' : 'display:block'">
 									<i class="align-middle" data-feather="chevrons-right"></i>
 								</a>
-								<button class="btn btn-primary btn-sm" th:disabled="${(list.pageNum+1)>=list.totalPages}"
+								<button class="btn btn-warning" th:disabled="${(list.pageNum+1)>=list.totalPages}"
 										th:style="${(list.pageNum+1)>=list.totalPages} ? 'display:block' : 'display:none'">
 									<i class="align-middle" data-feather="chevrons-right"></i>
 								</button>
 							</div>
 						</div>
+						<div class="filter-block">
+							<form th:action="@{/bank-block}">
+								<div class="d-flex align-items-center">
+									<input type="search" th:value="${filter}" placeholder="Фильтр" class="form-control" name="filter">
+									<div class="me-1">
+										<input type="submit" class="form-control btn-primary" value="Фильтр">
+									</div>
+									<div>
+										<input type="button" class="form-control btn-secondary" value="Очистить" onclick="window.location='/bank-block'">
+									</div>
+								</div>
+							</form>
+						</div>
 					</div>
+
 					<div class="table-responsive">
 						<table class="table table-bordered table-hover table-striped">
 							<thead>
