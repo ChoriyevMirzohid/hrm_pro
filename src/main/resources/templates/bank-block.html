@@ -122,7 +122,9 @@
 							<tbody>
 							<!--/*@thymesVar id="users" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
 							<tr th:each="item : ${list.content}">
-								<td class="fw-bold text-center" th:text="${item.code}" />
+								<td class="text-center">
+									<span class="main-see-text main-bg-color" th:text="${item.code}"></span>
+								</td>
 								<td th:text="${item.name_uz}" />
 								<td th:text="${item.name_ru}" />
 								<td th:text="${item.name_en}" />

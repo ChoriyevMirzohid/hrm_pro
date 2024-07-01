@@ -1,6 +1,7 @@
 package com.hrm.hrm_pro.service;
 
 import com.hrm.hrm_pro.model.system_emp.BankEmp;
+import lombok.NoArgsConstructor;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -15,11 +16,16 @@ import java.util.List;
 import java.util.Objects;
 
 public class ExcelUploadService {
+
+    public ExcelUploadService() {
+        super();
+    }
+
     public static boolean isValidExcelFile(MultipartFile file){
         return Objects.equals(file.getContentType(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" );
     }
 
-    public static List<BankEmp> getDataFromExcel(InputStream inputStream){
+    public synchronized List<BankEmp> getDataFromExcel(InputStream inputStream){
         List<BankEmp> bankEmployees = new ArrayList<>();
         try {
             XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
@@ -35,12 +41,14 @@ public class ExcelUploadService {
                 BankEmp bankEmp = new BankEmp();
                 bankEmp.setCondition("1");
                 bankEmp.setCreation_type("import");
+                bankEmp.setNumber(1);
+                bankEmp.setCode_unique(" -- / -- / -- ");
                 while (cellIterator.hasNext()){
                     Cell cell = cellIterator.next();
 
                     switch (cellIndex){
-                        case 0 -> bankEmp.setNumber((int) cell.getNumericCellValue());
-                        case 1 -> bankEmp.setCode_unique(cell.getStringCellValue());
+//                        case 0 -> bankEmp.setNumber((int) cell.getNumericCellValue());
+//                        case 1 -> bankEmp.setCode_unique(cell.getStringCellValue());
                         case 2 -> bankEmp.setBank_block(cell.getStringCellValue());
                         case 3 -> bankEmp.setBank_direct(cell.getStringCellValue());
                         case 4 -> bankEmp.setBank_dep(cell.getStringCellValue());

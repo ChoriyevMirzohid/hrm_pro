@@ -64,7 +64,7 @@
 
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Блок банка </label>
+                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Блок банка</label>
                                     <select id="block_id" name="block_id" required onchange="blockListChange()" class="form-select form-select-lg form-change-class">
                                         <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.BankBlockC"*/-->
                                         <!--/ <option th:each="item: ${blockList}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}"></option> /-->
@@ -223,7 +223,7 @@
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label form-label-class"><span class="label-symbol">*</span>Дата приема на работу</label>
-                                    <input class="form-control form-control-lg form-change-class" th:value="${itemData.employment_date}" type="date" required name="employment_date" placeholder="" />
+                                    <input class="form-control form-control-lg" th:value="${itemData.employment_date}" type="date" name="employment_date" placeholder="" />
                                 </div>
                             </div>
 
@@ -251,6 +251,8 @@
 
 <script th:src="@{/static/js/app.js}"></script>
 <script th:src="@{/static/modal/modal.js}"></script>
+<script th:src="@{/static/utils/api.js}"></script>
+<script th:src="@{/static/js/jquery.js}"></script>
 <script th:src="@{/static/pagination/page.js}"></script>
 <script th:src="@{/static/utils/lang-config.js}"></script>
 <script th:src="@{/static/utils/lang-option.js}"></script>

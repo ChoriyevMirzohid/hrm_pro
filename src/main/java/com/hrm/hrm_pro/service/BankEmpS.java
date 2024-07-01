@@ -58,7 +58,8 @@ public class BankEmpS {
     public void saveToDatabase(MultipartFile file){
         if(ExcelUploadService.isValidExcelFile(file)){
             try {
-                List<BankEmp> bankEmployeeOldList = ExcelUploadService.getDataFromExcel(file.getInputStream());
+                ExcelUploadService excelUploadService = new ExcelUploadService();
+                List<BankEmp> bankEmployeeOldList = excelUploadService.getDataFromExcel(file.getInputStream());
                 bankEmpRepo.saveAll(bankEmployeeOldList);
             } catch (IOException e) {
                 throw new IllegalArgumentException("The file is not a valid excel file");
@@ -68,6 +69,10 @@ public class BankEmpS {
 
     public BankEmp getBankEmpById(Integer emp_id) {
         return bankEmpRepo.getBankEmpById(emp_id);
+    }
+
+    public int getNumberTr(){
+        return bankEmpRepo.getNumberTr();
     }
 
     public BankEmp saveBankEmployee(BankEmp bankEmpDto, String type, Integer emp_id) {

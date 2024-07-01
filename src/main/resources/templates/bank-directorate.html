@@ -30,10 +30,10 @@
 
                 <div class="mb-3 d-flex justify-content-between">
                     <div class="title">
-                        <h1 class="h3 d-inline align-middle">Bank Directorate</h1>
+                        <h1 class="h3 d-inline align-middle fw-bolder page-title">Дирекция банка</h1>
                     </div>
                     <div>
-                        <button class="btn btn-success" id="myBtn" data-toggle="modal" data-target="#userRegModal" onclick="showModal()">Create</button>
+                        <button class="btn btn-success" id="myBtn" data-toggle="modal" data-target="#userRegModal" onclick="showModal()">Создать</button>
                     </div>
                 </div>
 
@@ -108,28 +108,28 @@
                         <table class="table table-bordered table-hover table-striped">
                             <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Code</th>
-                                <th>Bank block</th>
-                                <th>Name(uz)</th>
-                                <th>Name(ru)</th>
-                                <th>Name(en)</th>
-                                <th>Deputy</th>
-                                <th>Condition</th>
-                                <th>Created date</th>
-                                <th>Action</th>
+                                <th>Дирексия код</th>
+                                <th>Банк блок</th>
+                                <th>Название(uz)</th>
+                                <th>Название(ru)</th>
+                                <th>Название(en)</th>
+                                <th>Менеджер</th>
+                                <th>Состояние</th>
+                                <th>Дата создания</th>
                             </tr>
                             </thead>
 
                             <tbody>
 
                             <tr th:each="item : ${list.content}">
-                                <td class="fw-bold text-center" th:text="${item.id}" />
-                                <td th:text="${item.code}" />
+                                <td class="main-see-text">
+                                    <span class="main-bg-color" th:text="${item.code}"></span>
+                                </td>
                                 <td>
                                     <span th:each="itemBlock : ${bankBlocks}"
                                           th:if="${itemBlock.id} == ${item.block_id}">
-                                        <span th:text="${itemBlock.code} + '-' + ${itemBlock.name_en}"></span>
+                                        <span class="main-bg-color main-see-text" th:text="${itemBlock.code}"></span>
+                                        <span th:text="${itemBlock.name_en}"></span>
                                     </span>
                                 </td>
                                 <td th:text="${item.name_uz}" />
@@ -144,13 +144,6 @@
                                     </span>
                                 </td>
                                 <td th:text="${item.create_date}" />
-                                <td>
-                                    <div class="text-center">
-                                        <span class="text-warning">
-                                            <i class="align-middle fs-4" data-feather="edit"></i>
-                                        </span>
-                                    </div>
-                                </td>
                             </tr>
                             </tbody>
                         </table>
