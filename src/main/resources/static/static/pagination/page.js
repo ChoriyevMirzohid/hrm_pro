@@ -12,6 +12,14 @@ function itemForwardEmp(id){
     window.location.href='/bank-emp/'+id;
 }
 
+function itemForwardDirectorate(id){
+    window.location.href='/bank-directorate-item/'+id;
+}
+
+function itemForwardDepartment(id){
+    window.location.href='/bank-department-item/'+id;
+}
+
 function itemForwardUserAccess(id){
     window.location.href='/user-access-module/'+id;
 }

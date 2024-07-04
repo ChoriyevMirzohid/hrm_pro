@@ -156,33 +156,23 @@
 						<div class="col-12 col-lg-9 col-xxl-9 d-flex">
 							<div class="card flex-fill">
 								<div class="card-header">
-									<h5 class="card-title mb-0">Блоки банка</h5>
+									<h5 class="card-title mb-0">Банковские блоки</h5>
 								</div>
 								<table class="table table-hover my-0">
 									<thead>
 									<tr>
-										<th>Код блока</th>
+										<th>Блок.Код</th>
 										<th>Имя блока(uz)</th>
 										<th>Имя блока(ru)</th>
 										<th>Имя блока(en)</th>
-										<th>Состояние</th>
-										<th>Дата создания</th>
 									</tr>
 									</thead>
 									<tbody>
 									<tr th:each="item : ${blockList.content}">
-										<td class="fw-bold text-center" th:text="${item.code}" />
-										<td th:text="${item.name_uz}" />
-										<td th:text="${item.name_ru}" />
-										<td th:text="${item.name_en}" />
-										<td>
-											<!--/*@thymesVar id="conditionList" type=""*/-->
-											<span th:each="itemCon : ${conditionList}"
-												  th:if="${itemCon.code} == ${item.condition}">
-                                                <span th:text="${itemCon.code} + '-' + ${itemCon.name}"></span>
-											</span>
-										</td>
-										<td th:text="${item.create_date}" />
+										<td class="main-see-text text-center" th:text="${item.code}" />
+										<td class="main-see-text" th:text="${item.name_uz}" />
+										<td class="main-see-text" th:text="${item.name_ru}" />
+										<td class="main-see-text" th:text="${item.name_en}" />
 									</tr>
 									</tbody>
 								</table>

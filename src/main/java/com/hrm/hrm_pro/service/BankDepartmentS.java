@@ -34,7 +34,7 @@ public class BankDepartmentS {
         return bankDepartmentRepo.getBankDepartmentById(id);
     }
 
-    public PagingResponse getAllBankDepartmentPaging(int pageNum, int pageSize) {
+    public PagingResponse getAllBankDepartmentPaging(int pageNum, int pageSize, Integer id) {
         if (pageNum < 0){
             pageNum = 0;
         }
@@ -42,7 +42,12 @@ public class BankDepartmentS {
             pageSize = 10;
         }
         Pageable pageable = PageRequest.of(pageNum, pageSize);
-        Page<BankDepartmentDto> bankDepartmentPage = bankDepartmentRepo.getAllBankDepartmentPaging(pageable);
+        Page<BankDepartmentDto> bankDepartmentPage;
+        if (id != 0){
+            bankDepartmentPage = bankDepartmentRepo.getAllBankDepartmentPaging(pageable, id);
+        }else{
+            bankDepartmentPage = bankDepartmentRepo.getAllBankDepartmentPaging(pageable);
+        }
         List<?> bankDirectorateList = bankDepartmentPage.stream().toList();
 
         PagingResponse pagingResponse = new PagingResponse();

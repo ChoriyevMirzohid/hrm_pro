@@ -29,7 +29,7 @@ public class BankDirectorateS {
         return bankDirectorateRepo.getBankDirectorateById(id);
     }
 
-    public PagingResponse getAllBankBlockPaging(int pageNum, int pageSize) {
+    public PagingResponse getAllBankBlockPaging(int pageNum, int pageSize, Integer id) {
         if (pageNum < 0){
             pageNum = 0;
         }
@@ -37,7 +37,12 @@ public class BankDirectorateS {
             pageSize = 10;
         }
         Pageable pageable = PageRequest.of(pageNum, pageSize);
-        Page<BankDirectorateDto> bankDirectoratePage = bankDirectorateRepo.getAllBankDirectoratePaging(pageable);
+        Page<BankDirectorateDto> bankDirectoratePage;
+        if (id != 0){
+            bankDirectoratePage = bankDirectorateRepo.getAllBankDirectoratePaging(pageable, id);
+        } else {
+            bankDirectoratePage = bankDirectorateRepo.getAllBankDirectoratePaging(pageable);
+        }
         List<?> bankDirectorateList = bankDirectoratePage.stream().toList();
 
         PagingResponse pagingResponse = new PagingResponse();

@@ -30,7 +30,7 @@
 
 				<div class="mb-3 d-flex justify-content-between">
 					<div class="title">
-						<h1 class="h3 d-inline align-middle fw-bolder page-title">Банк Блок</h1>
+						<h1 class="h3 d-inline align-middle fw-bolder page-title">Банковские блоки</h1>
 					</div>
 					<div>
 						<button class="btn btn-success" id="myBtn" data-toggle="modal" data-target="#bankBlock" onclick="showModal()">Создать</button>
@@ -115,28 +115,26 @@
 								<th>Название(en)</th>
 								<th>Менеджер</th>
 								<th>Состояние</th>
-								<th>Дата создания</th>
 							</tr>
 							</thead>
 
 							<tbody>
 							<!--/*@thymesVar id="users" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
-							<tr th:each="item : ${list.content}">
+							<tr th:each="item : ${list.content}" th:ondblclick="|itemForwardDirectorate(${item.id})|">
 								<td class="text-center">
 									<span class="main-see-text main-bg-color" th:text="${item.code}"></span>
 								</td>
-								<td th:text="${item.name_uz}" />
-								<td th:text="${item.name_ru}" />
-								<td th:text="${item.name_en}" />
-								<td th:text="${item.deputy_id}" />
-								<td>
+								<td class="main-see-text" th:text="${item.name_uz}" />
+								<td class="main-see-text" th:text="${item.name_ru}" />
+								<td class="main-see-text" th:text="${item.name_en}" />
+								<td class="main-see-text" th:text="${item.deputy_id}" />
+								<td class="main-see-text">
 									<!--/*@thymesVar id="conditionList" type=""*/-->
 									<span th:each="itemCon : ${conditionList}"
 										  th:if="${itemCon.code} == ${item.condition}">
-                                        <span th:text="${itemCon.code} + '-' + ${itemCon.name}"></span>
+                                        <span th:text="${itemCon.name}"></span>
                                     </span>
 								</td>
-								<td th:text="${item.create_date}" />
 							</tr>
 							</tbody>
 						</table>

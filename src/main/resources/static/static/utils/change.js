@@ -67,6 +67,7 @@ function getDepartAll(type){
         url: host_ + '/bank-depart/depart-all',
         success: function (res) {
             let depart = '';
+            let step = 0;
             res.forEach((item)=>{
                 if (type=="all") {
                     depart = depart + '<option value="' + item.id + '">' + item.code + " - " + item.name_en + '</option>';
@@ -74,9 +75,13 @@ function getDepartAll(type){
                 if (type=="change"){
                     if (id_==item.directorate_id){
                         depart = depart + '<option value="' + item.id + '">' + item.code + " - " + item.name_en + '</option>';
+                        step = step + 1;
                     }
                 }
             })
+            if(step === 0){
+                depart = depart + '<option value=0>В дирекции нет департамент</option>';
+            }
             document.getElementById("depart_id").innerHTML=depart;
         }
     });
@@ -88,6 +93,7 @@ function getDepartAll1(type, id_1){
         url: host_ + '/bank-depart/depart-all',
         success: function (res) {
             let depart = '';
+            let step = 0;
             res.forEach((item)=>{
                 if (type=="all") {
                     depart = depart + '<option value="' + item.id + '">' + item.code + " - " + item.name_en + '</option>';
@@ -95,9 +101,13 @@ function getDepartAll1(type, id_1){
                 if (type=="change"){
                     if (id_1==item.directorate_id){
                         depart = depart + '<option value="' + item.id + '">' + item.code + " - " + item.name_en + '</option>';
+                        step = step + 1;
                     }
                 }
             })
+            if(step === 0){
+                depart = depart + '<option value=0>В дирекции нет департамент</option>';
+            }
             document.getElementById("depart_id").innerHTML=depart;
         }
     });

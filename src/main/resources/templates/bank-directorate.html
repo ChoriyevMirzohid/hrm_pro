@@ -30,9 +30,14 @@
 
                 <div class="mb-3 d-flex justify-content-between">
                     <div class="title">
-                        <h1 class="h3 d-inline align-middle fw-bolder page-title">Дирекция банка</h1>
+                        <h1 class="h3 d-inline align-middle fw-bolder page-title">Банковские дирекции</h1>
                     </div>
                     <div>
+                        <a href="/bank-block" class="btn btn-secondary">
+                            <span><i class="align-middle mb-1" data-feather="arrow-left"></i></span>
+                            <span>Назад</span>
+                        </a>
+
                         <button class="btn btn-success" id="myBtn" data-toggle="modal" data-target="#userRegModal" onclick="showModal()">Создать</button>
                     </div>
                 </div>
@@ -115,35 +120,32 @@
                                 <th>Название(en)</th>
                                 <th>Менеджер</th>
                                 <th>Состояние</th>
-                                <th>Дата создания</th>
                             </tr>
                             </thead>
 
                             <tbody>
 
-                            <tr th:each="item : ${list.content}">
+                            <tr th:each="item : ${list.content}" th:ondblclick="|itemForwardDepartment(${item.id})|">
                                 <td class="main-see-text">
                                     <span class="main-bg-color" th:text="${item.code}"></span>
                                 </td>
-                                <td>
+                                <td class="main-see-text">
                                     <span th:each="itemBlock : ${bankBlocks}"
                                           th:if="${itemBlock.id} == ${item.block_id}">
-                                        <span class="main-bg-color main-see-text" th:text="${itemBlock.code}"></span>
                                         <span th:text="${itemBlock.name_en}"></span>
                                     </span>
                                 </td>
-                                <td th:text="${item.name_uz}" />
-                                <td th:text="${item.name_ru}" />
-                                <td th:text="${item.name_en}" />
-                                <td th:text="${item.deputy_id}" />
-                                <td>
+                                <td class="main-see-text" th:text="${item.name_uz}" />
+                                <td class="main-see-text" th:text="${item.name_ru}" />
+                                <td class="main-see-text" th:text="${item.name_en}" />
+                                <td class="main-see-text" th:text="${item.deputy_id}" />
+                                <td class="main-see-text">
                                     <!--/*@thymesVar id="conditionList" type=""*/-->
                                     <span th:each="itemCon : ${conditionList}"
                                           th:if="${itemCon.code} == ${item.condition}">
-                                        <span th:text="${itemCon.code} + '-' + ${itemCon.name}"></span>
+                                        <span th:text="${itemCon.name}"></span>
                                     </span>
                                 </td>
-                                <td th:text="${item.create_date}" />
                             </tr>
                             </tbody>
                         </table>
@@ -169,7 +171,7 @@
                             <label class="form-label form-label-class"><span class="label-symbol">*</span>Bank block</label>
                             <select name="block_id" required class="form-select form-select-lg">
                                 <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
-                                <option th:each="item: ${bankBlocks}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}"></option>
+                                <option th:each="item: ${bankBlockById}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}"></option>
                             </select>
                         </div>
                         <div class="mb-3">

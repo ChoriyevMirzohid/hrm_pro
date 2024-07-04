@@ -79,19 +79,30 @@ public class BankEmpS {
         BankEmp bankEmp = new BankEmp();
         int numberTr = 0;
         String unique_code = null;
+        String unique_code_depart = null;
         if (type.equals("create")){
             numberTr = bankEmpRepo.getNumberTr();
             bankEmp.setNumber(numberTr);
 
+            if (bankEmpDto.getDepart_id()!=0){
+                unique_code_depart = bankDepartmentS.getBankDepartmentById(bankEmpDto.getDepart_id()).getCode();
+            } else {
+                unique_code_depart = " -- ";
+            }
             unique_code = bankBlockS.getBankBlockById(bankEmpDto.getBlock_id()).getCode() + "/" +
                     bankDirectorateS.getBankDirectorateById(bankEmpDto.getDirect_id()).getCode() + "/" +
-                    bankDepartmentS.getBankDepartmentById(bankEmpDto.getDepart_id()).getCode();
+                    unique_code_depart;
         }
         if (type.equals("update")){
             bankEmp = bankEmpRepo.findById(emp_id).get();
+            if (bankEmpDto.getDepart_id()!=0){
+                unique_code_depart = bankDepartmentS.getBankDepartmentById(bankEmpDto.getDepart_id()).getCode();
+            } else {
+                unique_code_depart = " -- ";
+            }
             unique_code = bankBlockS.getBankBlockById(bankEmpDto.getBlock_id()).getCode() + "/" +
                     bankDirectorateS.getBankDirectorateById(bankEmpDto.getDirect_id()).getCode() + "/" +
-                    bankDepartmentS.getBankDepartmentById(bankEmpDto.getDepart_id()).getCode();
+                    unique_code_depart;
         }
         bankEmp.setCode_unique(unique_code);
         bankEmp.setBlock_id(bankEmpDto.getBlock_id());
