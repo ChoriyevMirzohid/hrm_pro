@@ -87,7 +87,7 @@ public class BankEmpS {
             if (bankEmpDto.getDepart_id()!=0){
                 unique_code_depart = bankDepartmentS.getBankDepartmentById(bankEmpDto.getDepart_id()).getCode();
             } else {
-                unique_code_depart = " -- ";
+                unique_code_depart = "---";
             }
             unique_code = bankBlockS.getBankBlockById(bankEmpDto.getBlock_id()).getCode() + "/" +
                     bankDirectorateS.getBankDirectorateById(bankEmpDto.getDirect_id()).getCode() + "/" +
@@ -98,7 +98,7 @@ public class BankEmpS {
             if (bankEmpDto.getDepart_id()!=0){
                 unique_code_depart = bankDepartmentS.getBankDepartmentById(bankEmpDto.getDepart_id()).getCode();
             } else {
-                unique_code_depart = " -- ";
+                unique_code_depart = "---";
             }
             unique_code = bankBlockS.getBankBlockById(bankEmpDto.getBlock_id()).getCode() + "/" +
                     bankDirectorateS.getBankDirectorateById(bankEmpDto.getDirect_id()).getCode() + "/" +

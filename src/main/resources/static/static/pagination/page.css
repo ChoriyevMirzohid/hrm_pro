@@ -83,7 +83,9 @@
 .form-change-class{
     border-right: 2px solid limegreen;
 }
-
+.form-readonly-class:read-only{
+    background-color: white;
+}
 .menu-role-type{
     font-size: 10px;
 }

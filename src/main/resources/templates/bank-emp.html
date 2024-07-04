@@ -161,7 +161,7 @@
                   <div>
                     <span class="see-text-data main-see-text main-bg-color" th:text="${#strings.listSplit(item.code_unique, '/').get(0)}"></span>
                     <span class="see-text-data main-see-text main-bg-color" th:text="${#strings.listSplit(item.code_unique, '/').get(1)}"></span>
-                    <span class="see-text-data main-see-text main-bg-color" th:text="${#strings.listSplit(item.code_unique, '/').get(2)}"></span>
+                    <span th:style="${#strings.listSplit(item.code_unique, '/').get(2)=='---' ? 'display:none' : 'display:inline'}" class="see-text-data main-see-text main-bg-color" th:text="${#strings.listSplit(item.code_unique, '/').get(2)}"></span>
                     <span><i class="align-middle data-see-icon" data-feather="more-horizontal" th:onclick="|getEmployeeById(${item.emp_id}, 3)|"></i></span>
                   </div>
                 </td>
@@ -191,7 +191,7 @@
 
                 <td th:classappend="${#strings.length(item.bank_dep) > 50 ? 'setWidth' : 'defaultWidth'}">
                   <div>
-                    <span class="see-text-data main-see-text main-bg-color" th:text="${#strings.listSplit(item.code_unique, '/').get(2)}"></span>
+                    <span th:style="${#strings.listSplit(item.code_unique, '/').get(2)=='---' ? 'display:none' : 'display:inline'}" class="see-text-data main-see-text main-bg-color" th:text="${#strings.listSplit(item.code_unique, '/').get(2)=='---' ? '' : #strings.listSplit(item.code_unique, '/').get(2)}"></span>
                     <span class="see-text-data" th:text="${item.bank_dep}"></span>
                     <span><i class="align-middle data-see-icon" data-feather="more-horizontal" th:onclick="|getEmployeeById(${item.emp_id}, 6)|"></i></span>
                   </div>
@@ -389,6 +389,33 @@
 
               <div class="col-lg-4 col-md-6">
                 <div class="mb-3">
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Уровень сотрудника </label>
+                  <select name="level_id" required class="form-select form-select-lg form-change-class">
+                    <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
+                    <option th:each="item: ${levelList}" th:value="${item.id}" th:text="${item.level_code + '-' + item.name_en}"></option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6">
+                <div class="mb-3">
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Должность сотрудника</label>
+                  <select name="position_id" required class="form-select form-select-lg form-change-class">
+                    <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
+                    <option th:each="item: ${positionList}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}"></option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6">
+                <div class="mb-3">
+                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Менеджер сотрудников</label>
+                  <input class="form-control form-control-lg form-change-class" type="text" required name="emp_manager" placeholder="" />
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-6">
+                <div class="mb-3">
                   <label class="form-label form-label-class"><span class="label-symbol">*</span>Блок банка </label>
                   <select id="block_id" name="block_id" onchange="blockListChange()" required class="form-select form-select-lg form-change-class">
                     <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.BankBlockC"*/-->
@@ -414,33 +441,6 @@
                     <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.BankBlockC"*/-->
                     <!--/<option th:each="item: ${departmentList}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}"></option>/-->
                   </select>
-                </div>
-              </div>
-
-              <div class="col-lg-4 col-md-6">
-                <div class="mb-3">
-                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Уровень сотрудника </label>
-                  <select name="level_id" required class="form-select form-select-lg form-change-class">
-                    <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
-                    <option th:each="item: ${levelList}" th:value="${item.id}" th:text="${item.level_code + '-' + item.name_en}"></option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="col-lg-4 col-md-6">
-                <div class="mb-3">
-                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Должность сотрудника</label>
-                  <select name="position_id" required class="form-select form-select-lg form-change-class">
-                    <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
-                    <option th:each="item: ${positionList}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}"></option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="col-lg-4 col-md-6">
-                <div class="mb-3">
-                  <label class="form-label form-label-class"><span class="label-symbol">*</span>Менеджер сотрудников</label>
-                  <input class="form-control form-control-lg form-change-class" type="text" required name="emp_manager" placeholder="" />
                 </div>
               </div>
 
@@ -570,7 +570,7 @@
         </div>
         <div class="modal-body">
           <div class="modal-body-see">
-            <span id="see-data-item"></span>
+            <span id="see-data-item" class="main-see-text"></span>
           </div>
         </div>
       </div>

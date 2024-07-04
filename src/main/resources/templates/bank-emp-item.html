@@ -64,51 +64,23 @@
 
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Блок банка</label>
-                                    <select id="block_id" name="block_id" required onchange="blockListChange()" class="form-select form-select-lg form-change-class">
-                                        <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.BankBlockC"*/-->
-                                        <!--/ <option th:each="item: ${blockList}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}"></option> /-->
-                                     </select>
-                                 </div>
-                             </div>
-
-                             <div class="col-lg-4 col-md-6">
-                                 <div class="mb-3">
-                                     <label class="form-label form-label-class"><span class="label-symbol">*</span>Дирекция банка</label>
-                                     <select id="direct_id" name="direct_id" required onchange="directListChange()" class="form-select form-select-lg form-change-class">
-                                         <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.BankBlockC"*/-->
-                                        <!--/<option th:each="item: ${directorateList}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}"></option> /-->
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Департамент банка</label>
-                                    <select id="depart_id" name="depart_id" required class="form-select form-select-lg form-change-class">
-                                        <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.BankBlockC"*/-->
-                                        <!--/<option th:each="item: ${departmentList}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}"></option> /-->
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-md-6">
-                                <div class="mb-3">
                                     <label class="form-label form-label-class"><span class="label-symbol">*</span>Уровень сотрудника </label>
-                                    <select name="level_id" required class="form-select form-select-lg form-change-class">
+                                    <select style="display: none" id="level_id" name="level_id" required class="form-select form-select-lg form-change-class">
                                         <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
                                         <option th:each="item: ${levelList}" th:value="${item.id}" th:text="${item.level_code + '-' + item.name_en}"></option>
                                     </select>
+                                    <input class="form-control form-control-lg" th:value="${itemData.getEmp_level()}" id="emp-level" type="text" placeholder="" />
                                 </div>
                             </div>
 
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label form-label-class"><span class="label-symbol">*</span>Должность сотрудника</label>
-                                    <select name="position_id" required class="form-select form-select-lg form-change-class">
+                                    <select style="display: none" id="position_id" name="position_id" required class="form-select form-select-lg form-change-class">
                                         <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.UserRegC"*/-->
                                         <option th:each="item: ${positionList}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}"></option>
                                     </select>
+                                    <input class="form-control form-control-lg" th:value="${itemData.getEmp_position()}" id="emp-position" type="text" placeholder="" />
                                 </div>
                             </div>
 
@@ -121,50 +93,83 @@
 
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
+                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Блок банка</label>
+                                    <select style="display: none" id="block_id" name="block_id" required onchange="blockListChange()" class="form-select form-select-lg form-change-class">
+                                        <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.BankBlockC"*/-->
+                                        <!--/ <option th:each="item: ${blockList}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}"></option> /-->
+                                    </select>
+                                    <input class="form-control form-control-lg form-change-class form-readonly-class" readonly th:value="${itemData.getCode_unique().split('/')[0] + ' - ' + itemData.getBank_block()}" type="text" required id="emp-block" placeholder="" />
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Дирекция банка</label>
+                                    <select style="display: none" id="direct_id" name="direct_id" required onchange="directListChange()" class="form-select form-select-lg form-change-class">
+                                        <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.BankBlockC"*/-->
+                                        <!--/<option th:each="item: ${directorateList}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}"></option> /-->
+                                    </select>
+                                    <input class="form-control form-control-lg form-change-class form-readonly-class" readonly th:value="${itemData.getCode_unique().split('/')[1] + ' - ' + itemData.getBank_direct()}" type="text" required id="emp-direct" placeholder="" />
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label form-label-class"><span class="label-symbol">*</span>Департамент банка</label>
+                                    <select style="display: none" id="depart_id" name="depart_id" required class="form-select form-select-lg form-change-class">
+                                        <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.BankBlockC"*/-->
+                                        <!--/<option th:each="item: ${departmentList}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}"></option> /-->
+                                    </select>
+                                    <input class="form-control form-control-lg form-change-class form-readonly-class" readonly th:value="${itemData.getCode_unique().split('/')[2] + ' - ' + itemData.getBank_dep()}" type="text" required id="emp-dep" placeholder="" />
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6">
+                                <div class="mb-3">
                                     <label class="form-label form-label-class"><span class="label-symbol">*</span>Работники в подчинении</label>
-                                    <textarea class="form-control form-control-lg" th:value="${itemData.sub_employee}" rows="2" name="sub_employee" placeholder=""></textarea>
+                                    <textarea class="form-control form-control-lg" th:text="${itemData.getSub_employee()}" name="sub_employee" placeholder=""></textarea>
                                 </div>
                             </div>
 
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label form-label-class"><span class="label-symbol">*</span>Требования к должности	</label>
-                                    <textarea class="form-control form-control-lg" th:value="${itemData.level_require}" rows="2" name="level_require" placeholder=""></textarea>
+                                    <textarea class="form-control form-control-lg" th:text="${itemData.getLevel_require()}" rows="2" name="level_require" placeholder=""></textarea>
                                 </div>
                             </div>
 
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label form-label-class"><span class="label-symbol">*</span>Образование и необходимый</label>
-                                    <textarea class="form-control form-control-lg" th:value="${itemData.emp_skill}" rows="2" name="emp_skill" placeholder=""></textarea>
+                                    <textarea class="form-control form-control-lg" th:text="${itemData.emp_skill}" rows="2" name="emp_skill" placeholder=""></textarea>
                                 </div>
                             </div>
 
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label form-label-class"><span class="label-symbol">*</span>Основные обязанности	</label>
-                                    <textarea class="form-control form-control-lg" rows="2" th:value="${itemData.main_obligation}" name="main_obligation" placeholder=""></textarea>
+                                    <textarea class="form-control form-control-lg" rows="2" th:text="${itemData.main_obligation}" name="main_obligation" placeholder=""></textarea>
                                 </div>
                             </div>
 
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label form-label-class"><span class="label-symbol">*</span>Детализированное описание функционала и задач</label>
-                                    <textarea class="form-control form-control-lg" rows="2" th:value="${itemData.func_desc}" name="func_desc" placeholder=""></textarea>
+                                    <textarea class="form-control form-control-lg" rows="2" th:text="${itemData.func_desc}" name="func_desc" placeholder=""></textarea>
                                 </div>
                             </div>
 
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label form-label-class"><span class="label-symbol">*</span>Ответственность работника	</label>
-                                    <textarea class="form-control form-control-lg" rows="2" th:value="${itemData.responsibility}" name="responsibility" placeholder=""></textarea>
+                                    <textarea class="form-control form-control-lg" rows="2" th:text="${itemData.responsibility}" name="responsibility" placeholder=""></textarea>
                                 </div>
                             </div>
 
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label form-label-class"><span class="label-symbol">*</span>Полномочия и права	</label>
-                                    <textarea class="form-control form-control-lg" rows="2" th:value="${itemData.emp_law}" name="emp_law" placeholder=""></textarea>
+                                    <textarea class="form-control form-control-lg" rows="2" th:text="${itemData.emp_law}" name="emp_law" placeholder=""></textarea>
                                 </div>
                             </div>
 
