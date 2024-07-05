@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -59,8 +60,11 @@ public class BankEmpS {
         if(ExcelUploadService.isValidExcelFile(file)){
             try {
                 ExcelUploadService excelUploadService = new ExcelUploadService();
-                List<BankEmp> bankEmployeeOldList = excelUploadService.getDataFromExcel(file.getInputStream());
-                bankEmpRepo.saveAll(bankEmployeeOldList);
+                List<BankEmp> bankEmpList = excelUploadService.getDataFromExcel(file.getInputStream());
+                for (BankEmp bankEmp : bankEmpList) {
+                    bankEmp.setNumber(bankEmpRepo.getNumberTr());
+                    bankEmpRepo.save(bankEmp);
+                }
             } catch (IOException e) {
                 throw new IllegalArgumentException("The file is not a valid excel file");
             }
@@ -80,6 +84,7 @@ public class BankEmpS {
         int numberTr = 0;
         String unique_code = null;
         String unique_code_depart = null;
+
         if (type.equals("create")){
             numberTr = bankEmpRepo.getNumberTr();
             bankEmp.setNumber(numberTr);
@@ -87,7 +92,7 @@ public class BankEmpS {
             if (bankEmpDto.getDepart_id()!=0){
                 unique_code_depart = bankDepartmentS.getBankDepartmentById(bankEmpDto.getDepart_id()).getCode();
             } else {
-                unique_code_depart = "---";
+                unique_code_depart = " ";
             }
             unique_code = bankBlockS.getBankBlockById(bankEmpDto.getBlock_id()).getCode() + "/" +
                     bankDirectorateS.getBankDirectorateById(bankEmpDto.getDirect_id()).getCode() + "/" +
@@ -98,7 +103,7 @@ public class BankEmpS {
             if (bankEmpDto.getDepart_id()!=0){
                 unique_code_depart = bankDepartmentS.getBankDepartmentById(bankEmpDto.getDepart_id()).getCode();
             } else {
-                unique_code_depart = "---";
+                unique_code_depart = " ";
             }
             unique_code = bankBlockS.getBankBlockById(bankEmpDto.getBlock_id()).getCode() + "/" +
                     bankDirectorateS.getBankDirectorateById(bankEmpDto.getDirect_id()).getCode() + "/" +
@@ -131,7 +136,7 @@ public class BankEmpS {
 
         bankEmp.setCondition("1");
         bankEmp.setCreation_type("create");
-        bankEmp.setEmployment_date(bankEmpDto.getEmployment_date());
+        bankEmp.setEmployment_date(Objects.equals(bankEmpDto.getEmployment_date().toString(), "2000-01-01") ? null : bankEmpDto.getEmployment_date());
 
         bankEmp = bankEmpRepo.save(bankEmp);
         return bankEmp;

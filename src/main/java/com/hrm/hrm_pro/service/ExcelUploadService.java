@@ -1,7 +1,7 @@
 package com.hrm.hrm_pro.service;
 
 import com.hrm.hrm_pro.model.system_emp.BankEmp;
-import lombok.NoArgsConstructor;
+import com.hrm.hrm_pro.repository.BankEmpRepo;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -16,11 +16,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class ExcelUploadService {
-
-    public ExcelUploadService() {
-        super();
-    }
-
     public static boolean isValidExcelFile(MultipartFile file){
         return Objects.equals(file.getContentType(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" );
     }
@@ -41,8 +36,7 @@ public class ExcelUploadService {
                 BankEmp bankEmp = new BankEmp();
                 bankEmp.setCondition("1");
                 bankEmp.setCreation_type("import");
-                bankEmp.setNumber(1);
-                bankEmp.setCode_unique(" -- / -- / -- ");
+                bankEmp.setCode_unique(" / / ");
                 while (cellIterator.hasNext()){
                     Cell cell = cellIterator.next();
 

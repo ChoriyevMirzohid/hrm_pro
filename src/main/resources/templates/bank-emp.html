@@ -159,9 +159,9 @@
 
                 <td th:classappend="${#strings.length(item.code_unique) > 50 ? 'setWidth' : 'defaultWidth'}">
                   <div>
-                    <span class="see-text-data main-see-text main-bg-color" th:text="${#strings.listSplit(item.code_unique, '/').get(0)}"></span>
-                    <span class="see-text-data main-see-text main-bg-color" th:text="${#strings.listSplit(item.code_unique, '/').get(1)}"></span>
-                    <span th:style="${#strings.listSplit(item.code_unique, '/').get(2)=='---' ? 'display:none' : 'display:inline'}" class="see-text-data main-see-text main-bg-color" th:text="${#strings.listSplit(item.code_unique, '/').get(2)}"></span>
+                    <span th:style="${#strings.listSplit(item.code_unique, '/').get(0)==' ' ? 'display:none' : 'display:inline'}" class="see-text-data main-see-text main-bg-color" th:text="${#strings.listSplit(item.code_unique, '/').get(0)}"></span>
+                    <span th:style="${#strings.listSplit(item.code_unique, '/').get(1)==' ' ? 'display:none' : 'display:inline'}" class="see-text-data main-see-text main-bg-color" th:text="${#strings.listSplit(item.code_unique, '/').get(1)}"></span>
+                    <span th:style="${#strings.listSplit(item.code_unique, '/').get(2)==' ' ? 'display:none' : 'display:inline'}" class="see-text-data main-see-text main-bg-color" th:text="${#strings.listSplit(item.code_unique, '/').get(2)}"></span>
                     <span><i class="align-middle data-see-icon" data-feather="more-horizontal" th:onclick="|getEmployeeById(${item.emp_id}, 3)|"></i></span>
                   </div>
                 </td>
@@ -175,24 +175,21 @@
 
                 <td th:classappend="${#strings.length(item.bank_block) > 50 ? 'setWidth' : 'defaultWidth'}">
                   <div>
-                    <span class="see-text-data main-see-text main-bg-color" th:text="${#strings.listSplit(item.code_unique, '/').get(0)}"></span>
-                    <span class="see-text-data" th:text="${item.bank_block}"></span>
+                    <span class="see-text-data main-see-text" th:text="${item.bank_block}"></span>
                     <span><i class="align-middle data-see-icon" data-feather="more-horizontal" th:onclick="|getEmployeeById(${item.emp_id}, 4)|"></i></span>
                   </div>
                 </td>
 
                 <td th:classappend="${#strings.length(item.bank_direct) > 50 ? 'setWidth' : 'defaultWidth'}">
                   <div>
-                    <span class="see-text-data main-see-text main-bg-color" th:text="${#strings.listSplit(item.code_unique, '/').get(1)}"></span>
-                    <span class="see-text-data" th:text="${item.bank_direct}"></span>
+                    <span class="see-text-data main-see-text" th:text="${item.bank_direct}"></span>
                     <span><i class="align-middle data-see-icon" data-feather="more-horizontal" th:onclick="|getEmployeeById(${item.emp_id}, 5)|"></i></span>
                   </div>
                 </td>
 
                 <td th:classappend="${#strings.length(item.bank_dep) > 50 ? 'setWidth' : 'defaultWidth'}">
                   <div>
-                    <span th:style="${#strings.listSplit(item.code_unique, '/').get(2)=='---' ? 'display:none' : 'display:inline'}" class="see-text-data main-see-text main-bg-color" th:text="${#strings.listSplit(item.code_unique, '/').get(2)=='---' ? '' : #strings.listSplit(item.code_unique, '/').get(2)}"></span>
-                    <span class="see-text-data" th:text="${item.bank_dep}"></span>
+                    <span class="see-text-data main-see-text" th:text="${item.bank_dep}"></span>
                     <span><i class="align-middle data-see-icon" data-feather="more-horizontal" th:onclick="|getEmployeeById(${item.emp_id}, 6)|"></i></span>
                   </div>
                 </td>

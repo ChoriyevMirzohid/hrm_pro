@@ -98,7 +98,7 @@
                                         <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.BankBlockC"*/-->
                                         <!--/ <option th:each="item: ${blockList}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}"></option> /-->
                                     </select>
-                                    <input class="form-control form-control-lg form-change-class form-readonly-class" readonly th:value="${itemData.getCode_unique().split('/')[0] + ' - ' + itemData.getBank_block()}" type="text" required id="emp-block" placeholder="" />
+                                    <input class="form-control form-control-lg form-change-class form-readonly-class" readonly th:value="${itemData.getCode_unique().split('/')[0] + ' ' + itemData.getBank_block()}" type="text" required id="emp-block" placeholder="" />
                                 </div>
                             </div>
 
@@ -109,7 +109,7 @@
                                         <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.BankBlockC"*/-->
                                         <!--/<option th:each="item: ${directorateList}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}"></option> /-->
                                     </select>
-                                    <input class="form-control form-control-lg form-change-class form-readonly-class" readonly th:value="${itemData.getCode_unique().split('/')[1] + ' - ' + itemData.getBank_direct()}" type="text" required id="emp-direct" placeholder="" />
+                                    <input class="form-control form-control-lg form-change-class form-readonly-class" readonly th:value="${itemData.getCode_unique().split('/')[1] + ' ' + itemData.getBank_direct()}" type="text" required id="emp-direct" placeholder="" />
                                 </div>
                             </div>
 
@@ -120,7 +120,7 @@
                                         <!--/*@thymesVar id="conditionList" type="com.hrm.hrm_pro.controller.BankBlockC"*/-->
                                         <!--/<option th:each="item: ${departmentList}" th:value="${item.id}" th:text="${item.code + '-' + item.name_en}"></option> /-->
                                     </select>
-                                    <input class="form-control form-control-lg form-change-class form-readonly-class" readonly th:value="${itemData.getCode_unique().split('/')[2] + ' - ' + itemData.getBank_dep()}" type="text" required id="emp-dep" placeholder="" />
+                                    <input class="form-control form-control-lg form-change-class form-readonly-class" readonly th:value="${itemData.getCode_unique().split('/')[2] + ' ' + itemData.getBank_dep()}" type="text" required id="emp-dep" placeholder="" />
                                 </div>
                             </div>
 
@@ -228,7 +228,7 @@
                             <div class="col-lg-4 col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label form-label-class"><span class="label-symbol">*</span>Дата приема на работу</label>
-                                    <input class="form-control form-control-lg" th:value="${itemData.employment_date}" type="date" name="employment_date" placeholder="" />
+                                    <input class="form-control form-control-lg" th:value="${itemData.employment_date == null ? '2000-01-01' : itemData.employment_date}" type="date" name="employment_date" placeholder="" />
                                 </div>
                             </div>
 

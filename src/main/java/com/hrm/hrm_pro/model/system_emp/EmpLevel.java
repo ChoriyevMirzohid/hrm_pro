@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
@@ -30,10 +31,11 @@ public class EmpLevel {
     @Column(length = 100)
     private String name_en;
 
-    @Column(length = 3)
+    @Column(columnDefinition = "varchar(3) default '1'")
     private String condition;
 
     @CreationTimestamp
+    @Column(columnDefinition = "timestamp default current_timestamp")
     private Timestamp create_date;
 
     private Timestamp delete_date;
