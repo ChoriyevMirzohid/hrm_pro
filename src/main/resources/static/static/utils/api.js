@@ -1,5 +1,5 @@
-const host_ = "http://192.168.28.22:8080";
-// const host_ = "http://192.168.1.108:8080";
+// const host_ = "http://192.168.28.22:8080";
+const host_ = "http://192.168.1.108:8080";
 
 function getEmployeeById(emp_id, id){
     $.ajax({

@@ -21,7 +21,7 @@ function getBlockAll(type){
             let blocks = '';
             res.forEach((item)=>{
                 if (type=="all"){
-                    blocks = blocks + '<option value="' + item.id + '">' + item.code + " - " + item.name_en + '</option>';
+                    blocks = blocks + '<option value="' + item.id + '">' + item.code + " " + item.name_en + '</option>';
                 }
             })
             document.getElementById("block_id").innerHTML=blocks;
@@ -40,11 +40,11 @@ function getDirectAll(type){
             let step = 0;
             res.forEach((item)=>{
                 if (type=="all") {
-                    direct = direct + '<option value="' + item.id + '">' + item.code + " - " + item.name_en + '</option>';
+                    direct = direct + '<option value="' + item.id + '">' + item.code + " " + item.name_en + '</option>';
                 }
                 if (type=="change"){
                     if (id_==item.block_id){
-                        direct = direct + '<option value="' + item.id + '">' + item.code + " - " + item.name_en + '</option>';
+                        direct = direct + '<option value="' + item.id + '">' + item.code + " " + item.name_en + '</option>';
                         if (step==0){
                             id_direct = item.id;
                         }
@@ -70,11 +70,11 @@ function getDepartAll(type){
             let step = 0;
             res.forEach((item)=>{
                 if (type=="all") {
-                    depart = depart + '<option value="' + item.id + '">' + item.code + " - " + item.name_en + '</option>';
+                    depart = depart + '<option value="' + item.id + '">' + item.code + " " + item.name_en + '</option>';
                 }
                 if (type=="change"){
                     if (id_==item.directorate_id){
-                        depart = depart + '<option value="' + item.id + '">' + item.code + " - " + item.name_en + '</option>';
+                        depart = depart + '<option value="' + item.id + '">' + item.code + " " + item.name_en + '</option>';
                         step = step + 1;
                     }
                 }
@@ -96,11 +96,11 @@ function getDepartAll1(type, id_1){
             let step = 0;
             res.forEach((item)=>{
                 if (type=="all") {
-                    depart = depart + '<option value="' + item.id + '">' + item.code + " - " + item.name_en + '</option>';
+                    depart = depart + '<option value="' + item.id + '">' + item.code + " " + item.name_en + '</option>';
                 }
                 if (type=="change"){
                     if (id_1==item.directorate_id){
-                        depart = depart + '<option value="' + item.id + '">' + item.code + " - " + item.name_en + '</option>';
+                        depart = depart + '<option value="' + item.id + '">' + item.code + " " + item.name_en + '</option>';
                         step = step + 1;
                     }
                 }
